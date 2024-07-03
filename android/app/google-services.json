@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "720882714928",
+    "project_id": "smarts-products",
+    "storage_bucket": "smarts-products.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720882714928:android:2666d64b6b71adfa0060f5",
+        "android_client_info": {
+          "package_name": "com.silver.behindhome"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr170r0ke8jKx8hhbpxoOaQlyDTsEznqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720882714928:android:c553ac9e3fd638e00060f5",
+        "android_client_info": {
+          "package_name": "com.silver.parkcheck"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr170r0ke8jKx8hhbpxoOaQlyDTsEznqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720882714928:android:710324968ea1384a0060f5",
+        "android_client_info": {
+          "package_name": "com.silver.residentproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr170r0ke8jKx8hhbpxoOaQlyDTsEznqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
