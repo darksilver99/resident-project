@@ -285,7 +285,7 @@ class FFRoute {
                   child: Center(
                     child: Image.asset(
                       'assets/images/urban-landscape-with-houses-buildings_1308-128068.jpg',
-                      width: MediaQuery.sizeOf(context).width * 0.6,
+                      height: 200.0,
                       fit: BoxFit.contain,
                     ),
                   ),
