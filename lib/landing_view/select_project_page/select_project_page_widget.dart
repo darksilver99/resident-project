@@ -40,7 +40,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (!((currentUserDocument?.projectList?.toList() ?? []).isNotEmpty)) {
-        _model.qrCode = await _model.qrCode(context);
+        _model.qrCode = await _model.qrCodeBlock(context);
         _model.isDuplicate = await actions.checkDuplicateResident(
           _model.qrCode!,
         );
@@ -188,7 +188,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                         padding: EdgeInsets.all(16.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.qrCode2 = await _model.qrCode(context);
+                            _model.qrCode2 = await _model.qrCodeBlock(context);
                             _model.isDuplicate2 =
                                 await actions.checkDuplicateResident(
                               _model.qrCode2!,
