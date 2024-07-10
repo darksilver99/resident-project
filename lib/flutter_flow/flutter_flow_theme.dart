@@ -3,31 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
-
-const kThemeModeKey = '__theme_mode__';
-SharedPreferences? _prefs;
-
 abstract class FlutterFlowTheme {
-  static Future initialize() async =>
-      _prefs = await SharedPreferences.getInstance();
-  static ThemeMode get themeMode {
-    final darkMode = _prefs?.getBool(kThemeModeKey);
-    return darkMode == null
-        ? ThemeMode.system
-        : darkMode
-            ? ThemeMode.dark
-            : ThemeMode.light;
-  }
-
-  static void saveThemeMode(ThemeMode mode) => mode == ThemeMode.system
-      ? _prefs?.remove(kThemeModeKey)
-      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
-
   static FlutterFlowTheme of(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark
-        ? DarkModeTheme()
-        : LightModeTheme();
+    return LightModeTheme();
   }
 
   @Deprecated('Use primary instead')
@@ -53,6 +31,8 @@ abstract class FlutterFlowTheme {
   late Color warning;
   late Color error;
   late Color info;
+
+  late Color link;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -125,7 +105,7 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF105DFB);
+  late Color primary = const Color(0xFF7CBE71);
   late Color secondary = const Color(0xFF8AC7FF);
   late Color tertiary = const Color(0xFFEE8B60);
   late Color alternate = const Color(0xFFE0E3E7);
@@ -141,6 +121,8 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color warning = const Color(0xFFC96F46);
   late Color error = const Color(0xFFE65454);
   late Color info = const Color(0xFFFFFFFF);
+
+  late Color link = Color(0xFF394CF4);
 }
 
 abstract class Typography {
@@ -287,32 +269,6 @@ class ThemeTypography extends Typography {
       );
 }
 
-class DarkModeTheme extends FlutterFlowTheme {
-  @Deprecated('Use primary instead')
-  Color get primaryColor => primary;
-  @Deprecated('Use secondary instead')
-  Color get secondaryColor => secondary;
-  @Deprecated('Use tertiary instead')
-  Color get tertiaryColor => tertiary;
-
-  late Color primary = const Color(0xFF105DFB);
-  late Color secondary = const Color(0xFF8AC7FF);
-  late Color tertiary = const Color(0xFFEE8B60);
-  late Color alternate = const Color(0xFF212836);
-  late Color primaryText = const Color(0xFFFFFFFF);
-  late Color secondaryText = const Color(0xFFA1A0A3);
-  late Color primaryBackground = const Color(0xFF12151C);
-  late Color secondaryBackground = const Color(0xFF151820);
-  late Color accent1 = const Color(0x4C105DFB);
-  late Color accent2 = const Color(0x4C8AC7FF);
-  late Color accent3 = const Color(0x4CEE8B60);
-  late Color accent4 = const Color(0xB314181B);
-  late Color success = const Color(0xFF02CA79);
-  late Color warning = const Color(0xFFC96F46);
-  late Color error = const Color(0xFFE65454);
-  late Color info = const Color(0xFFFFFFFF);
-}
-
 extension TextStyleHelper on TextStyle {
   TextStyle override({
     String? fontFamily,
@@ -324,6 +280,7 @@ extension TextStyleHelper on TextStyle {
     bool useGoogleFonts = true,
     TextDecoration? decoration,
     double? lineHeight,
+    List<Shadow>? shadows,
   }) =>
       useGoogleFonts
           ? GoogleFonts.getFont(
@@ -335,6 +292,7 @@ extension TextStyleHelper on TextStyle {
               fontStyle: fontStyle ?? this.fontStyle,
               decoration: decoration,
               height: lineHeight,
+              shadows: shadows,
             )
           : copyWith(
               fontFamily: fontFamily,
@@ -345,5 +303,6 @@ extension TextStyleHelper on TextStyle {
               fontStyle: fontStyle,
               decoration: decoration,
               height: lineHeight,
+              shadows: shadows,
             );
 }
