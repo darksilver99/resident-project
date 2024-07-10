@@ -1,4 +1,3 @@
-import '/components/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -12,8 +11,6 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // Model for MainBackgroundView component.
-  late MainBackgroundViewModel mainBackgroundViewModel;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -26,15 +23,12 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   @override
   void initState(BuildContext context) {
-    mainBackgroundViewModel =
-        createModel(context, () => MainBackgroundViewModel());
     passwordVisibility = false;
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    mainBackgroundViewModel.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 
