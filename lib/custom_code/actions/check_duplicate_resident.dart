@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:resident_project/auth/firebase_auth/auth_util.dart';
+
 Future<bool> checkDuplicateResident(String projectDocID) async {
   // Add your function code here!
   QuerySnapshot<Map<String, dynamic>> rs = await FirebaseFirestore.instance
