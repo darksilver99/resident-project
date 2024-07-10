@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'flutter_flow/flutter_flow_util.dart';
+
+class FFAppState extends ChangeNotifier {
+  static FFAppState _instance = FFAppState._internal();
+
+  factory FFAppState() {
+    return _instance;
+  }
+
+  FFAppState._internal();
+
+  static void reset() {
+    _instance = FFAppState._internal();
+  }
+
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      if (prefs.containsKey('ff_currentProjectData')) {
+        try {
+          final serializedData =
+              prefs.getString('ff_currentProjectData') ?? '{}';
+          _currentProjectData =
+              ProjectDataStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
+  }
+
+  void update(VoidCallback callback) {
+    callback();
+    notifyListeners();
+  }
+
+  late SharedPreferences prefs;
+
+  ConfigDataStruct _configData = ConfigDataStruct();
+  ConfigDataStruct get configData => _configData;
+  set configData(ConfigDataStruct value) {
+    _configData = value;
+  }
+
+  void updateConfigDataStruct(Function(ConfigDataStruct) updateFn) {
+    updateFn(_configData);
+  }
+
+  ProjectDataStruct _currentProjectData = ProjectDataStruct();
+  ProjectDataStruct get currentProjectData => _currentProjectData;
+  set currentProjectData(ProjectDataStruct value) {
+    _currentProjectData = value;
+    prefs.setString('ff_currentProjectData', value.serialize());
+  }
+
+  void updateCurrentProjectDataStruct(Function(ProjectDataStruct) updateFn) {
+    updateFn(_currentProjectData);
+    prefs.setString('ff_currentProjectData', _currentProjectData.serialize());
+  }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
+}

@@ -46,6 +46,36 @@ class UsersRecord extends FirestoreRecord {
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
 
+  // "status" field.
+  int? _status;
+  int get status => _status ?? 0;
+  bool hasStatus() => _status != null;
+
+  // "first_name" field.
+  String? _firstName;
+  String get firstName => _firstName ?? '';
+  bool hasFirstName() => _firstName != null;
+
+  // "last_name" field.
+  String? _lastName;
+  String get lastName => _lastName ?? '';
+  bool hasLastName() => _lastName != null;
+
+  // "type" field.
+  String? _type;
+  String get type => _type ?? '';
+  bool hasType() => _type != null;
+
+  // "project_list" field.
+  List<DocumentReference>? _projectList;
+  List<DocumentReference> get projectList => _projectList ?? const [];
+  bool hasProjectList() => _projectList != null;
+
+  // "firebase_token" field.
+  String? _firebaseToken;
+  String get firebaseToken => _firebaseToken ?? '';
+  bool hasFirebaseToken() => _firebaseToken != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -53,6 +83,12 @@ class UsersRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
+    _status = castToType<int>(snapshotData['status']);
+    _firstName = snapshotData['first_name'] as String?;
+    _lastName = snapshotData['last_name'] as String?;
+    _type = snapshotData['type'] as String?;
+    _projectList = getDataList(snapshotData['project_list']);
+    _firebaseToken = snapshotData['firebase_token'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -95,6 +131,11 @@ Map<String, dynamic> createUsersRecordData({
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
+  int? status,
+  String? firstName,
+  String? lastName,
+  String? type,
+  String? firebaseToken,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -104,6 +145,11 @@ Map<String, dynamic> createUsersRecordData({
       'uid': uid,
       'created_time': createdTime,
       'phone_number': phoneNumber,
+      'status': status,
+      'first_name': firstName,
+      'last_name': lastName,
+      'type': type,
+      'firebase_token': firebaseToken,
     }.withoutNulls,
   );
 
@@ -115,12 +161,19 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
 
   @override
   bool equals(UsersRecord? e1, UsersRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.phoneNumber == e2?.phoneNumber;
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.status == e2?.status &&
+        e1?.firstName == e2?.firstName &&
+        e1?.lastName == e2?.lastName &&
+        e1?.type == e2?.type &&
+        listEquality.equals(e1?.projectList, e2?.projectList) &&
+        e1?.firebaseToken == e2?.firebaseToken;
   }
 
   @override
@@ -130,7 +183,13 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.photoUrl,
         e?.uid,
         e?.createdTime,
-        e?.phoneNumber
+        e?.phoneNumber,
+        e?.status,
+        e?.firstName,
+        e?.lastName,
+        e?.type,
+        e?.projectList,
+        e?.firebaseToken
       ]);
 
   @override
