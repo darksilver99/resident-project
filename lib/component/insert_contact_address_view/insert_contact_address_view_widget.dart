@@ -155,7 +155,8 @@ class _InsertContactAddressViewWidgetState
                               fontFamily: 'Inter',
                               letterSpacing: 0.0,
                             ),
-                        keyboardType: TextInputType.number,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
                         validator:
                             _model.textControllerValidator.asValidator(context),
                       ),
