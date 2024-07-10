@@ -281,7 +281,7 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Colors.transparent,
+                  color: FlutterFlowTheme.of(context).info,
                   child: Center(
                     child: Image.asset(
                       'assets/images/urban-landscape-with-houses-buildings_1308-128068.jpg',
