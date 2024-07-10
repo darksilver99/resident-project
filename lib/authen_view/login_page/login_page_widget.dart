@@ -1,7 +1,10 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_page_model.dart';
@@ -24,10 +27,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     super.initState();
     _model = createModel(context, () => LoginPageModel());
 
-    _model.textController1 ??= TextEditingController();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await action_blocks.setConfigData(context);
+    });
+
+    _model.emailTextController ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
   }
 
@@ -91,7 +99,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: TextFormField(
-                              controller: _model.textController1,
+                              controller: _model.emailTextController,
                               focusNode: _model.textFieldFocusNode1,
                               autofocus: false,
                               obscureText: false,
@@ -148,7 +156,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     fontFamily: 'Inter',
                                     letterSpacing: 0.0,
                                   ),
-                              validator: _model.textController1Validator
+                              validator: _model.emailTextControllerValidator
                                   .asValidator(context),
                             ),
                           ),
@@ -156,7 +164,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: TextFormField(
-                              controller: _model.textController2,
+                              controller: _model.passwordTextController,
                               focusNode: _model.textFieldFocusNode2,
                               autofocus: false,
                               obscureText: !_model.passwordVisibility,
@@ -226,7 +234,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     fontFamily: 'Inter',
                                     letterSpacing: 0.0,
                                   ),
-                              validator: _model.textController2Validator
+                              validator: _model.passwordTextControllerValidator
                                   .asValidator(context),
                             ),
                           ),
@@ -256,8 +264,24 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                if (_model.formKey.currentState == null ||
+                                    !_model.formKey.currentState!.validate()) {
+                                  return;
+                                }
+                                GoRouter.of(context).prepareAuthEvent();
+
+                                final user = await authManager.signInWithEmail(
+                                  context,
+                                  _model.emailTextController.text,
+                                  _model.passwordTextController.text,
+                                );
+                                if (user == null) {
+                                  return;
+                                }
+
+                                context.goNamedAuth(
+                                    'HomePage', context.mounted);
                               },
                               text: 'เข้าสู่ระบบ',
                               options: FFButtonOptions(
@@ -331,8 +355,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                context.pushNamed('RegisterPage');
                               },
                               text: 'สมัครสมาชิก',
                               options: FFButtonOptions(
