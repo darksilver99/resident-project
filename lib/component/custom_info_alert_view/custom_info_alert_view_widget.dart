@@ -97,12 +97,12 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             color: () {
-                              if (widget!.status == 'error') {
-                                return FlutterFlowTheme.of(context).error;
+                              if (widget!.status == 'success') {
+                                return FlutterFlowTheme.of(context).success;
                               } else if (widget!.status == 'info') {
                                 return FlutterFlowTheme.of(context).primaryText;
                               } else {
-                                return FlutterFlowTheme.of(context).success;
+                                return FlutterFlowTheme.of(context).error;
                               }
                             }(),
                             fontSize: 20.0,

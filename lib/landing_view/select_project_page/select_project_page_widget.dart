@@ -158,6 +158,8 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Builder(
       builder: (context) => GestureDetector(
         onTap: () => _model.unfocusNode.canRequestFocus
@@ -439,16 +441,37 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Text(
-                                              containerProjectListRecord.name,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 8.0, 0.0),
+                                                child: Text(
+                                                  containerProjectListRecord
+                                                      .name,
+                                                  maxLines: 2,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Inter',
                                                         letterSpacing: 0.0,
                                                       ),
+                                                ),
+                                              ),
                                             ),
+                                            if (FFAppState()
+                                                    .currentProjectData
+                                                    .projectRef
+                                                    ?.id ==
+                                                projectListItem.id)
+                                              Icon(
+                                                Icons.check_circle,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 24.0,
+                                              ),
                                           ],
                                         ),
                                       ),
