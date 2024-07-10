@@ -45,26 +45,13 @@ class _MainBackgroundViewWidgetState extends State<MainBackgroundViewWidget> {
           height: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.white, Color(0xFF78B85C), Color(0xFF3B7C10)],
+              colors: [Colors.white, Color(0xFFE2B02D), Color(0xFFF88A4F)],
               stops: [0.0, 0.8, 1.0],
-              begin: AlignmentDirectional(0.0, -1.0),
-              end: AlignmentDirectional(0, 1.0),
+              begin: AlignmentDirectional(-1.0, -0.64),
+              end: AlignmentDirectional(1.0, 0.64),
             ),
           ),
         ),
-        if (false)
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.white, Color(0xFFED8EED), Color(0xFFD000FD)],
-                stops: [0.0, 0.8, 1.0],
-                begin: AlignmentDirectional(0.0, -1.0),
-                end: AlignmentDirectional(0, 1.0),
-              ),
-            ),
-          ),
       ],
     );
   }
