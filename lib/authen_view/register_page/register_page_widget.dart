@@ -666,7 +666,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                           lastName: _model
                                               .lastNameTextController.text,
                                           createdTime: getCurrentTimestamp,
-                                          status: 0,
+                                          status: 1,
                                           type: 'resident',
                                           phoneNumber: _model
                                               .phoneNumberTextController.text,

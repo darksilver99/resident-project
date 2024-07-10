@@ -287,7 +287,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                     () => _model.contactAddress2 = value));
 
                                 _model.residentRef2 = await actions.joinProject(
-                                  _model.qrCode!,
+                                  _model.qrCode2!,
                                   _model.contactAddress2!,
                                 );
                                 _model.projectData2 =
