@@ -37,6 +37,8 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   ProjectListRecord? projectData;
   // Stores action output result for [Action Block - qrCodeBlock] action in Button widget.
   String? qrCode2;
+  // Stores action output result for [Custom Action - checkIsHaveProject] action in Button widget.
+  bool? isHaveProject2;
   // Stores action output result for [Custom Action - checkDuplicateResident] action in Button widget.
   bool? isDuplicate2;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
