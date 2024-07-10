@@ -59,11 +59,23 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             ),
           ),
           child: Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, -0.4),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        'assets/images/urban-landscape-with-houses-buildings.png',
+                        height: 160.0,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
                   Form(
                     key: _model.formKey,
                     autovalidateMode: AutovalidateMode.disabled,
@@ -103,7 +115,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -111,21 +123,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 filled: true,
                                 fillColor: Colors.white,
@@ -168,7 +180,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -176,21 +188,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 filled: true,
                                 fillColor: Colors.white,
@@ -269,7 +281,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(24.0),
+                                borderRadius: BorderRadius.circular(100.0),
                               ),
                             ),
                           ),
@@ -344,7 +356,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(24.0),
+                                borderRadius: BorderRadius.circular(100.0),
                               ),
                             ),
                           ),
