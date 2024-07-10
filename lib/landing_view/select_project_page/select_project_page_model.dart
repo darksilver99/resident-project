@@ -25,6 +25,8 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - qrCodeBlock] action in SelectProjectPage widget.
   String? qrCode;
+  // Stores action output result for [Custom Action - checkIsHaveProject] action in SelectProjectPage widget.
+  bool? isHaveProject;
   // Stores action output result for [Custom Action - checkDuplicateResident] action in SelectProjectPage widget.
   bool? isDuplicate;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in SelectProjectPage widget.
