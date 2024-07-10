@@ -23,7 +23,7 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Action Block - qrCode] action in SelectProjectPage widget.
+  // Stores action output result for [Action Block - qrCodeBlock] action in SelectProjectPage widget.
   String? qrCode;
   // Stores action output result for [Custom Action - checkDuplicateResident] action in SelectProjectPage widget.
   bool? isDuplicate;
@@ -33,7 +33,7 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   DocumentReference? residentRef;
   // Stores action output result for [Backend Call - Read Document] action in SelectProjectPage widget.
   ProjectListRecord? projectData;
-  // Stores action output result for [Action Block - qrCode] action in Button widget.
+  // Stores action output result for [Action Block - qrCodeBlock] action in Button widget.
   String? qrCode2;
   // Stores action output result for [Custom Action - checkDuplicateResident] action in Button widget.
   bool? isDuplicate2;
@@ -53,7 +53,7 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   }
 
   /// Action blocks.
-  Future<String?> qrCode(BuildContext context) async {
+  Future<String?> qrCodeBlock(BuildContext context) async {
     var qrCodeResult = '';
 
     qrCodeResult = await FlutterBarcodeScanner.scanBarcode(
