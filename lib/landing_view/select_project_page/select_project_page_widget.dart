@@ -41,33 +41,84 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (!((currentUserDocument?.projectList?.toList() ?? []).isNotEmpty)) {
         _model.qrCode = await _model.qrCodeBlock(context);
-        _model.isDuplicate = await actions.checkDuplicateResident(
+        _model.isHaveProject = await actions.checkIsHaveProject(
           _model.qrCode!,
         );
-        if (_model.isDuplicate!) {
-          await showDialog(
-            context: context,
-            builder: (dialogContext) {
-              return Dialog(
-                elevation: 0,
-                insetPadding: EdgeInsets.zero,
-                backgroundColor: Colors.transparent,
-                alignment: AlignmentDirectional(0.0, 0.0)
-                    .resolve(Directionality.of(context)),
-                child: WebViewAware(
-                  child: GestureDetector(
-                    onTap: () => _model.unfocusNode.canRequestFocus
-                        ? FocusScope.of(context)
-                            .requestFocus(_model.unfocusNode)
-                        : FocusScope.of(context).unfocus(),
-                    child: CustomInfoAlertViewWidget(
-                      title: 'ท่านอยู่ในโครงการนี้แล้ว',
+        if (_model.isHaveProject!) {
+          _model.isDuplicate = await actions.checkDuplicateResident(
+            _model.qrCode!,
+          );
+          if (_model.isDuplicate!) {
+            await showDialog(
+              context: context,
+              builder: (dialogContext) {
+                return Dialog(
+                  elevation: 0,
+                  insetPadding: EdgeInsets.zero,
+                  backgroundColor: Colors.transparent,
+                  alignment: AlignmentDirectional(0.0, 0.0)
+                      .resolve(Directionality.of(context)),
+                  child: WebViewAware(
+                    child: GestureDetector(
+                      onTap: () => _model.unfocusNode.canRequestFocus
+                          ? FocusScope.of(context)
+                              .requestFocus(_model.unfocusNode)
+                          : FocusScope.of(context).unfocus(),
+                      child: CustomInfoAlertViewWidget(
+                        title: 'ท่านอยู่ในโครงการนี้แล้ว',
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-          ).then((value) => setState(() {}));
+                );
+              },
+            ).then((value) => setState(() {}));
+          } else {
+            await showDialog(
+              context: context,
+              builder: (dialogContext) {
+                return Dialog(
+                  elevation: 0,
+                  insetPadding: EdgeInsets.zero,
+                  backgroundColor: Colors.transparent,
+                  alignment: AlignmentDirectional(0.0, 0.0)
+                      .resolve(Directionality.of(context)),
+                  child: WebViewAware(
+                    child: GestureDetector(
+                      onTap: () => _model.unfocusNode.canRequestFocus
+                          ? FocusScope.of(context)
+                              .requestFocus(_model.unfocusNode)
+                          : FocusScope.of(context).unfocus(),
+                      child: InsertContactAddressViewWidget(),
+                    ),
+                  ),
+                );
+              },
+            ).then(
+                (value) => safeSetState(() => _model.contactAddress = value));
+
+            _model.residentRef = await actions.joinProject(
+              _model.qrCode!,
+              _model.contactAddress!,
+            );
+            _model.projectData = await ProjectListRecord.getDocumentOnce(
+                functions.projectReference(_model.qrCode!));
+            await action_blocks.setCurrentProjectData(
+              context,
+              projectDocument: _model.projectData,
+              contactAddress: _model.contactAddress,
+            );
+
+            await currentUserReference!.update({
+              ...mapToFirestore(
+                {
+                  'project_list': FieldValue.arrayUnion(
+                      [functions.projectReference(_model.qrCode!)]),
+                },
+              ),
+            });
+
+            context.goNamed('HomePage');
+          }
         } else {
           await showDialog(
             context: context,
@@ -84,35 +135,15 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                         ? FocusScope.of(context)
                             .requestFocus(_model.unfocusNode)
                         : FocusScope.of(context).unfocus(),
-                    child: InsertContactAddressViewWidget(),
+                    child: CustomInfoAlertViewWidget(
+                      title:
+                          'ขออภัยไม่พบโครงการนี้ กรุณาตรวจสอบ QR Code หรือติดต่อเจ้าหน้าโครงการ',
+                    ),
                   ),
                 ),
               );
             },
-          ).then((value) => safeSetState(() => _model.contactAddress = value));
-
-          _model.residentRef = await actions.joinProject(
-            _model.qrCode!,
-            _model.contactAddress!,
-          );
-          _model.projectData = await ProjectListRecord.getDocumentOnce(
-              functions.projectReference(_model.qrCode!));
-          await action_blocks.setCurrentProjectData(
-            context,
-            projectDocument: _model.projectData,
-            contactAddress: _model.contactAddress,
-          );
-
-          await currentUserReference!.update({
-            ...mapToFirestore(
-              {
-                'project_list': FieldValue.arrayUnion(
-                    [functions.projectReference(_model.qrCode!)]),
-              },
-            ),
-          });
-
-          context.goNamed('HomePage');
+          ).then((value) => setState(() {}));
         }
       }
     });
