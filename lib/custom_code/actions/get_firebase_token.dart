@@ -15,6 +15,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 Future<String> getFirebaseToken() async {
   // Add your function code here!
   FirebaseMessaging messaging = FirebaseMessaging.instance;
-  String token = await messaging.getToken();
-  return token;
+  String? token = await messaging.getToken();
+  return token ?? '';
 }
