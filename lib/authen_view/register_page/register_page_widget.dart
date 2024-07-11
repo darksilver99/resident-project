@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -627,6 +625,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   0.0, 0.0, 0.0, 16.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  Function() _navigate = () {};
                                   if (_model.formKey.currentState == null ||
                                       !_model.formKey.currentState!
                                           .validate()) {
@@ -673,15 +672,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                               .phoneNumberTextController.text,
                                         ));
 
-                                    _model.firebaseToken =
-                                        await actions.getFirebaseToken();
-
-                                    await currentUserReference!
-                                        .update(createUsersRecordData(
-                                      firebaseToken: _model.firebaseToken,
-                                    ));
-
-                                    context.goNamedAuth(
+                                    _navigate = () => context.goNamedAuth(
                                         'HomePage', context.mounted);
                                   } else {
                                     await showDialog(
@@ -715,7 +706,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     ).then((value) => setState(() {}));
                                   }
 
-                                  setState(() {});
+                                  _navigate();
                                 },
                                 text: 'สมัครสมาชิก',
                                 options: FFButtonOptions(
