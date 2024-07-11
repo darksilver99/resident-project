@@ -20,7 +20,12 @@ import 'select_project_page_model.dart';
 export 'select_project_page_model.dart';
 
 class SelectProjectPageWidget extends StatefulWidget {
-  const SelectProjectPageWidget({super.key});
+  const SelectProjectPageWidget({
+    super.key,
+    required this.isCanNotBack,
+  });
+
+  final bool? isCanNotBack;
 
   @override
   State<SelectProjectPageWidget> createState() =>
@@ -171,19 +176,22 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
-            leading: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30.0,
-              borderWidth: 1.0,
-              buttonSize: 60.0,
-              icon: Icon(
-                Icons.chevron_left_rounded,
-                color: Colors.white,
-                size: 30.0,
+            leading: Visibility(
+              visible: widget!.isCanNotBack ?? true,
+              child: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 60.0,
+                icon: Icon(
+                  Icons.chevron_left_rounded,
+                  color: Colors.white,
+                  size: 30.0,
+                ),
+                onPressed: () async {
+                  context.pop();
+                },
               ),
-              onPressed: () async {
-                context.pop();
-              },
             ),
             title: Text(
               'เข้าร่วมโครงการ',

@@ -35,7 +35,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       if (valueOrDefault(currentUserDocument?.type, '') == 'resident') {
         if (FFAppState().currentProjectData.name == null ||
             FFAppState().currentProjectData.name == '') {
-          context.goNamedAuth('SelectProjectPage', context.mounted);
+          context.goNamedAuth(
+            'SelectProjectPage',
+            context.mounted,
+            queryParameters: {
+              'isCanNotBack': serializeParam(
+                false,
+                ParamType.bool,
+              ),
+            }.withoutNulls,
+          );
         }
       } else {
         await showDialog(
