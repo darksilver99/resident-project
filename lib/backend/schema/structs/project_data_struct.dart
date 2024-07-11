@@ -12,11 +12,9 @@ class ProjectDataStruct extends FFFirebaseStruct {
   ProjectDataStruct({
     String? name,
     DocumentReference? projectRef,
-    String? contactAddress,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _name = name,
         _projectRef = projectRef,
-        _contactAddress = contactAddress,
         super(firestoreUtilData);
 
   // "name" field.
@@ -33,18 +31,10 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasProjectRef() => _projectRef != null;
 
-  // "contact_address" field.
-  String? _contactAddress;
-  String get contactAddress => _contactAddress ?? '';
-  set contactAddress(String? val) => _contactAddress = val;
-
-  bool hasContactAddress() => _contactAddress != null;
-
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         name: data['name'] as String?,
         projectRef: data['project_ref'] as DocumentReference?,
-        contactAddress: data['contact_address'] as String?,
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -54,7 +44,6 @@ class ProjectDataStruct extends FFFirebaseStruct {
   Map<String, dynamic> toMap() => {
         'name': _name,
         'project_ref': _projectRef,
-        'contact_address': _contactAddress,
       }.withoutNulls;
 
   @override
@@ -66,10 +55,6 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'project_ref': serializeParam(
           _projectRef,
           ParamType.DocumentReference,
-        ),
-        'contact_address': serializeParam(
-          _contactAddress,
-          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -86,11 +71,6 @@ class ProjectDataStruct extends FFFirebaseStruct {
           false,
           collectionNamePath: ['project_list'],
         ),
-        contactAddress: deserializeParam(
-          data['contact_address'],
-          ParamType.String,
-          false,
-        ),
       );
 
   @override
@@ -100,19 +80,16 @@ class ProjectDataStruct extends FFFirebaseStruct {
   bool operator ==(Object other) {
     return other is ProjectDataStruct &&
         name == other.name &&
-        projectRef == other.projectRef &&
-        contactAddress == other.contactAddress;
+        projectRef == other.projectRef;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([name, projectRef, contactAddress]);
+  int get hashCode => const ListEquality().hash([name, projectRef]);
 }
 
 ProjectDataStruct createProjectDataStruct({
   String? name,
   DocumentReference? projectRef,
-  String? contactAddress,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -121,7 +98,6 @@ ProjectDataStruct createProjectDataStruct({
     ProjectDataStruct(
       name: name,
       projectRef: projectRef,
-      contactAddress: contactAddress,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

@@ -80,7 +80,24 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                     ),
               ),
               Text(
-                FFAppState().currentProjectData.contactAddress,
+                FFAppState().currentResidentData.contactAddress,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Inter',
+                      letterSpacing: 0.0,
+                    ),
+              ),
+              Text(
+                FFAppState().currentResidentData.status.toString(),
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Inter',
+                      letterSpacing: 0.0,
+                    ),
+              ),
+              Text(
+                valueOrDefault<String>(
+                  FFAppState().currentResidentData.residentRef?.id,
+                  '-',
+                ),
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Inter',
                       letterSpacing: 0.0,
