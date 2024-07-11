@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/custom_confirm_dialog_view/custom_confirm_dialog_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/insert_contact_address_view/insert_contact_address_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
@@ -11,6 +12,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -413,85 +415,182 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                           itemBuilder: (context, projectListIndex) {
                             final projectListItem =
                                 projectList[projectListIndex];
-                            return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              child: StreamBuilder<ProjectListRecord>(
-                                stream: ProjectListRecord.getDocument(
-                                    projectListItem),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
+                            return Builder(
+                              builder: (context) => Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
+                                child: StreamBuilder<ProjectListRecord>(
+                                  stream: ProjectListRecord.getDocument(
+                                      projectListItem),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+
+                                    final containerProjectListRecord =
+                                        snapshot.data!;
+
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        if (FFAppState()
+                                                .currentProjectData
+                                                .projectRef
+                                                ?.id !=
+                                            containerProjectListRecord
+                                                .reference.id) {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child:
+                                                        CustomConfirmDialogViewWidget(
+                                                      title:
+                                                          'ต้องการเลือกโครงการปัจจุบันเป็น \"${containerProjectListRecord.name}\" ใช่หรือไม่ ?',
+                                                      detail:
+                                                          'สามารถเปลี่ยนโครงการที่ท่านอยู่ได้ตลอดที่เมนู \"เปลี่ยนโครงการ\"',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => safeSetState(
+                                              () => _model.isConfirm = value));
+
+                                          if ((_model.isConfirm != null) &&
+                                              (_model.isConfirm == true)) {
+                                            await action_blocks
+                                                .setCurrentProjectData(
+                                              context,
+                                              projectDocument:
+                                                  containerProjectListRecord,
+                                            );
+                                            _model.residentDoc3 =
+                                                await queryResidentListRecordOnce(
+                                              queryBuilder:
+                                                  (residentListRecord) =>
+                                                      residentListRecord.where(
+                                                'create_by',
+                                                isEqualTo: currentUserReference,
+                                              ),
+                                              singleRecord: true,
+                                            ).then((s) => s.firstOrNull);
+                                            await action_blocks
+                                                .setCurrentResidentData(
+                                              context,
+                                              residentDocument:
+                                                  _model.residentDoc3,
+                                            );
+                                            setState(() {});
+                                          }
+                                        }
+
+                                        setState(() {});
+                                      },
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        elevation: 3.0,
+                                        child: Container(
+                                          width: 100.0,
+                                          height: 100.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(16.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                8.0, 0.0),
+                                                    child: Text(
+                                                      containerProjectListRecord
+                                                          .name,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Inter',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Builder(
+                                                  builder: (context) {
+                                                    if (FFAppState()
+                                                            .currentProjectData
+                                                            .projectRef
+                                                            ?.id ==
+                                                        projectListItem.id) {
+                                                      return Icon(
+                                                        Icons.check_circle,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      );
+                                                    } else {
+                                                      return Icon(
+                                                        Icons.circle_outlined,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
+                                                      );
+                                                    }
+                                                  },
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     );
-                                  }
-
-                                  final containerProjectListRecord =
-                                      snapshot.data!;
-
-                                  return Material(
-                                    color: Colors.transparent,
-                                    elevation: 3.0,
-                                    child: Container(
-                                      width: 100.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 8.0, 0.0),
-                                                child: Text(
-                                                  containerProjectListRecord
-                                                      .name,
-                                                  maxLines: 2,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                            ),
-                                            if (FFAppState()
-                                                    .currentProjectData
-                                                    .projectRef
-                                                    ?.id ==
-                                                projectListItem.id)
-                                              Icon(
-                                                Icons.check_circle,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 24.0,
-                                              ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
+                                  },
+                                ),
                               ),
                             );
                           },

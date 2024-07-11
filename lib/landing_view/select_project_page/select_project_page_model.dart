@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/custom_confirm_dialog_view/custom_confirm_dialog_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/insert_contact_address_view/insert_contact_address_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
@@ -12,6 +13,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'select_project_page_widget.dart' show SelectProjectPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -47,6 +49,10 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   ResidentListRecord? residentDoc2;
   // Stores action output result for [Backend Call - Read Document] action in Button widget.
   ProjectListRecord? projectData2;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Container widget.
+  bool? isConfirm;
+  // Stores action output result for [Firestore Query - Query a collection] action in Container widget.
+  ResidentListRecord? residentDoc3;
 
   @override
   void initState(BuildContext context) {}
