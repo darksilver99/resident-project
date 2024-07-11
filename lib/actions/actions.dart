@@ -31,3 +31,8 @@ Future setCurrentProjectData(
     contactAddress: contactAddress,
   );
 }
+
+Future clearPrefData(BuildContext context) async {
+  FFAppState().configData = ConfigDataStruct();
+  FFAppState().currentProjectData = ProjectDataStruct();
+}
