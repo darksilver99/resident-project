@@ -24,8 +24,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ProjectListRecord? projectResult;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   ResidentListRecord? residentDoc;
-  // Stores action output result for [Custom Action - getFirebaseToken] action in HomePage widget.
-  String? firebaseToken;
 
   @override
   void initState(BuildContext context) {}
@@ -33,5 +31,16 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
+  }
+
+  /// Action blocks.
+  Future setFirebaseToken(BuildContext context) async {
+    String? firebaseToken;
+
+    firebaseToken = await actions.getFirebaseToken();
+
+    await currentUserReference!.update(createUsersRecordData(
+      firebaseToken: firebaseToken,
+    ));
   }
 }
