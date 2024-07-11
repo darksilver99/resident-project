@@ -88,7 +88,15 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  context.pushNamed('SelectProjectPage');
+                  context.pushNamed(
+                    'SelectProjectPage',
+                    queryParameters: {
+                      'isCanNotBack': serializeParam(
+                        true,
+                        ParamType.bool,
+                      ),
+                    }.withoutNulls,
+                  );
                 },
                 text: 'Button',
                 options: FFButtonOptions(
