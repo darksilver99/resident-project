@@ -216,22 +216,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         width: 56.0,
                                         height: 56.0,
                                         fit: BoxFit.cover,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.jpg',
+                                          width: 56.0,
+                                          height: 56.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                     Expanded(
-                                      child: Text(
-                                        gridViewResidentServiceListRecord
-                                            .subject,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 2,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Text(
+                                          gridViewResidentServiceListRecord
+                                              .subject,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
                                       ),
                                     ),
                                   ],
