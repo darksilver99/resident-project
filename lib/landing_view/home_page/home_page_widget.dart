@@ -4,6 +4,9 @@ import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -35,16 +38,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       if (valueOrDefault(currentUserDocument?.type, '') == 'resident') {
         if (FFAppState().currentProjectData.name == null ||
             FFAppState().currentProjectData.name == '') {
-          context.goNamedAuth(
-            'SelectProjectPage',
-            context.mounted,
-            queryParameters: {
-              'isCanNotBack': serializeParam(
-                false,
-                ParamType.bool,
+          if ((currentUserDocument?.projectList?.toList() ?? []).length == 1) {
+            _model.projectResult = await ProjectListRecord.getDocumentOnce(
+                (currentUserDocument?.projectList?.toList() ?? []).first);
+            await action_blocks.setCurrentProjectData(
+              context,
+              projectDocument: _model.projectResult,
+            );
+            _model.residentDoc = await queryResidentListRecordOnce(
+              queryBuilder: (residentListRecord) => residentListRecord.where(
+                'create_by',
+                isEqualTo: currentUserReference,
               ),
-            }.withoutNulls,
-          );
+              singleRecord: true,
+            ).then((s) => s.firstOrNull);
+            await action_blocks.setCurrentResidentData(
+              context,
+              residentDocument: _model.residentDoc,
+            );
+          } else {
+            context.goNamedAuth(
+              'SelectProjectPage',
+              context.mounted,
+              queryParameters: {
+                'isCanNotBack': serializeParam(
+                  false,
+                  ParamType.bool,
+                ),
+              }.withoutNulls,
+            );
+          }
         }
       } else {
         await showDialog(
@@ -63,7 +86,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       : FocusScope.of(context).unfocus(),
                   child: CustomInfoAlertViewWidget(
                     title: 'ขออภัยผู้ใช้นี้ไม่สามารถใช้งานระบบนี้ได้',
-                    detail: 'กรุณาติดต่อผู้ดูแลระบบเพื่อสอบถามปัญหา',
+                    detail: 'เนื่องจากบัญชีนี้มีการลงทะเบียนใช้ระบบอื่นแล้ว',
                   ),
                 ),
               ),

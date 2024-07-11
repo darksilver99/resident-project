@@ -31,6 +31,18 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    _safeInit(() {
+      if (prefs.containsKey('ff_currentResidentData')) {
+        try {
+          final serializedData =
+              prefs.getString('ff_currentResidentData') ?? '{}';
+          _currentResidentData = ResidentDataStruct.fromSerializableMap(
+              jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
   }
 
   void update(VoidCallback callback) {
@@ -60,6 +72,18 @@ class FFAppState extends ChangeNotifier {
   void updateCurrentProjectDataStruct(Function(ProjectDataStruct) updateFn) {
     updateFn(_currentProjectData);
     prefs.setString('ff_currentProjectData', _currentProjectData.serialize());
+  }
+
+  ResidentDataStruct _currentResidentData = ResidentDataStruct();
+  ResidentDataStruct get currentResidentData => _currentResidentData;
+  set currentResidentData(ResidentDataStruct value) {
+    _currentResidentData = value;
+    prefs.setString('ff_currentResidentData', value.serialize());
+  }
+
+  void updateCurrentResidentDataStruct(Function(ResidentDataStruct) updateFn) {
+    updateFn(_currentResidentData);
+    prefs.setString('ff_currentResidentData', _currentResidentData.serialize());
   }
 }
 

@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 
 import 'package:resident_project/auth/firebase_auth/auth_util.dart';
 
-Future<DocumentReference> joinProject(
+Future<ResidentListRecord> joinProject(
   String projectDocID,
   String contactAddress,
 ) async {
@@ -25,5 +25,5 @@ Future<DocumentReference> joinProject(
     "status": 0,
     "contact_address": contactAddress
   });
-  return docRef;
+  return ResidentListRecord.getDocumentOnce(docRef);
 }

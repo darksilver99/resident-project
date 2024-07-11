@@ -101,16 +101,19 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
             ).then(
                 (value) => safeSetState(() => _model.contactAddress = value));
 
-            _model.residentRef = await actions.joinProject(
+            _model.residentDoc = await actions.joinProject(
               _model.qrCode!,
               _model.contactAddress!,
+            );
+            await action_blocks.setCurrentResidentData(
+              context,
+              residentDocument: _model.residentDoc,
             );
             _model.projectData = await ProjectListRecord.getDocumentOnce(
                 functions.projectReference(_model.qrCode!));
             await action_blocks.setCurrentProjectData(
               context,
               projectDocument: _model.projectData,
-              contactAddress: _model.contactAddress,
             );
 
             await currentUserReference!.update({
@@ -294,9 +297,13 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                 ).then((value) => safeSetState(
                                     () => _model.contactAddress2 = value));
 
-                                _model.residentRef2 = await actions.joinProject(
+                                _model.residentDoc2 = await actions.joinProject(
                                   _model.qrCode2!,
                                   _model.contactAddress2!,
+                                );
+                                await action_blocks.setCurrentResidentData(
+                                  context,
+                                  residentDocument: _model.residentDoc2,
                                 );
                                 _model.projectData2 =
                                     await ProjectListRecord.getDocumentOnce(
@@ -305,7 +312,6 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                 await action_blocks.setCurrentProjectData(
                                   context,
                                   projectDocument: _model.projectData2,
-                                  contactAddress: _model.contactAddress2,
                                 );
 
                                 await currentUserReference!.update({

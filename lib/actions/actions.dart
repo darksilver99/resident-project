@@ -18,21 +18,34 @@ Future setConfigData(BuildContext context) async {
     storeAndroidLink: configResult?.storeAndroidLink,
     policyUrl: configResult?.policyUrl,
   );
+  FFAppState().update(() {});
 }
 
 Future setCurrentProjectData(
   BuildContext context, {
   required ProjectListRecord? projectDocument,
-  required String? contactAddress,
 }) async {
   FFAppState().currentProjectData = ProjectDataStruct(
     name: projectDocument?.name,
     projectRef: projectDocument?.reference,
-    contactAddress: contactAddress,
   );
+  FFAppState().update(() {});
 }
 
 Future clearPrefData(BuildContext context) async {
   FFAppState().configData = ConfigDataStruct();
   FFAppState().currentProjectData = ProjectDataStruct();
+  FFAppState().currentResidentData = ResidentDataStruct();
+}
+
+Future setCurrentResidentData(
+  BuildContext context, {
+  required ResidentListRecord? residentDocument,
+}) async {
+  FFAppState().currentResidentData = ResidentDataStruct(
+    contactAddress: residentDocument?.contactAddress,
+    status: residentDocument?.status,
+    residentRef: residentDocument?.reference,
+  );
+  FFAppState().update(() {});
 }

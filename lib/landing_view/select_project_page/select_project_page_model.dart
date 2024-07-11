@@ -32,7 +32,7 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   // Stores action output result for [Alert Dialog - Custom Dialog] action in SelectProjectPage widget.
   String? contactAddress;
   // Stores action output result for [Custom Action - joinProject] action in SelectProjectPage widget.
-  DocumentReference? residentRef;
+  ResidentListRecord? residentDoc;
   // Stores action output result for [Backend Call - Read Document] action in SelectProjectPage widget.
   ProjectListRecord? projectData;
   // Stores action output result for [Action Block - qrCodeBlock] action in Button widget.
@@ -44,7 +44,7 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   String? contactAddress2;
   // Stores action output result for [Custom Action - joinProject] action in Button widget.
-  DocumentReference? residentRef2;
+  ResidentListRecord? residentDoc2;
   // Stores action output result for [Backend Call - Read Document] action in Button widget.
   ProjectListRecord? projectData2;
 
