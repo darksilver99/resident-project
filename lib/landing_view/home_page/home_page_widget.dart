@@ -99,6 +99,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         GoRouter.of(context).prepareAuthEvent();
         await authManager.signOut();
         GoRouter.of(context).clearRedirectLocation();
+
+        context.goNamedAuth('LoginPage', context.mounted);
       }
     });
   }
