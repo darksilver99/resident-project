@@ -16,6 +16,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'custom_toon/noti_lib.dart';
+
+// noti
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  debugPrint('Handling a background data ${message.data}');
+  debugPrint('Handling a background message ${message.messageId}');
+}
+// end noti
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
@@ -24,6 +36,10 @@ void main() async {
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
+
+  // noti
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // end noti
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -50,9 +66,17 @@ class _MyAppState extends State<MyApp> {
 
   final authUserSub = authenticatedUserStream.listen((_) {});
 
+  // noti
+  String? initialMessage;
+  // end noti
+
   @override
   void initState() {
     super.initState();
+
+    // noti
+    setupInteractedMessage();
+    // end noti
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
