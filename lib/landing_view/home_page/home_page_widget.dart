@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -57,11 +56,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               context,
               residentDocument: _model.residentDoc,
             );
-            _model.firebaseToken = await actions.getFirebaseToken();
-
-            await currentUserReference!.update(createUsersRecordData(
-              firebaseToken: _model.firebaseToken,
-            ));
+            await _model.setFirebaseToken(context);
           } else {
             context.goNamedAuth(
               'SelectProjectPage',
@@ -74,6 +69,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               }.withoutNulls,
             );
           }
+        } else {
+          await _model.setFirebaseToken(context);
         }
       } else {
         await showDialog(
