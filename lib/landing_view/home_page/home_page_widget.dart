@@ -56,8 +56,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               context,
               residentDocument: _model.residentDoc,
             );
-            _model.isLoading = false;
-            setState(() {});
           } else {
             context.goNamedAuth(
               'SelectProjectPage',
@@ -138,7 +136,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
               ),
               child: Visibility(
-                visible: !_model.isLoading,
+                visible: FFAppState().currentProjectData.name != null &&
+                    FFAppState().currentProjectData.name != '',
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: StreamBuilder<List<ResidentServiceListRecord>>(
