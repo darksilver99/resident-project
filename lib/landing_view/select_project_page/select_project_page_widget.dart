@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/background_view/background_view_widget.dart';
 import '/component/custom_confirm_dialog_view/custom_confirm_dialog_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/insert_contact_address_view/insert_contact_address_view_widget.dart';
@@ -235,66 +236,127 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
             centerTitle: true,
             elevation: 2.0,
           ),
-          body: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Image.asset(
-                  'assets/images/simple-blank-orange-background-vector-business_53876-175746.jpg',
-                ).image,
+          body: Stack(
+            children: [
+              wrapWithModel(
+                model: _model.backgroundViewModel,
+                updateCallback: () => setState(() {}),
+                child: BackgroundViewWidget(),
               ),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Builder(
-                      builder: (context) => Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            _model.qrCode2 = await _model.qrCodeBlock(context);
-                            _model.isHaveProject2 =
-                                await actions.checkIsHaveProject(
-                              _model.qrCode2!,
-                            );
-                            if (_model.isHaveProject2!) {
-                              _model.isDuplicate2 =
-                                  await actions.checkDuplicateResident(
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Builder(
+                        builder: (context) => Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              _model.qrCode2 =
+                                  await _model.qrCodeBlock(context);
+                              _model.isHaveProject2 =
+                                  await actions.checkIsHaveProject(
                                 _model.qrCode2!,
                               );
-                              if (_model.isDuplicate2!) {
-                                await showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return Dialog(
-                                      elevation: 0,
-                                      insetPadding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      child: WebViewAware(
-                                        child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
-                                          child: CustomInfoAlertViewWidget(
-                                            title: 'ท่านอยู่ในโครงการนี้แล้ว',
+                              if (_model.isHaveProject2!) {
+                                _model.isDuplicate2 =
+                                    await actions.checkDuplicateResident(
+                                  _model.qrCode2!,
+                                );
+                                if (_model.isDuplicate2!) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: WebViewAware(
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: CustomInfoAlertViewWidget(
+                                              title: 'ท่านอยู่ในโครงการนี้แล้ว',
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => setState(() {}));
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: WebViewAware(
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child:
+                                                InsertContactAddressViewWidget(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => safeSetState(
+                                      () => _model.contactAddress2 = value));
+
+                                  _model.residentDoc2 =
+                                      await actions.joinProject(
+                                    _model.qrCode2!,
+                                    _model.contactAddress2!,
+                                  );
+                                  await action_blocks.setCurrentResidentData(
+                                    context,
+                                    residentDocument: _model.residentDoc2,
+                                  );
+                                  _model.projectData2 =
+                                      await ProjectListRecord.getDocumentOnce(
+                                          functions.projectReference(
+                                              _model.qrCode2!));
+                                  await action_blocks.setCurrentProjectData(
+                                    context,
+                                    projectDocument: _model.projectData2,
+                                  );
+
+                                  await currentUserReference!.update({
+                                    ...mapToFirestore(
+                                      {
+                                        'project_list': FieldValue.arrayUnion([
+                                          functions
+                                              .projectReference(_model.qrCode2!)
+                                        ]),
+                                      },
+                                    ),
+                                  });
+                                  await actions.pushReplacement(
+                                    context,
+                                  );
+                                }
                               } else {
                                 await showDialog(
                                   context: context,
@@ -314,321 +376,275 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                                       _model.unfocusNode)
                                               : FocusScope.of(context)
                                                   .unfocus(),
-                                          child:
-                                              InsertContactAddressViewWidget(),
+                                          child: CustomInfoAlertViewWidget(
+                                            title:
+                                                'ขออภัยไม่พบโครงการนี้ กรุณาตรวจสอบ QR Code หรือติดต่อเจ้าหน้าโครงการ',
+                                          ),
                                         ),
                                       ),
                                     );
                                   },
-                                ).then((value) => safeSetState(
-                                    () => _model.contactAddress2 = value));
-
-                                _model.residentDoc2 = await actions.joinProject(
-                                  _model.qrCode2!,
-                                  _model.contactAddress2!,
-                                );
-                                await action_blocks.setCurrentResidentData(
-                                  context,
-                                  residentDocument: _model.residentDoc2,
-                                );
-                                _model.projectData2 =
-                                    await ProjectListRecord.getDocumentOnce(
-                                        functions
-                                            .projectReference(_model.qrCode2!));
-                                await action_blocks.setCurrentProjectData(
-                                  context,
-                                  projectDocument: _model.projectData2,
-                                );
-
-                                await currentUserReference!.update({
-                                  ...mapToFirestore(
-                                    {
-                                      'project_list': FieldValue.arrayUnion([
-                                        functions
-                                            .projectReference(_model.qrCode2!)
-                                      ]),
-                                    },
-                                  ),
-                                });
-                                await actions.pushReplacement(
-                                  context,
-                                );
+                                ).then((value) => setState(() {}));
                               }
-                            } else {
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) {
-                                  return Dialog(
-                                    elevation: 0,
-                                    insetPadding: EdgeInsets.zero,
-                                    backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
-                                        .resolve(Directionality.of(context)),
-                                    child: WebViewAware(
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: CustomInfoAlertViewWidget(
-                                          title:
-                                              'ขออภัยไม่พบโครงการนี้ กรุณาตรวจสอบ QR Code หรือติดต่อเจ้าหน้าโครงการ',
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => setState(() {}));
-                            }
 
-                            setState(() {});
-                          },
-                          text: 'เข้าร่วมโครงการ',
-                          icon: Icon(
-                            Icons.add_home,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Inter',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                              setState(() {});
+                            },
+                            text: 'เข้าร่วมโครงการ',
+                            icon: Icon(
+                              Icons.add_home,
+                              size: 15.0,
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: AuthUserStreamWidget(
-                    builder: (context) => Builder(
-                      builder: (context) {
-                        final projectList =
-                            (currentUserDocument?.projectList?.toList() ?? [])
-                                .toList();
-                        if (projectList.isEmpty) {
-                          return NoDataViewWidget();
-                        }
+                    ],
+                  ),
+                  Expanded(
+                    child: AuthUserStreamWidget(
+                      builder: (context) => Builder(
+                        builder: (context) {
+                          final projectList =
+                              (currentUserDocument?.projectList?.toList() ?? [])
+                                  .toList();
+                          if (projectList.isEmpty) {
+                            return NoDataViewWidget();
+                          }
 
-                        return ListView.separated(
-                          padding: EdgeInsets.fromLTRB(
-                            0,
-                            16.0,
-                            0,
-                            16.0,
-                          ),
-                          scrollDirection: Axis.vertical,
-                          itemCount: projectList.length,
-                          separatorBuilder: (_, __) => SizedBox(height: 8.0),
-                          itemBuilder: (context, projectListIndex) {
-                            final projectListItem =
-                                projectList[projectListIndex];
-                            return Builder(
-                              builder: (context) => Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 16.0, 0.0),
-                                child: StreamBuilder<ProjectListRecord>(
-                                  stream: ProjectListRecord.getDocument(
-                                      projectListItem),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
+                          return ListView.separated(
+                            padding: EdgeInsets.fromLTRB(
+                              0,
+                              16.0,
+                              0,
+                              16.0,
+                            ),
+                            scrollDirection: Axis.vertical,
+                            itemCount: projectList.length,
+                            separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                            itemBuilder: (context, projectListIndex) {
+                              final projectListItem =
+                                  projectList[projectListIndex];
+                              return Builder(
+                                builder: (context) => Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 16.0, 0.0),
+                                  child: StreamBuilder<ProjectListRecord>(
+                                    stream: ProjectListRecord.getDocument(
+                                        projectListItem),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+
+                                      final containerProjectListRecord =
+                                          snapshot.data!;
+
+                                      return InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          if (FFAppState()
+                                                  .currentProjectData
+                                                  .projectRef
+                                                  ?.id !=
+                                              containerProjectListRecord
+                                                  .reference.id) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child:
+                                                          CustomConfirmDialogViewWidget(
+                                                        title:
+                                                            'ต้องการเลือกโครงการปัจจุบันเป็น \"${containerProjectListRecord.name}\" ใช่หรือไม่ ?',
+                                                        detail:
+                                                            'สามารถเปลี่ยนโครงการที่ท่านอยู่ได้ตลอดที่เมนู \"เปลี่ยนโครงการ\"',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => safeSetState(() =>
+                                                _model.isConfirm = value));
+
+                                            if ((_model.isConfirm != null) &&
+                                                (_model.isConfirm == true)) {
+                                              await action_blocks
+                                                  .setCurrentProjectData(
+                                                context,
+                                                projectDocument:
+                                                    containerProjectListRecord,
+                                              );
+                                              _model.residentDoc3 =
+                                                  await queryResidentListRecordOnce(
+                                                queryBuilder:
+                                                    (residentListRecord) =>
+                                                        residentListRecord
+                                                            .where(
+                                                  'create_by',
+                                                  isEqualTo:
+                                                      currentUserReference,
+                                                ),
+                                                singleRecord: true,
+                                              ).then((s) => s.firstOrNull);
+                                              await action_blocks
+                                                  .setCurrentResidentData(
+                                                context,
+                                                residentDocument:
+                                                    _model.residentDoc3,
+                                              );
+                                              setState(() {});
+                                              await actions.pushReplacement(
+                                                context,
+                                              );
+                                            }
+                                          }
+
+                                          setState(() {});
+                                        },
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 3.0,
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(16.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        containerProjectListRecord
+                                                            .name,
+                                                        maxLines: 2,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Builder(
+                                                    builder: (context) {
+                                                      if (FFAppState()
+                                                              .currentProjectData
+                                                              .projectRef
+                                                              ?.id ==
+                                                          projectListItem.id) {
+                                                        return Icon(
+                                                          Icons.check_circle,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          size: 24.0,
+                                                        );
+                                                      } else {
+                                                        return Icon(
+                                                          Icons.circle_outlined,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
+                                                        );
+                                                      }
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
                                       );
-                                    }
-
-                                    final containerProjectListRecord =
-                                        snapshot.data!;
-
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        if (FFAppState()
-                                                .currentProjectData
-                                                .projectRef
-                                                ?.id !=
-                                            containerProjectListRecord
-                                                .reference.id) {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child:
-                                                        CustomConfirmDialogViewWidget(
-                                                      title:
-                                                          'ต้องการเลือกโครงการปัจจุบันเป็น \"${containerProjectListRecord.name}\" ใช่หรือไม่ ?',
-                                                      detail:
-                                                          'สามารถเปลี่ยนโครงการที่ท่านอยู่ได้ตลอดที่เมนู \"เปลี่ยนโครงการ\"',
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          ).then((value) => safeSetState(
-                                              () => _model.isConfirm = value));
-
-                                          if ((_model.isConfirm != null) &&
-                                              (_model.isConfirm == true)) {
-                                            await action_blocks
-                                                .setCurrentProjectData(
-                                              context,
-                                              projectDocument:
-                                                  containerProjectListRecord,
-                                            );
-                                            _model.residentDoc3 =
-                                                await queryResidentListRecordOnce(
-                                              queryBuilder:
-                                                  (residentListRecord) =>
-                                                      residentListRecord.where(
-                                                'create_by',
-                                                isEqualTo: currentUserReference,
-                                              ),
-                                              singleRecord: true,
-                                            ).then((s) => s.firstOrNull);
-                                            await action_blocks
-                                                .setCurrentResidentData(
-                                              context,
-                                              residentDocument:
-                                                  _model.residentDoc3,
-                                            );
-                                            setState(() {});
-                                            await actions.pushReplacement(
-                                              context,
-                                            );
-                                          }
-                                        }
-
-                                        setState(() {});
-                                      },
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        elevation: 3.0,
-                                        child: Container(
-                                          width: 100.0,
-                                          height: 100.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(16.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                8.0, 0.0),
-                                                    child: Text(
-                                                      containerProjectListRecord
-                                                          .name,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Builder(
-                                                  builder: (context) {
-                                                    if (FFAppState()
-                                                            .currentProjectData
-                                                            .projectRef
-                                                            ?.id ==
-                                                        projectListItem.id) {
-                                                      return Icon(
-                                                        Icons.check_circle,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: 24.0,
-                                                      );
-                                                    } else {
-                                                      return Icon(
-                                                        Icons.circle_outlined,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        size: 24.0,
-                                                      );
-                                                    }
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                    },
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        );
-                      },
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
