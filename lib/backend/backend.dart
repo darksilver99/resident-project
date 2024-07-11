@@ -9,6 +9,7 @@ import 'schema/resident_list_record.dart';
 import 'schema/users_record.dart';
 import 'schema/config_record.dart';
 import 'schema/project_list_record.dart';
+import 'schema/resident_service_list_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -21,6 +22,7 @@ export 'schema/resident_list_record.dart';
 export 'schema/users_record.dart';
 export 'schema/config_record.dart';
 export 'schema/project_list_record.dart';
+export 'schema/resident_service_list_record.dart';
 
 /// Functions to query ResidentListRecords (as a Stream and as a Future).
 Future<int> queryResidentListRecordCount({
@@ -165,6 +167,46 @@ Future<List<ProjectListRecord>> queryProjectListRecordOnce({
     queryCollectionOnce(
       ProjectListRecord.collection,
       ProjectListRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ResidentServiceListRecords (as a Stream and as a Future).
+Future<int> queryResidentServiceListRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ResidentServiceListRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ResidentServiceListRecord>> queryResidentServiceListRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ResidentServiceListRecord.collection(parent),
+      ResidentServiceListRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ResidentServiceListRecord>> queryResidentServiceListRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ResidentServiceListRecord.collection(parent),
+      ResidentServiceListRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
