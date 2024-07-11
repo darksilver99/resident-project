@@ -518,6 +518,9 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                                   _model.residentDoc3,
                                             );
                                             setState(() {});
+                                            await actions.pushReplacement(
+                                              context,
+                                            );
                                           }
                                         }
 
