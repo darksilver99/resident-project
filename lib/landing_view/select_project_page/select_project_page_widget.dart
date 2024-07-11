@@ -126,8 +126,9 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                 },
               ),
             });
-
-            context.goNamed('HomePage');
+            await actions.pushReplacement(
+              context,
+            );
           }
         } else {
           await showDialog(
@@ -326,8 +327,9 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                     },
                                   ),
                                 });
-
-                                context.goNamed('HomePage');
+                                await actions.pushReplacement(
+                                  context,
+                                );
                               }
                             } else {
                               await showDialog(
@@ -516,8 +518,6 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                                   _model.residentDoc3,
                                             );
                                             setState(() {});
-
-                                            context.goNamed('HomePage');
                                           }
                                         }
 
