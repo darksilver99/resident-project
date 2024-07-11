@@ -247,11 +247,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 .subject,
                                             textAlign: TextAlign.center,
                                             maxLines: 2,
+                                            minFontSize: 18.0,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Inter',
-                                                  fontSize: 18.0,
+                                                  fontSize: 32.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
