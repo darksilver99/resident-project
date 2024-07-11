@@ -138,7 +138,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                     ).then((value) =>
                         safeSetState(() => _model.isConfirm = value));
 
-                    if (_model.isConfirm!) {
+                    if ((_model.isConfirm == true) &&
+                        (_model.isConfirm != null)) {
                       GoRouter.of(context).prepareAuthEvent();
                       await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
