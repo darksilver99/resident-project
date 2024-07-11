@@ -47,6 +47,29 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (!((currentUserDocument?.projectList?.toList() ?? []).isNotEmpty)) {
+        await showDialog(
+          context: context,
+          builder: (dialogContext) {
+            return Dialog(
+              elevation: 0,
+              insetPadding: EdgeInsets.zero,
+              backgroundColor: Colors.transparent,
+              alignment: AlignmentDirectional(0.0, 0.0)
+                  .resolve(Directionality.of(context)),
+              child: WebViewAware(
+                child: GestureDetector(
+                  onTap: () => _model.unfocusNode.canRequestFocus
+                      ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                      : FocusScope.of(context).unfocus(),
+                  child: CustomInfoAlertViewWidget(
+                    title: 'สแกน QRCode จากเจ้าหน้าที่นิติเพื่อเข้าร่วมโครงการ',
+                  ),
+                ),
+              ),
+            );
+          },
+        ).then((value) => setState(() {}));
+
         _model.qrCode = await _model.qrCodeBlock(context);
         _model.isHaveProject = await actions.checkIsHaveProject(
           _model.qrCode!,
