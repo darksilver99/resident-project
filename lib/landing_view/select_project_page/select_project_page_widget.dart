@@ -516,6 +516,8 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                                   _model.residentDoc3,
                                             );
                                             setState(() {});
+
+                                            context.goNamed('HomePage');
                                           }
                                         }
 
