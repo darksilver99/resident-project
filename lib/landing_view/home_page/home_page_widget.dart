@@ -222,15 +222,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               child: Image.network(
                                                 gridViewResidentServiceListRecord
                                                     .icon,
-                                                width: 56.0,
-                                                height: 56.0,
                                                 fit: BoxFit.contain,
                                                 errorBuilder: (context, error,
                                                         stackTrace) =>
                                                     Image.asset(
                                                   'assets/images/error_image.jpg',
-                                                  width: 56.0,
-                                                  height: 56.0,
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
