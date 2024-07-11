@@ -1,3 +1,4 @@
+import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -12,12 +13,17 @@ class WebViewPageModel extends FlutterFlowModel<WebViewPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for BackgroundView component.
+  late BackgroundViewModel backgroundViewModel;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    backgroundViewModel = createModel(context, () => BackgroundViewModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    backgroundViewModel.dispose();
   }
 }

@@ -134,7 +134,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: Image.asset(
-                    'assets/images/simple-blank-orange-background-vector-business_53876-175746.jpg',
+                    'assets/images/graphic-2d-colorful-wallpaper-with-grainy-gradients_23-2151001614.jpg',
                   ).image,
                 ),
               ),

@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/background_view/background_view_widget.dart';
 import '/component/custom_confirm_dialog_view/custom_confirm_dialog_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/insert_contact_address_view/insert_contact_address_view_widget.dart';
@@ -37,6 +38,8 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   ResidentListRecord? residentDoc;
   // Stores action output result for [Backend Call - Read Document] action in SelectProjectPage widget.
   ProjectListRecord? projectData;
+  // Model for BackgroundView component.
+  late BackgroundViewModel backgroundViewModel;
   // Stores action output result for [Action Block - qrCodeBlock] action in Button widget.
   String? qrCode2;
   // Stores action output result for [Custom Action - checkIsHaveProject] action in Button widget.
@@ -55,11 +58,14 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   ResidentListRecord? residentDoc3;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    backgroundViewModel = createModel(context, () => BackgroundViewModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    backgroundViewModel.dispose();
   }
 
   /// Action blocks.

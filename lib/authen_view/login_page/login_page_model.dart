@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -14,6 +15,8 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  // Model for BackgroundView component.
+  late BackgroundViewModel backgroundViewModel;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? emailTextController;
@@ -41,6 +44,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   @override
   void initState(BuildContext context) {
+    backgroundViewModel = createModel(context, () => BackgroundViewModel());
     emailTextControllerValidator = _emailTextControllerValidator;
     passwordVisibility = false;
     passwordTextControllerValidator = _passwordTextControllerValidator;
@@ -49,6 +53,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
+    backgroundViewModel.dispose();
     textFieldFocusNode1?.dispose();
     emailTextController?.dispose();
 

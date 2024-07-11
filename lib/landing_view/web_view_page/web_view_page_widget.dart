@@ -1,3 +1,4 @@
+import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -83,24 +84,21 @@ class _WebViewPageWidgetState extends State<WebViewPageWidget> {
           centerTitle: true,
           elevation: 2.0,
         ),
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: Image.asset(
-                'assets/images/simple-blank-orange-background-vector-business_53876-175746.jpg',
-              ).image,
+        body: Stack(
+          children: [
+            wrapWithModel(
+              model: _model.backgroundViewModel,
+              updateCallback: () => setState(() {}),
+              child: BackgroundViewWidget(),
             ),
-          ),
-          child: FlutterFlowWebView(
-            content: widget!.url!,
-            bypass: false,
-            height: MediaQuery.sizeOf(context).height * 1.0,
-            verticalScroll: false,
-            horizontalScroll: false,
-          ),
+            FlutterFlowWebView(
+              content: widget!.url!,
+              bypass: false,
+              height: MediaQuery.sizeOf(context).height * 1.0,
+              verticalScroll: false,
+              horizontalScroll: false,
+            ),
+          ],
         ),
       ),
     );
