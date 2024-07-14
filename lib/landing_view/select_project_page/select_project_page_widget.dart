@@ -226,7 +226,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
             title: Text(
               'เข้าร่วมโครงการ',
               style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Readex Pro',
+                    fontFamily: 'Kanit',
                     color: Colors.white,
                     fontSize: 22.0,
                     letterSpacing: 0.0,
@@ -404,7 +404,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Kanit',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
@@ -594,7 +594,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Inter',
+                                                                      'Kanit',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),

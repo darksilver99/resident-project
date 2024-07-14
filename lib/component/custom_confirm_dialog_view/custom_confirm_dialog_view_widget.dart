@@ -116,7 +116,7 @@ class _CustomConfirmDialogViewWidgetState
                       ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Inter',
+                            fontFamily: 'Kanit',
                             color: () {
                               if (widget!.status == 'success') {
                                 return FlutterFlowTheme.of(context).success;
@@ -149,7 +149,7 @@ class _CustomConfirmDialogViewWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Kanit',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     letterSpacing: 0.0,
@@ -184,7 +184,7 @@ class _CustomConfirmDialogViewWidgetState
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Kanit',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       fontSize: 18.0,
@@ -220,7 +220,7 @@ class _CustomConfirmDialogViewWidgetState
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Kanit',
                                       color: Colors.white,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,

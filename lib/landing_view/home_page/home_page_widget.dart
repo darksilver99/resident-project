@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -125,23 +126,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         child: Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          body: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: Image.asset(
-                    'assets/images/graphic-2d-colorful-wallpaper-with-grainy-gradients_23-2151001614.jpg',
-                  ).image,
-                ),
+          body: Stack(
+            children: [
+              wrapWithModel(
+                model: _model.backgroundViewModel,
+                updateCallback: () => setState(() {}),
+                child: BackgroundViewWidget(),
               ),
-              child: Visibility(
-                visible: FFAppState().currentProjectData.name != null &&
-                    FFAppState().currentProjectData.name != '',
-                child: Padding(
+              if (FFAppState().currentProjectData.name != null &&
+                  FFAppState().currentProjectData.name != '')
+                Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: StreamBuilder<List<ResidentServiceListRecord>>(
                     stream: queryResidentServiceListRecord(
@@ -252,7 +246,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Inter',
+                                                  fontFamily: 'Kanit',
                                                   fontSize: 18.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
@@ -271,8 +265,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     },
                   ),
                 ),
-              ),
-            ),
+            ],
           ),
         ),
       ),

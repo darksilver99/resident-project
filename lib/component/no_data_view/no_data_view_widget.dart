@@ -57,7 +57,7 @@ class _NoDataViewWidgetState extends State<NoDataViewWidget> {
             Text(
               'ไม่มีข้อมูล',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Inter',
+                    fontFamily: 'Kanit',
                     color: FlutterFlowTheme.of(context).secondaryText,
                     fontSize: 24.0,
                     letterSpacing: 0.0,
