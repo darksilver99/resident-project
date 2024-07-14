@@ -247,7 +247,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Kanit',
-                                                  fontSize: 18.0,
+                                                  fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
