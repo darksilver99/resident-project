@@ -25,10 +25,10 @@ export 'select_project_page_model.dart';
 class SelectProjectPageWidget extends StatefulWidget {
   const SelectProjectPageWidget({
     super.key,
-    required this.isCanNotBack,
+    required this.isCanBack,
   });
 
-  final bool? isCanNotBack;
+  final bool? isCanBack;
 
   @override
   State<SelectProjectPageWidget> createState() =>
@@ -207,7 +207,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
             backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
             leading: Visibility(
-              visible: widget!.isCanNotBack ?? true,
+              visible: widget!.isCanBack ?? true,
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
@@ -613,7 +613,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
-                                                          size: 24.0,
+                                                          size: 36.0,
                                                         );
                                                       } else {
                                                         return Icon(
@@ -621,7 +621,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
-                                                          size: 24.0,
+                                                          size: 36.0,
                                                         );
                                                       }
                                                     },

@@ -130,11 +130,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SelectProjectPage',
           path: '/selectProjectPage',
           builder: (context, params) => SelectProjectPageWidget(
-            isCanNotBack: params.getParam(
-              'isCanNotBack',
+            isCanBack: params.getParam(
+              'isCanBack',
               ParamType.bool,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'StampListPage',
+          path: '/stampListPage',
+          builder: (context, params) => StampListPageWidget(),
+        ),
+        FFRoute(
+          name: 'NotificationListPage',
+          path: '/notificationListPage',
+          builder: (context, params) => NotificationListPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

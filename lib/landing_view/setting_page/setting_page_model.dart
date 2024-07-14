@@ -18,7 +18,7 @@ class SettingPageModel extends FlutterFlowModel<SettingPageWidget> {
   final unfocusNode = FocusNode();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
-  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Text widget.
   bool? isConfirm;
 
   @override

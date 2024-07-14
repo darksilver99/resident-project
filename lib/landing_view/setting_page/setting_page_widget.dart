@@ -40,8 +40,6 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -56,152 +54,399 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
               updateCallback: () => setState(() {}),
               child: BackgroundViewWidget(),
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  FFAppState().currentProjectData.name,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Kanit',
-                        letterSpacing: 0.0,
+            SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(16.0),
                       ),
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    FFAppState().currentProjectData.projectRef?.id,
-                    '-',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Kanit',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  FFAppState().currentResidentData.contactAddress,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Kanit',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  FFAppState().currentResidentData.status.toString(),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Kanit',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    FFAppState().currentResidentData.residentRef?.id,
-                    '-',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Kanit',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                FFButtonWidget(
-                  onPressed: () async {
-                    context.pushNamed(
-                      'SelectProjectPage',
-                      queryParameters: {
-                        'isCanNotBack': serializeParam(
-                          true,
-                          ParamType.bool,
-                        ),
-                      }.withoutNulls,
-                    );
-                  },
-                  text: 'Button',
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Kanit',
-                          color: Colors.white,
-                          letterSpacing: 0.0,
-                        ),
-                    elevation: 3.0,
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-                Builder(
-                  builder: (context) => FFButtonWidget(
-                    onPressed: () async {
-                      Function() _navigate = () {};
-                      await showDialog(
-                        context: context,
-                        builder: (dialogContext) {
-                          return Dialog(
-                            elevation: 0,
-                            insetPadding: EdgeInsets.zero,
-                            backgroundColor: Colors.transparent,
-                            alignment: AlignmentDirectional(0.0, 0.0)
-                                .resolve(Directionality.of(context)),
-                            child: WebViewAware(
-                              child: GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: CustomConfirmDialogViewWidget(
-                                  title: 'ออกจากระบบ?',
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Builder(
+                                        builder: (context) {
+                                          if (currentUserDisplayName != null &&
+                                              currentUserDisplayName != '') {
+                                            return Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                              child: Container(
+                                                width: 64.0,
+                                                height: 64.0,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.network(
+                                                  currentUserPhoto,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            );
+                                          } else {
+                                            return Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                              child: Container(
+                                                width: 64.0,
+                                                height: 64.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    width: 3.0,
+                                                  ),
+                                                ),
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: FaIcon(
+                                                    FontAwesomeIcons.userAlt,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    size: 24.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            AuthUserStreamWidget(
+                                              builder: (context) => Text(
+                                                '${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}',
+                                                maxLines: 1,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Kanit',
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ),
+                                            Builder(
+                                              builder: (context) => InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  Function() _navigate = () {};
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: WebViewAware(
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child:
+                                                                CustomConfirmDialogViewWidget(
+                                                              title:
+                                                                  'ออกจากระบบ?',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      safeSetState(() => _model
+                                                          .isConfirm = value));
+
+                                                  if ((_model.isConfirm ==
+                                                          true) &&
+                                                      (_model.isConfirm !=
+                                                          null)) {
+                                                    await action_blocks
+                                                        .clearPrefData(context);
+                                                    GoRouter.of(context)
+                                                        .prepareAuthEvent();
+                                                    await authManager.signOut();
+                                                    GoRouter.of(context)
+                                                        .clearRedirectLocation();
+
+                                                    _navigate = () =>
+                                                        context.goNamedAuth(
+                                                            'LoginPage',
+                                                            context.mounted);
+                                                  }
+
+                                                  _navigate();
+
+                                                  setState(() {});
+                                                },
+                                                child: Text(
+                                                  'ออกจากระบบ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        letterSpacing: 0.0,
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  height: 3.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'SelectProjectPage',
+                                    queryParameters: {
+                                      'isCanBack': serializeParam(
+                                        true,
+                                        ParamType.bool,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 16.0, 0.0, 16.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 8.0, 0.0),
+                                            child: Icon(
+                                              Icons.manage_accounts,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 32.0,
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              'ตั้งค่าโปรไฟล์',
+                                              maxLines: 1,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ),
+                                          Icon(
+                                            Icons.navigate_next_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 1.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                          );
-                        },
-                      ).then((value) =>
-                          safeSetState(() => _model.isConfirm = value));
-
-                      if ((_model.isConfirm == true) &&
-                          (_model.isConfirm != null)) {
-                        await action_blocks.clearPrefData(context);
-                        GoRouter.of(context).prepareAuthEvent();
-                        await authManager.signOut();
-                        GoRouter.of(context).clearRedirectLocation();
-
-                        _navigate = () =>
-                            context.goNamedAuth('LoginPage', context.mounted);
-                      }
-
-                      _navigate();
-
-                      setState(() {});
-                    },
-                    text: 'ออกจากระบบ',
-                    options: FFButtonOptions(
-                      width: double.infinity,
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Kanit',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'SelectProjectPage',
+                                    queryParameters: {
+                                      'isCanBack': serializeParam(
+                                        true,
+                                        ParamType.bool,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 16.0, 0.0, 16.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 8.0, 0.0),
+                                            child: Icon(
+                                              Icons.switch_left_sharp,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 32.0,
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              'เปลี่ยนโครงการ/เข้าร่วมโครงการ',
+                                              maxLines: 1,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ),
+                                          Icon(
+                                            Icons.navigate_next_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 1.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 16.0, 0.0, 16.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      'Version 1.0.0 (1)',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                ),
-              ].addToStart(SizedBox(height: 64.0)),
+                ].addToStart(SizedBox(height: 64.0)),
+              ),
             ),
           ],
         ),
