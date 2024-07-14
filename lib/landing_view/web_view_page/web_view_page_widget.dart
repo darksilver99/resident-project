@@ -74,7 +74,7 @@ class _WebViewPageWidgetState extends State<WebViewPageWidget> {
               '-',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Kanit',
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,

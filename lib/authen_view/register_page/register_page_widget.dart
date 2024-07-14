@@ -87,7 +87,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
           title: Text(
             'สมัครสมาชิก',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Kanit',
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
@@ -134,13 +134,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -179,7 +179,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Kanit',
                                       letterSpacing: 0.0,
                                     ),
                                 validator: _model
@@ -200,13 +200,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -245,7 +245,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Kanit',
                                       letterSpacing: 0.0,
                                     ),
                                 validator: _model
@@ -266,13 +266,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -311,7 +311,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Kanit',
                                       letterSpacing: 0.0,
                                     ),
                                 keyboardType: TextInputType.phone,
@@ -333,13 +333,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -378,7 +378,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Kanit',
                                       letterSpacing: 0.0,
                                     ),
                                 validator: _model.emailTextControllerValidator
@@ -398,13 +398,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -456,7 +456,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Kanit',
                                       letterSpacing: 0.0,
                                     ),
                                 validator: _model
@@ -477,13 +477,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -535,7 +535,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Kanit',
                                       letterSpacing: 0.0,
                                     ),
                                 validator: _model
@@ -607,7 +607,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Inter',
+                                              fontFamily: 'Kanit',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .link,
@@ -723,7 +723,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily: 'Inter',
+                                          fontFamily: 'Kanit',
                                           color: Colors.white,
                                           fontSize: 22.0,
                                           letterSpacing: 0.0,

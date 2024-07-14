@@ -62,7 +62,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                 Text(
                   FFAppState().currentProjectData.name,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Kanit',
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -72,21 +72,21 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                     '-',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Kanit',
                         letterSpacing: 0.0,
                       ),
                 ),
                 Text(
                   FFAppState().currentResidentData.contactAddress,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Kanit',
                         letterSpacing: 0.0,
                       ),
                 ),
                 Text(
                   FFAppState().currentResidentData.status.toString(),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Kanit',
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -96,7 +96,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                     '-',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Kanit',
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -121,7 +121,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Inter',
+                          fontFamily: 'Kanit',
                           color: Colors.white,
                           letterSpacing: 0.0,
                         ),
@@ -188,7 +188,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Inter',
+                                fontFamily: 'Kanit',
                                 color: Colors.white,
                                 letterSpacing: 0.0,
                               ),

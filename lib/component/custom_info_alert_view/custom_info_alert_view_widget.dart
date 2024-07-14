@@ -95,7 +95,7 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                       ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Inter',
+                            fontFamily: 'Kanit',
                             color: () {
                               if (widget!.status == 'success') {
                                 return FlutterFlowTheme.of(context).success;
@@ -128,7 +128,7 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Kanit',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     letterSpacing: 0.0,
@@ -161,7 +161,7 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Kanit',
                                     color: Colors.white,
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,

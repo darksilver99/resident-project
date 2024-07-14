@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -24,13 +25,18 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ProjectListRecord? projectResult;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   ResidentListRecord? residentDoc;
+  // Model for BackgroundView component.
+  late BackgroundViewModel backgroundViewModel;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    backgroundViewModel = createModel(context, () => BackgroundViewModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    backgroundViewModel.dispose();
   }
 
   /// Action blocks.

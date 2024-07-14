@@ -95,7 +95,7 @@ class _InsertContactAddressViewWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Kanit',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -114,12 +114,12 @@ class _InsertContactAddressViewWidgetState
                         decoration: InputDecoration(
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Kanit',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Kanit',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -152,7 +152,7 @@ class _InsertContactAddressViewWidgetState
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
+                              fontFamily: 'Kanit',
                               letterSpacing: 0.0,
                             ),
                         validator:
@@ -187,7 +187,7 @@ class _InsertContactAddressViewWidgetState
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Kanit',
                                       color: Colors.white,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
