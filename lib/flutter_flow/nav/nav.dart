@@ -142,9 +142,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => StampListPageWidget(),
         ),
         FFRoute(
-          name: 'NotificationListPage',
-          path: '/notificationListPage',
-          builder: (context, params) => NotificationListPageWidget(),
+          name: 'NotificationPage',
+          path: '/notificationPage',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'NotificationPage')
+              : NotificationPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

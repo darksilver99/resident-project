@@ -4,4 +4,4 @@ export 'check_is_have_project.dart' show checkIsHaveProject;
 export 'push_replacement.dart' show pushReplacement;
 export 'get_firebase_token.dart' show getFirebaseToken;
 export 'go_to_page.dart' show goToPage;
-export 'new_custom_action.dart' show newCustomAction;
+export 'get_transaction_document.dart' show getTransactionDocument;
