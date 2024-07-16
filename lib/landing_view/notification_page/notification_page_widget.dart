@@ -61,9 +61,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
             ),
             RefreshIndicator(
               onRefresh: () async {
-                await Future.delayed(const Duration(milliseconds: 1000));
-
-                setState(() {});
+                context.goNamed('NotificationPage');
               },
               child: PagedListView<DocumentSnapshot<Object?>?,
                   NotificationListRecord>.separated(
@@ -183,6 +181,8 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                 },
                               ).then((value) => setState(() {}));
                             }
+
+                            context.goNamed('NotificationPage');
 
                             setState(() {});
                           },
