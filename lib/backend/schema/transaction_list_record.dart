@@ -121,6 +121,21 @@ class TransactionListRecord extends FirestoreRecord {
   String get transactionNumber => _transactionNumber ?? '';
   bool hasTransactionNumber() => _transactionNumber != null;
 
+  // "stamp_date" field.
+  DateTime? _stampDate;
+  DateTime? get stampDate => _stampDate;
+  bool hasStampDate() => _stampDate != null;
+
+  // "stamp_by" field.
+  DocumentReference? _stampBy;
+  DocumentReference? get stampBy => _stampBy;
+  bool hasStampBy() => _stampBy != null;
+
+  // "is_stamp_by_resident" field.
+  bool? _isStampByResident;
+  bool get isStampByResident => _isStampByResident ?? false;
+  bool hasIsStampByResident() => _isStampByResident != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _cardNumber = snapshotData['card_number'] as String?;
@@ -144,6 +159,9 @@ class TransactionListRecord extends FirestoreRecord {
     _moreDetail = snapshotData['more_detail'] as String?;
     _moreImage = getDataList(snapshotData['more_image']);
     _transactionNumber = snapshotData['transaction_number'] as String?;
+    _stampDate = snapshotData['stamp_date'] as DateTime?;
+    _stampBy = snapshotData['stamp_by'] as DocumentReference?;
+    _isStampByResident = snapshotData['is_stamp_by_resident'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -201,6 +219,9 @@ Map<String, dynamic> createTransactionListRecordData({
   String? registrationImage,
   String? moreDetail,
   String? transactionNumber,
+  DateTime? stampDate,
+  DocumentReference? stampBy,
+  bool? isStampByResident,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -224,6 +245,9 @@ Map<String, dynamic> createTransactionListRecordData({
       'registration_image': registrationImage,
       'more_detail': moreDetail,
       'transaction_number': transactionNumber,
+      'stamp_date': stampDate,
+      'stamp_by': stampBy,
+      'is_stamp_by_resident': isStampByResident,
     }.withoutNulls,
   );
 
@@ -257,7 +281,10 @@ class TransactionListRecordDocumentEquality
         e1?.registrationImage == e2?.registrationImage &&
         e1?.moreDetail == e2?.moreDetail &&
         listEquality.equals(e1?.moreImage, e2?.moreImage) &&
-        e1?.transactionNumber == e2?.transactionNumber;
+        e1?.transactionNumber == e2?.transactionNumber &&
+        e1?.stampDate == e2?.stampDate &&
+        e1?.stampBy == e2?.stampBy &&
+        e1?.isStampByResident == e2?.isStampByResident;
   }
 
   @override
@@ -282,7 +309,10 @@ class TransactionListRecordDocumentEquality
         e?.registrationImage,
         e?.moreDetail,
         e?.moreImage,
-        e?.transactionNumber
+        e?.transactionNumber,
+        e?.stampDate,
+        e?.stampBy,
+        e?.isStampByResident
       ]);
 
   @override
