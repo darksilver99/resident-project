@@ -41,12 +41,24 @@ class NotificationListRecord extends FirestoreRecord {
   String get detail => _detail ?? '';
   bool hasDetail() => _detail != null;
 
+  // "path_name" field.
+  String? _pathName;
+  String get pathName => _pathName ?? '';
+  bool hasPathName() => _pathName != null;
+
+  // "doc_path" field.
+  String? _docPath;
+  String get docPath => _docPath ?? '';
+  bool hasDocPath() => _docPath != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _receiver = snapshotData['receiver'] as DocumentReference?;
     _type = snapshotData['type'] as String?;
     _subject = snapshotData['subject'] as String?;
     _detail = snapshotData['detail'] as String?;
+    _pathName = snapshotData['path_name'] as String?;
+    _docPath = snapshotData['doc_path'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -90,6 +102,8 @@ Map<String, dynamic> createNotificationListRecordData({
   String? type,
   String? subject,
   String? detail,
+  String? pathName,
+  String? docPath,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -98,6 +112,8 @@ Map<String, dynamic> createNotificationListRecordData({
       'type': type,
       'subject': subject,
       'detail': detail,
+      'path_name': pathName,
+      'doc_path': docPath,
     }.withoutNulls,
   );
 
@@ -114,12 +130,21 @@ class NotificationListRecordDocumentEquality
         e1?.receiver == e2?.receiver &&
         e1?.type == e2?.type &&
         e1?.subject == e2?.subject &&
-        e1?.detail == e2?.detail;
+        e1?.detail == e2?.detail &&
+        e1?.pathName == e2?.pathName &&
+        e1?.docPath == e2?.docPath;
   }
 
   @override
-  int hash(NotificationListRecord? e) => const ListEquality()
-      .hash([e?.createDate, e?.receiver, e?.type, e?.subject, e?.detail]);
+  int hash(NotificationListRecord? e) => const ListEquality().hash([
+        e?.createDate,
+        e?.receiver,
+        e?.type,
+        e?.subject,
+        e?.detail,
+        e?.pathName,
+        e?.docPath
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is NotificationListRecord;

@@ -13,6 +13,38 @@
           "order": "ASCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "notification_list",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "receiver",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "type",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "create_date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "notification_list",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "receiver",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "create_date",
+          "order": "DESCENDING"
+        }
+      ]
     }
   ]
 }

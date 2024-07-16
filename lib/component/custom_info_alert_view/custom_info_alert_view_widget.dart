@@ -172,7 +172,7 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              borderRadius: BorderRadius.circular(24.0),
                             ),
                           ),
                         ),

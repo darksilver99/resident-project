@@ -76,6 +76,11 @@ class UsersRecord extends FirestoreRecord {
   String get firebaseToken => _firebaseToken ?? '';
   bool hasFirebaseToken() => _firebaseToken != null;
 
+  // "total_notification" field.
+  int? _totalNotification;
+  int get totalNotification => _totalNotification ?? 0;
+  bool hasTotalNotification() => _totalNotification != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -89,6 +94,7 @@ class UsersRecord extends FirestoreRecord {
     _type = snapshotData['type'] as String?;
     _projectList = getDataList(snapshotData['project_list']);
     _firebaseToken = snapshotData['firebase_token'] as String?;
+    _totalNotification = castToType<int>(snapshotData['total_notification']);
   }
 
   static CollectionReference get collection =>
@@ -136,6 +142,7 @@ Map<String, dynamic> createUsersRecordData({
   String? lastName,
   String? type,
   String? firebaseToken,
+  int? totalNotification,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -150,6 +157,7 @@ Map<String, dynamic> createUsersRecordData({
       'last_name': lastName,
       'type': type,
       'firebase_token': firebaseToken,
+      'total_notification': totalNotification,
     }.withoutNulls,
   );
 
@@ -173,7 +181,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.lastName == e2?.lastName &&
         e1?.type == e2?.type &&
         listEquality.equals(e1?.projectList, e2?.projectList) &&
-        e1?.firebaseToken == e2?.firebaseToken;
+        e1?.firebaseToken == e2?.firebaseToken &&
+        e1?.totalNotification == e2?.totalNotification;
   }
 
   @override
@@ -189,7 +198,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.lastName,
         e?.type,
         e?.projectList,
-        e?.firebaseToken
+        e?.firebaseToken,
+        e?.totalNotification
       ]);
 
   @override
