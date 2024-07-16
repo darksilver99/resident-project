@@ -20,3 +20,15 @@ DocumentReference configReference() {
 DocumentReference projectReference(String projectDocID) {
   return FirebaseFirestore.instance.doc("project_list/$projectDocID");
 }
+
+String dateTh(DateTime date) {
+  final DateFormat formatter = DateFormat('d MMMM yyyy', 'th_TH');
+  final buddhistYear = date.year + 543;
+  return formatter.format(date).replaceFirst('${date.year}', '$buddhistYear');
+}
+
+String dateTimeTh(DateTime date) {
+  final DateFormat formatter = DateFormat('d MMMM yyyy HH:mm:ss', 'th_TH');
+  final buddhistYear = date.year + 543;
+  return formatter.format(date).replaceFirst('${date.year}', '$buddhistYear');
+}

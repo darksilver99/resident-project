@@ -28,6 +28,8 @@ Future setCurrentProjectData(
   FFAppState().currentProjectData = ProjectDataStruct(
     name: projectDocument?.name,
     projectRef: projectDocument?.reference,
+    projectStampList: projectDocument?.stampList,
+    stampField: projectDocument?.stampField,
   );
   FFAppState().update(() {});
 }
