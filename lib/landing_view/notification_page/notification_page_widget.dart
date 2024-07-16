@@ -61,7 +61,10 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
             ),
             RefreshIndicator(
               onRefresh: () async {
-                context.goNamed('NotificationPage');
+                if (Navigator.of(context).canPop()) {
+                  context.pop();
+                }
+                context.pushNamed('NotificationPage');
               },
               child: PagedListView<DocumentSnapshot<Object?>?,
                   NotificationListRecord>.separated(
@@ -182,7 +185,10 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                               ).then((value) => setState(() {}));
                             }
 
-                            context.goNamed('NotificationPage');
+                            if (Navigator.of(context).canPop()) {
+                              context.pop();
+                            }
+                            context.pushNamed('NotificationPage');
 
                             setState(() {});
                           },
