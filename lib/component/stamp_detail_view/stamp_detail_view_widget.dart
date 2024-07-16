@@ -70,10 +70,19 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Icon(
-                  Icons.close_rounded,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 32.0,
+                InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.close_rounded,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 32.0,
+                  ),
                 ),
               ],
             ),
@@ -247,7 +256,7 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                                           selectedChipStyle: ChipStyle(
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
+                                                    .primary,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -256,7 +265,7 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primaryText,
+                                                              .info,
                                                       fontSize: 18.0,
                                                       letterSpacing: 0.0,
                                                     ),
@@ -270,7 +279,7 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                                             elevation: 4.0,
                                             borderColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .primaryText,
+                                                    .primary,
                                             borderWidth: 2.0,
                                             borderRadius:
                                                 BorderRadius.circular(24.0),
