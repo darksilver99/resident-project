@@ -56,7 +56,7 @@ class NotificationListRecord extends FirestoreRecord {
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('notification_list');
+      FirebaseFirestore.instance.collection('project_list/${FFAppState().currentProjectData.projectRef!.id}/notification_list');
 
   static Stream<NotificationListRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => NotificationListRecord.fromSnapshot(s));
