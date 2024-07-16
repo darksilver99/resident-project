@@ -10,7 +10,10 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<TransactionListRecord> newCustomAction(String transactionRefPath) async {
+Future<TransactionListRecord?> getTransactionDocument(
+    String transactionRefPath) async {
   // Add your function code here!
-  return {};
+  TransactionListRecord docData = await TransactionListRecord.getDocumentOnce(
+      FirebaseFirestore.instance.doc(transactionRefPath));
+  return docData;
 }

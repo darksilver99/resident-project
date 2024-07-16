@@ -11,5 +11,5 @@ export '/landing_view/select_project_page/select_project_page_widget.dart'
     show SelectProjectPageWidget;
 export '/stamp_online_view/stamp_list_page/stamp_list_page_widget.dart'
     show StampListPageWidget;
-export '/noti_view/notification_list_page/notification_list_page_widget.dart'
-    show NotificationListPageWidget;
+export '/landing_view/notification_page/notification_page_widget.dart'
+    show NotificationPageWidget;

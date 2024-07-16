@@ -1,15 +1,15 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
+import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/component/stamp_detail_view/stamp_detail_view_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'notification_list_page_widget.dart' show NotificationListPageWidget;
+import 'notification_page_widget.dart' show NotificationPageWidget;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,8 +17,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
-class NotificationListPageModel
-    extends FlutterFlowModel<NotificationListPageWidget> {
+class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -31,7 +30,7 @@ class NotificationListPageModel
   Query? listViewPagingQuery;
   List<StreamSubscription?> listViewStreamSubscriptions = [];
 
-  // Stores action output result for [Custom Action - newCustomAction] action in Stack widget.
+  // Stores action output result for [Custom Action - getTransactionDocument] action in Container widget.
   TransactionListRecord? transactionDoc;
 
   @override
