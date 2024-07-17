@@ -16,3 +16,5 @@ export '/landing_view/notification_page/notification_page_widget.dart'
 export '/landing_view/scan_and_upload_q_r_code_page/scan_and_upload_q_r_code_page_widget.dart'
     show ScanAndUploadQRCodePageWidget;
 export '/landing_view/test_page/test_page_widget.dart' show TestPageWidget;
+export '/issuee_project_view/issuee_project_page/issuee_project_page_widget.dart'
+    show IssueeProjectPageWidget;
