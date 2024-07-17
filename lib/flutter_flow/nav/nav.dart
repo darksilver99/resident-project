@@ -159,9 +159,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TestPageWidget(),
         ),
         FFRoute(
-          name: 'IssueeProjectPage',
-          path: '/issueeProjectPage',
-          builder: (context, params) => IssueeProjectPageWidget(),
+          name: 'IssueProjectPage',
+          path: '/issueProjectPage',
+          builder: (context, params) => IssueProjectPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

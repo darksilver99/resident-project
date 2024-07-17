@@ -12,7 +12,7 @@ import 'schema/project_list_record.dart';
 import 'schema/resident_service_list_record.dart';
 import 'schema/notification_list_record.dart';
 import 'schema/transaction_list_record.dart';
-import 'schema/issuee_project_list_record.dart';
+import 'schema/issue_project_list_record.dart';
 import 'dart:async';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -30,7 +30,7 @@ export 'schema/project_list_record.dart';
 export 'schema/resident_service_list_record.dart';
 export 'schema/notification_list_record.dart';
 export 'schema/transaction_list_record.dart';
-export 'schema/issuee_project_list_record.dart';
+export 'schema/issue_project_list_record.dart';
 
 /// Functions to query ResidentListRecords (as a Stream and as a Future).
 Future<int> queryResidentListRecordCount({
@@ -587,55 +587,55 @@ Future<FFFirestorePage<TransactionListRecord>> queryTransactionListRecordPage({
       return page;
     });
 
-/// Functions to query IssueeProjectListRecords (as a Stream and as a Future).
-Future<int> queryIssueeProjectListRecordCount({
+/// Functions to query IssueProjectListRecords (as a Stream and as a Future).
+Future<int> queryIssueProjectListRecordCount({
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      IssueeProjectListRecord.collection,
+      IssueProjectListRecord.collection,
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
-Stream<List<IssueeProjectListRecord>> queryIssueeProjectListRecord({
+Stream<List<IssueProjectListRecord>> queryIssueProjectListRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      IssueeProjectListRecord.collection,
-      IssueeProjectListRecord.fromSnapshot,
+      IssueProjectListRecord.collection,
+      IssueProjectListRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<IssueeProjectListRecord>> queryIssueeProjectListRecordOnce({
+Future<List<IssueProjectListRecord>> queryIssueProjectListRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      IssueeProjectListRecord.collection,
-      IssueeProjectListRecord.fromSnapshot,
+      IssueProjectListRecord.collection,
+      IssueProjectListRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
-Future<FFFirestorePage<IssueeProjectListRecord>>
-    queryIssueeProjectListRecordPage({
+Future<FFFirestorePage<IssueProjectListRecord>>
+    queryIssueProjectListRecordPage({
   Query Function(Query)? queryBuilder,
   DocumentSnapshot? nextPageMarker,
   required int pageSize,
   required bool isStream,
-  required PagingController<DocumentSnapshot?, IssueeProjectListRecord>
+  required PagingController<DocumentSnapshot?, IssueProjectListRecord>
       controller,
   List<StreamSubscription?>? streamSubscriptions,
 }) =>
         queryCollectionPage(
-          IssueeProjectListRecord.collection,
-          IssueeProjectListRecord.fromSnapshot,
+          IssueProjectListRecord.collection,
+          IssueProjectListRecord.fromSnapshot,
           queryBuilder: queryBuilder,
           nextPageMarker: nextPageMarker,
           pageSize: pageSize,
@@ -647,7 +647,7 @@ Future<FFFirestorePage<IssueeProjectListRecord>>
           );
           if (isStream) {
             final streamSubscription =
-                (page.dataStream)?.listen((List<IssueeProjectListRecord> data) {
+                (page.dataStream)?.listen((List<IssueProjectListRecord> data) {
               data.forEach((item) {
                 final itemIndexes = controller.itemList!
                     .asMap()

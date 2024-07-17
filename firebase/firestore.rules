@@ -55,7 +55,7 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /issuee_project_list/{document} {
+    match /issue_project_list/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if true;

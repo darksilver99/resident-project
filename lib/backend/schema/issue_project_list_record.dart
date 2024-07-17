@@ -8,8 +8,8 @@ import '/backend/schema/util/schema_util.dart';
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class IssueeProjectListRecord extends FirestoreRecord {
-  IssueeProjectListRecord._(
+class IssueProjectListRecord extends FirestoreRecord {
+  IssueProjectListRecord._(
     DocumentReference reference,
     Map<String, dynamic> data,
   ) : super(reference, data) {
@@ -80,41 +80,41 @@ class IssueeProjectListRecord extends FirestoreRecord {
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('issuee_project_list');
+      FirebaseFirestore.instance.collection('issue_project_list');
 
-  static Stream<IssueeProjectListRecord> getDocument(DocumentReference ref) =>
-      ref.snapshots().map((s) => IssueeProjectListRecord.fromSnapshot(s));
+  static Stream<IssueProjectListRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => IssueProjectListRecord.fromSnapshot(s));
 
-  static Future<IssueeProjectListRecord> getDocumentOnce(
+  static Future<IssueProjectListRecord> getDocumentOnce(
           DocumentReference ref) =>
-      ref.get().then((s) => IssueeProjectListRecord.fromSnapshot(s));
+      ref.get().then((s) => IssueProjectListRecord.fromSnapshot(s));
 
-  static IssueeProjectListRecord fromSnapshot(DocumentSnapshot snapshot) =>
-      IssueeProjectListRecord._(
+  static IssueProjectListRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      IssueProjectListRecord._(
         snapshot.reference,
         mapFromFirestore(snapshot.data() as Map<String, dynamic>),
       );
 
-  static IssueeProjectListRecord getDocumentFromData(
+  static IssueProjectListRecord getDocumentFromData(
     Map<String, dynamic> data,
     DocumentReference reference,
   ) =>
-      IssueeProjectListRecord._(reference, mapFromFirestore(data));
+      IssueProjectListRecord._(reference, mapFromFirestore(data));
 
   @override
   String toString() =>
-      'IssueeProjectListRecord(reference: ${reference.path}, data: $snapshotData)';
+      'IssueProjectListRecord(reference: ${reference.path}, data: $snapshotData)';
 
   @override
   int get hashCode => reference.path.hashCode;
 
   @override
   bool operator ==(other) =>
-      other is IssueeProjectListRecord &&
+      other is IssueProjectListRecord &&
       reference.path.hashCode == other.reference.path.hashCode;
 }
 
-Map<String, dynamic> createIssueeProjectListRecordData({
+Map<String, dynamic> createIssueProjectListRecordData({
   DateTime? createDate,
   DocumentReference? createBy,
   DateTime? updateDate,
@@ -144,12 +144,12 @@ Map<String, dynamic> createIssueeProjectListRecordData({
   return firestoreData;
 }
 
-class IssueeProjectListRecordDocumentEquality
-    implements Equality<IssueeProjectListRecord> {
-  const IssueeProjectListRecordDocumentEquality();
+class IssueProjectListRecordDocumentEquality
+    implements Equality<IssueProjectListRecord> {
+  const IssueProjectListRecordDocumentEquality();
 
   @override
-  bool equals(IssueeProjectListRecord? e1, IssueeProjectListRecord? e2) {
+  bool equals(IssueProjectListRecord? e1, IssueProjectListRecord? e2) {
     return e1?.createDate == e2?.createDate &&
         e1?.createBy == e2?.createBy &&
         e1?.updateDate == e2?.updateDate &&
@@ -163,7 +163,7 @@ class IssueeProjectListRecordDocumentEquality
   }
 
   @override
-  int hash(IssueeProjectListRecord? e) => const ListEquality().hash([
+  int hash(IssueProjectListRecord? e) => const ListEquality().hash([
         e?.createDate,
         e?.createBy,
         e?.updateDate,
@@ -177,5 +177,5 @@ class IssueeProjectListRecordDocumentEquality
       ]);
 
   @override
-  bool isValidKey(Object? o) => o is IssueeProjectListRecord;
+  bool isValidKey(Object? o) => o is IssueProjectListRecord;
 }
