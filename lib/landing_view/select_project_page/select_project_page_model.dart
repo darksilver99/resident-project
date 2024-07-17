@@ -1,3 +1,5 @@
+import 'package:resident_project/custom_toon/CustomQRCodeView.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
@@ -72,12 +74,17 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   Future<String?> qrCodeBlock(BuildContext context) async {
     var qrCodeResult = '';
 
-    qrCodeResult = await FlutterBarcodeScanner.scanBarcode(
+    /*qrCodeResult = await FlutterBarcodeScanner.scanBarcode(
       '#C62828', // scanning line color
       'Cancel', // cancel button text
       true, // whether to show the flash icon
       ScanMode.QR,
-    );
+    );*/
+
+    qrCodeResult = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const CustomQRCodeView()),
+    ) ?? '';
 
     return qrCodeResult;
   }
