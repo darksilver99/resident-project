@@ -18,3 +18,5 @@ export '/landing_view/scan_and_upload_q_r_code_page/scan_and_upload_q_r_code_pag
 export '/landing_view/test_page/test_page_widget.dart' show TestPageWidget;
 export '/issue_project_view/issue_project_page/issue_project_page_widget.dart'
     show IssueProjectPageWidget;
+export '/transaction_view/transaction_page/transaction_page_widget.dart'
+    show TransactionPageWidget;
