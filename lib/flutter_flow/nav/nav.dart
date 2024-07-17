@@ -164,7 +164,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => IssueProjectPageWidget(),
         ),
         FFRoute(
-          name: 'transactionPage',
+          name: 'TransactionPage',
           path: '/transactionPage',
           builder: (context, params) => TransactionPageWidget(),
         )

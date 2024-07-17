@@ -96,7 +96,7 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                   context.pop();
                 }
                 context.pushNamed(
-                  'transactionPage',
+                  'TransactionPage',
                   extra: <String, dynamic>{
                     kTransitionInfoKey: TransitionInfo(
                       hasTransition: true,
@@ -209,7 +209,7 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                   context.pop();
                                 }
                                 context.pushNamed(
-                                  'transactionPage',
+                                  'TransactionPage',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
