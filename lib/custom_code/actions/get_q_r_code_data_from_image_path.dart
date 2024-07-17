@@ -15,6 +15,6 @@ import 'package:scan/scan.dart';
 Future<String> getQRCodeDataFromImagePath(String path) async {
   // Add your function code here!
 
-  var result = await Scan.parse(path);
+  var result = await Scan.parse(path) ?? '';
   return result;
 }
