@@ -72,37 +72,89 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
         ).then((value) => setState(() {}));
 
         _model.qrCode = await _model.qrCodeBlock(context);
-        _model.isHaveProject = await actions.checkIsHaveProject(
-          _model.qrCode!,
-        );
-        if (_model.isHaveProject!) {
-          _model.isDuplicate = await actions.checkDuplicateResident(
+        if (_model.qrCode != null && _model.qrCode != '') {
+          _model.isHaveProject = await actions.checkIsHaveProject(
             _model.qrCode!,
           );
-          if (_model.isDuplicate!) {
-            await showDialog(
-              context: context,
-              builder: (dialogContext) {
-                return Dialog(
-                  elevation: 0,
-                  insetPadding: EdgeInsets.zero,
-                  backgroundColor: Colors.transparent,
-                  alignment: AlignmentDirectional(0.0, 0.0)
-                      .resolve(Directionality.of(context)),
-                  child: WebViewAware(
-                    child: GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
-                      child: CustomInfoAlertViewWidget(
-                        title: 'ท่านอยู่ในโครงการนี้แล้ว',
+          if (_model.isHaveProject!) {
+            _model.isDuplicate = await actions.checkDuplicateResident(
+              _model.qrCode!,
+            );
+            if (_model.isDuplicate!) {
+              await showDialog(
+                context: context,
+                builder: (dialogContext) {
+                  return Dialog(
+                    elevation: 0,
+                    insetPadding: EdgeInsets.zero,
+                    backgroundColor: Colors.transparent,
+                    alignment: AlignmentDirectional(0.0, 0.0)
+                        .resolve(Directionality.of(context)),
+                    child: WebViewAware(
+                      child: GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: CustomInfoAlertViewWidget(
+                          title: 'ท่านอยู่ในโครงการนี้แล้ว',
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            ).then((value) => setState(() {}));
+                  );
+                },
+              ).then((value) => setState(() {}));
+            } else {
+              await showDialog(
+                context: context,
+                builder: (dialogContext) {
+                  return Dialog(
+                    elevation: 0,
+                    insetPadding: EdgeInsets.zero,
+                    backgroundColor: Colors.transparent,
+                    alignment: AlignmentDirectional(0.0, 0.0)
+                        .resolve(Directionality.of(context)),
+                    child: WebViewAware(
+                      child: GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: InsertContactAddressViewWidget(),
+                      ),
+                    ),
+                  );
+                },
+              ).then(
+                  (value) => safeSetState(() => _model.contactAddress = value));
+
+              _model.residentDoc = await actions.joinProject(
+                _model.qrCode!,
+                _model.contactAddress!,
+              );
+              await action_blocks.setCurrentResidentData(
+                context,
+                residentDocument: _model.residentDoc,
+              );
+              _model.projectData = await ProjectListRecord.getDocumentOnce(
+                  functions.projectReference(_model.qrCode!));
+              await action_blocks.setCurrentProjectData(
+                context,
+                projectDocument: _model.projectData,
+              );
+
+              await currentUserReference!.update({
+                ...mapToFirestore(
+                  {
+                    'project_list': FieldValue.arrayUnion(
+                        [functions.projectReference(_model.qrCode!)]),
+                  },
+                ),
+              });
+              await actions.pushReplacement(
+                context,
+              );
+            }
           } else {
             await showDialog(
               context: context,
@@ -119,40 +171,15 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                           ? FocusScope.of(context)
                               .requestFocus(_model.unfocusNode)
                           : FocusScope.of(context).unfocus(),
-                      child: InsertContactAddressViewWidget(),
+                      child: CustomInfoAlertViewWidget(
+                        title:
+                            'ขออภัยไม่พบโครงการนี้ กรุณาตรวจสอบ QR Code หรือติดต่อเจ้าหน้าโครงการ',
+                      ),
                     ),
                   ),
                 );
               },
-            ).then(
-                (value) => safeSetState(() => _model.contactAddress = value));
-
-            _model.residentDoc = await actions.joinProject(
-              _model.qrCode!,
-              _model.contactAddress!,
-            );
-            await action_blocks.setCurrentResidentData(
-              context,
-              residentDocument: _model.residentDoc,
-            );
-            _model.projectData = await ProjectListRecord.getDocumentOnce(
-                functions.projectReference(_model.qrCode!));
-            await action_blocks.setCurrentProjectData(
-              context,
-              projectDocument: _model.projectData,
-            );
-
-            await currentUserReference!.update({
-              ...mapToFirestore(
-                {
-                  'project_list': FieldValue.arrayUnion(
-                      [functions.projectReference(_model.qrCode!)]),
-                },
-              ),
-            });
-            await actions.pushReplacement(
-              context,
-            );
+            ).then((value) => setState(() {}));
           }
         } else {
           await showDialog(
@@ -257,44 +284,110 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                             onPressed: () async {
                               _model.qrCode2 =
                                   await _model.qrCodeBlock(context);
-                              _model.isHaveProject2 =
-                                  await actions.checkIsHaveProject(
-                                _model.qrCode2!,
-                              );
-                              if (_model.isHaveProject2!) {
-                                _model.isDuplicate2 =
-                                    await actions.checkDuplicateResident(
+                              if (_model.qrCode2 != null &&
+                                  _model.qrCode2 != '') {
+                                _model.isHaveProject2 =
+                                    await actions.checkIsHaveProject(
                                   _model.qrCode2!,
                                 );
-                                if (_model.isDuplicate2!) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                        child: WebViewAware(
-                                          child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: CustomInfoAlertViewWidget(
-                                              title: 'ท่านอยู่ในโครงการนี้แล้ว',
+                                if (_model.isHaveProject2!) {
+                                  _model.isDuplicate2 =
+                                      await actions.checkDuplicateResident(
+                                    _model.qrCode2!,
+                                  );
+                                  if (_model.isDuplicate2!) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child: GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: CustomInfoAlertViewWidget(
+                                                title:
+                                                    'ท่านอยู่ในโครงการนี้แล้ว',
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => setState(() {}));
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  } else {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child: GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child:
+                                                  InsertContactAddressViewWidget(),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(
+                                        () => _model.contactAddress2 = value));
+
+                                    _model.residentDoc2 =
+                                        await actions.joinProject(
+                                      _model.qrCode2!,
+                                      _model.contactAddress2!,
+                                    );
+                                    await action_blocks.setCurrentResidentData(
+                                      context,
+                                      residentDocument: _model.residentDoc2,
+                                    );
+                                    _model.projectData2 =
+                                        await ProjectListRecord.getDocumentOnce(
+                                            functions.projectReference(
+                                                _model.qrCode2!));
+                                    await action_blocks.setCurrentProjectData(
+                                      context,
+                                      projectDocument: _model.projectData2,
+                                    );
+
+                                    await currentUserReference!.update({
+                                      ...mapToFirestore(
+                                        {
+                                          'project_list':
+                                              FieldValue.arrayUnion([
+                                            functions.projectReference(
+                                                _model.qrCode2!)
+                                          ]),
+                                        },
+                                      ),
+                                    });
+                                    await actions.pushReplacement(
+                                      context,
+                                    );
+                                  }
                                 } else {
                                   await showDialog(
                                     context: context,
@@ -316,46 +409,15 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                                         _model.unfocusNode)
                                                 : FocusScope.of(context)
                                                     .unfocus(),
-                                            child:
-                                                InsertContactAddressViewWidget(),
+                                            child: CustomInfoAlertViewWidget(
+                                              title:
+                                                  'ขออภัยไม่พบโครงการนี้ กรุณาตรวจสอบ QR Code หรือติดต่อเจ้าหน้าโครงการ',
+                                            ),
                                           ),
                                         ),
                                       );
                                     },
-                                  ).then((value) => safeSetState(
-                                      () => _model.contactAddress2 = value));
-
-                                  _model.residentDoc2 =
-                                      await actions.joinProject(
-                                    _model.qrCode2!,
-                                    _model.contactAddress2!,
-                                  );
-                                  await action_blocks.setCurrentResidentData(
-                                    context,
-                                    residentDocument: _model.residentDoc2,
-                                  );
-                                  _model.projectData2 =
-                                      await ProjectListRecord.getDocumentOnce(
-                                          functions.projectReference(
-                                              _model.qrCode2!));
-                                  await action_blocks.setCurrentProjectData(
-                                    context,
-                                    projectDocument: _model.projectData2,
-                                  );
-
-                                  await currentUserReference!.update({
-                                    ...mapToFirestore(
-                                      {
-                                        'project_list': FieldValue.arrayUnion([
-                                          functions
-                                              .projectReference(_model.qrCode2!)
-                                        ]),
-                                      },
-                                    ),
-                                  });
-                                  await actions.pushReplacement(
-                                    context,
-                                  );
+                                  ).then((value) => setState(() {}));
                                 }
                               } else {
                                 await showDialog(
