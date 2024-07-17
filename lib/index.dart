@@ -13,3 +13,5 @@ export '/stamp_online_view/stamp_list_page/stamp_list_page_widget.dart'
     show StampListPageWidget;
 export '/landing_view/notification_page/notification_page_widget.dart'
     show NotificationPageWidget;
+export '/scan_and_upload_q_r_code_page/scan_and_upload_q_r_code_page_widget.dart'
+    show ScanAndUploadQRCodePageWidget;

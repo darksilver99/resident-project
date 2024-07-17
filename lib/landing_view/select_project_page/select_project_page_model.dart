@@ -17,7 +17,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -70,15 +69,8 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
 
   /// Action blocks.
   Future<String?> qrCodeBlock(BuildContext context) async {
-    var qrCodeResult = '';
+    context.pushNamed('ScanAndUploadQRCodePage');
 
-    qrCodeResult = await FlutterBarcodeScanner.scanBarcode(
-      '#C62828', // scanning line color
-      'Cancel', // cancel button text
-      true, // whether to show the flash icon
-      ScanMode.QR,
-    );
-
-    return qrCodeResult;
+    return 'qrcode';
   }
 }
