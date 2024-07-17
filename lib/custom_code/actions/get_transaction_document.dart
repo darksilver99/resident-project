@@ -13,7 +13,11 @@ import 'package:flutter/material.dart';
 Future<TransactionListRecord?> getTransactionDocument(
     String transactionRefPath) async {
   // Add your function code here!
-  TransactionListRecord docData = await TransactionListRecord.getDocumentOnce(
-      FirebaseFirestore.instance.doc(transactionRefPath));
-  return docData;
+  try {
+    TransactionListRecord docData = await TransactionListRecord.getDocumentOnce(
+        FirebaseFirestore.instance.doc(transactionRefPath));
+    return docData;
+  } catch (e) {
+    return null;
+  }
 }

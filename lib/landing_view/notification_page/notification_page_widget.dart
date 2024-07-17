@@ -64,7 +64,16 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                 if (Navigator.of(context).canPop()) {
                   context.pop();
                 }
-                context.pushNamed('NotificationPage');
+                context.pushNamed(
+                  'NotificationPage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
               },
               child: PagedListView<DocumentSnapshot<Object?>?,
                   NotificationListRecord>.separated(
@@ -155,7 +164,24 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                     ),
                                   );
                                 },
-                              ).then((value) => safeSetState(() {}));
+                              ).then((value) =>
+                                  safeSetState(() => _model.isStamp = value));
+
+                              if (_model.isStamp == 'update') {
+                                if (Navigator.of(context).canPop()) {
+                                  context.pop();
+                                }
+                                context.pushNamed(
+                                  'NotificationPage',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              }
                             } else {
                               await showDialog(
                                 context: context,
@@ -184,11 +210,6 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                 },
                               ).then((value) => setState(() {}));
                             }
-
-                            if (Navigator.of(context).canPop()) {
-                              context.pop();
-                            }
-                            context.pushNamed('NotificationPage');
 
                             setState(() {});
                           },

@@ -259,7 +259,7 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                                         stampBy: currentUserReference,
                                         isStampByResident: true,
                                       ));
-                                      Navigator.pop(context);
+                                      Navigator.pop(context, 'update');
                                     }
 
                                     setState(() {});
