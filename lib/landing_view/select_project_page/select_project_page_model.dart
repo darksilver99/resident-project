@@ -69,7 +69,7 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
 
   /// Action blocks.
   Future<String?> qrCodeBlock(BuildContext context) async {
-    context.pushNamed('ScanAndUploadQRCodePage');
+    await context.pushNamed('ScanAndUploadQRCodePage');
 
     return 'qrcode';
   }
