@@ -81,10 +81,12 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
       ScanMode.QR,
     );*/
 
-    qrCodeResult = await Navigator.push(
+    /*qrCodeResult = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const CustomQRCodeView()),
-    ) ?? '';
+      MaterialPageRoute(builder: (context) => CustomQRCodeView()),
+    ) ?? '';*/
+
+    print("qrCodeResult : $qrCodeResult");
 
     return qrCodeResult;
   }
