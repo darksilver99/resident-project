@@ -309,14 +309,14 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                                       Text(
                                                         listViewNotificationListRecord
                                                             .subject,
-                                                        maxLines: 1,
+                                                        maxLines: 2,
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
                                                                   'Kanit',
-                                                              fontSize: 18.0,
+                                                              fontSize: 14.0,
                                                               letterSpacing:
                                                                   0.0,
                                                               fontWeight:
@@ -361,7 +361,7 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 16.0, 8.0),
+                                                    16.0, 0.0, 16.0, 4.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
