@@ -32,6 +32,8 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
 
   // Stores action output result for [Custom Action - getTransactionDocument] action in Container widget.
   TransactionListRecord? transactionDoc;
+  // Stores action output result for [Bottom Sheet - StampDetailView] action in Container widget.
+  String? isStamp;
 
   @override
   void initState(BuildContext context) {
