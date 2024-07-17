@@ -11,26 +11,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
-import 'issuee_project_page_model.dart';
-export 'issuee_project_page_model.dart';
+import 'issue_project_page_model.dart';
+export 'issue_project_page_model.dart';
 
-class IssueeProjectPageWidget extends StatefulWidget {
-  const IssueeProjectPageWidget({super.key});
+class IssueProjectPageWidget extends StatefulWidget {
+  const IssueProjectPageWidget({super.key});
 
   @override
-  State<IssueeProjectPageWidget> createState() =>
-      _IssueeProjectPageWidgetState();
+  State<IssueProjectPageWidget> createState() => _IssueProjectPageWidgetState();
 }
 
-class _IssueeProjectPageWidgetState extends State<IssueeProjectPageWidget> {
-  late IssueeProjectPageModel _model;
+class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
+  late IssueProjectPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => IssueeProjectPageModel());
+    _model = createModel(context, () => IssueProjectPageModel());
 
     _model.textController1 ??= TextEditingController(
         text:
@@ -501,10 +500,9 @@ class _IssueeProjectPageWidgetState extends State<IssueeProjectPageWidget> {
                                         return;
                                       }
 
-                                      await IssueeProjectListRecord.collection
+                                      await IssueProjectListRecord.collection
                                           .doc()
-                                          .set(
-                                              createIssueeProjectListRecordData(
+                                          .set(createIssueProjectListRecordData(
                                             createDate: getCurrentTimestamp,
                                             createBy: currentUserReference,
                                             status: 0,
