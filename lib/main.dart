@@ -18,6 +18,7 @@ import 'index.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'custom_toon/noti_lib.dart';
+import 'package:badges/badges.dart' as badges;
 
 // noti
 @pragma('vm:entry-point')
@@ -177,9 +178,27 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.solidBell,
-              size: 32.0,
+            icon: badges.Badge(
+              badgeContent: Text(
+                '${currentUserDocument?.totalNotification ?? 0}',
+                style: FlutterFlowTheme.of(context).titleSmall.override(
+                  fontFamily: 'Kanit',
+                  color: Colors.white,
+                  letterSpacing: 0,
+                ),
+              ),
+              showBadge: (currentUserDocument?.totalNotification == null || currentUserDocument!.totalNotification == 0) ? false : true,
+              shape: badges.BadgeShape.circle,
+              badgeColor: FlutterFlowTheme.of(context).primary,
+              elevation: 4,
+              padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+              position: badges.BadgePosition.topEnd(),
+              animationType: badges.BadgeAnimationType.scale,
+              toAnimate: true,
+              child: FaIcon(
+                FontAwesomeIcons.solidBell,
+                size: 32.0,
+              ),
             ),
             label: 'Home',
             tooltip: '',
