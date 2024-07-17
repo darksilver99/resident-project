@@ -540,8 +540,6 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
                                                     CustomInfoAlertViewWidget(
                                                   title:
                                                       'ส่งข้อมูลไปยังเจ้าหน้าที่โครงการแล้ว',
-                                                  detail:
-                                                      'กรุณารอการติดต่อกลับ',
                                                 ),
                                               ),
                                             ),
