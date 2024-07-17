@@ -33,6 +33,7 @@ abstract class FlutterFlowTheme {
   late Color info;
 
   late Color link;
+  late Color backgroundBlock;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -123,6 +124,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color info = const Color(0xFFFFFFFF);
 
   late Color link = Color(0xFF394CF4);
+  late Color backgroundBlock = Color(0xCDFFFFFF);
 }
 
 abstract class Typography {
