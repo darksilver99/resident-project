@@ -230,7 +230,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                             ),
                             child: Container(
                               width: 100.0,
-                              height: 100.0,
+                              height: 120.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -268,59 +268,66 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                   ),
                                                 ),
                                                 Expanded(
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        listViewNotificationListRecord
-                                                            .subject,
-                                                        maxLines: 2,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Kanit',
-                                                              fontSize: 14.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                      ),
-                                                      if (listViewNotificationListRecord
-                                                                  .detail !=
-                                                              null &&
-                                                          listViewNotificationListRecord
-                                                                  .detail !=
-                                                              '')
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 16.0,
+                                                                0.0, 16.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
                                                         Text(
                                                           listViewNotificationListRecord
-                                                              .detail,
-                                                          maxLines: 1,
+                                                              .subject,
+                                                          maxLines: 2,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
                                                                     'Kanit',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
                                                                 fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
                                                               ),
                                                         ),
-                                                    ],
+                                                        if (listViewNotificationListRecord
+                                                                    .detail !=
+                                                                null &&
+                                                            listViewNotificationListRecord
+                                                                    .detail !=
+                                                                '')
+                                                          Text(
+                                                            listViewNotificationListRecord
+                                                                .detail,
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Kanit',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ],
