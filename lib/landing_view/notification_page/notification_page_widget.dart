@@ -167,54 +167,89 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              _model.transactionDoc =
-                                  await actions.getTransactionDocument(
-                                listViewNotificationListRecord.docPath,
-                              );
-                              if (_model.transactionDoc != null) {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  useSafeArea: true,
-                                  context: context,
-                                  builder: (context) {
-                                    return WebViewAware(
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: Padding(
-                                          padding:
-                                              MediaQuery.viewInsetsOf(context),
-                                          child: StampDetailViewWidget(
-                                            transactionDocument:
-                                                _model.transactionDoc!,
+                              if (FFAppState().currentResidentData.status ==
+                                  1) {
+                                _model.transactionDoc =
+                                    await actions.getTransactionDocument(
+                                  listViewNotificationListRecord.docPath,
+                                );
+                                if (_model.transactionDoc != null) {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    enableDrag: false,
+                                    useSafeArea: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return WebViewAware(
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: StampDetailViewWidget(
+                                              transactionDocument:
+                                                  _model.transactionDoc!,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) =>
-                                    safeSetState(() => _model.isStamp = value));
-
-                                if (_model.isStamp == 'update') {
-                                  if (Navigator.of(context).canPop()) {
-                                    context.pop();
-                                  }
-                                  context.pushNamed(
-                                    'NotificationPage',
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
+                                      );
                                     },
-                                  );
+                                  ).then((value) => safeSetState(
+                                      () => _model.isStamp = value));
+
+                                  if (_model.isStamp == 'update') {
+                                    if (Navigator.of(context).canPop()) {
+                                      context.pop();
+                                    }
+                                    context.pushNamed(
+                                      'NotificationPage',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  }
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: WebViewAware(
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: CustomInfoAlertViewWidget(
+                                              title:
+                                                  'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
                                 }
                               } else {
                                 await showDialog(
@@ -237,7 +272,9 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                   .unfocus(),
                                           child: CustomInfoAlertViewWidget(
                                             title:
-                                                'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
+                                                'สถานะลูกบ้านอยู่ในระหว่างรออนุมัติ',
+                                            detail:
+                                                'กรุณารออนุมัติจากเจ้าหน้าที่โครงการ หรือหากเจ้าหน้าที่โครงการอนุมัติแล้วกรุณาปิด/เปิดแอปใหม่อีกครั้ง',
                                           ),
                                         ),
                                       ),
