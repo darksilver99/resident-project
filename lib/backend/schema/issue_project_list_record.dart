@@ -66,6 +66,11 @@ class IssueProjectListRecord extends FirestoreRecord {
   String get contactPhone => _contactPhone ?? '';
   bool hasContactPhone() => _contactPhone != null;
 
+  // "resident_ref" field.
+  DocumentReference? _residentRef;
+  DocumentReference? get residentRef => _residentRef;
+  bool hasResidentRef() => _residentRef != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -77,6 +82,7 @@ class IssueProjectListRecord extends FirestoreRecord {
     _contactName = snapshotData['contact_name'] as String?;
     _contactAddress = snapshotData['contact_address'] as String?;
     _contactPhone = snapshotData['contact_phone'] as String?;
+    _residentRef = snapshotData['resident_ref'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -125,6 +131,7 @@ Map<String, dynamic> createIssueProjectListRecordData({
   String? contactName,
   String? contactAddress,
   String? contactPhone,
+  DocumentReference? residentRef,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -138,6 +145,7 @@ Map<String, dynamic> createIssueProjectListRecordData({
       'contact_name': contactName,
       'contact_address': contactAddress,
       'contact_phone': contactPhone,
+      'resident_ref': residentRef,
     }.withoutNulls,
   );
 
@@ -159,7 +167,8 @@ class IssueProjectListRecordDocumentEquality
         e1?.detail == e2?.detail &&
         e1?.contactName == e2?.contactName &&
         e1?.contactAddress == e2?.contactAddress &&
-        e1?.contactPhone == e2?.contactPhone;
+        e1?.contactPhone == e2?.contactPhone &&
+        e1?.residentRef == e2?.residentRef;
   }
 
   @override
@@ -173,7 +182,8 @@ class IssueProjectListRecordDocumentEquality
         e?.detail,
         e?.contactName,
         e?.contactAddress,
-        e?.contactPhone
+        e?.contactPhone,
+        e?.residentRef
       ]);
 
   @override
