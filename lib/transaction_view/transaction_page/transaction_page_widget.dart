@@ -111,17 +111,14 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                   NotificationListRecord>.separated(
                 pagingController: _model.setListViewController(
                   NotificationListRecord.collection
-                      .where(Filter.or(
-                        Filter(
-                          'resident_ref',
-                          isEqualTo:
-                              FFAppState().currentResidentData.residentRef,
-                        ),
-                        Filter(
-                          'type',
-                          isEqualTo: 'park',
-                        ),
-                      ))
+                      .where(
+                        'resident_ref',
+                        isEqualTo: FFAppState().currentResidentData.residentRef,
+                      )
+                      .where(
+                        'type',
+                        isEqualTo: 'park',
+                      )
                       .orderBy('create_date', descending: true),
                 ),
                 padding: EdgeInsets.fromLTRB(
