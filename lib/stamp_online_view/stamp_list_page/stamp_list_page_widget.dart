@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -41,6 +40,8 @@ class _StampListPageWidgetState extends State<StampListPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -91,8 +92,8 @@ class _StampListPageWidgetState extends State<StampListPageWidget> {
                 NotificationListRecord.collection
                     .where(Filter.or(
                       Filter(
-                        'receiver',
-                        isEqualTo: currentUserReference,
+                        'resident_ref',
+                        isEqualTo: FFAppState().currentResidentData.residentRef,
                       ),
                       Filter(
                         'type',

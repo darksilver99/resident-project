@@ -46,6 +46,11 @@ class NotificationListRecord extends FirestoreRecord {
   String get docPath => _docPath ?? '';
   bool hasDocPath() => _docPath != null;
 
+  // "resident_ref" field.
+  DocumentReference? _residentRef;
+  DocumentReference? get residentRef => _residentRef;
+  bool hasResidentRef() => _residentRef != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _receiver = snapshotData['receiver'] as DocumentReference?;
@@ -53,6 +58,7 @@ class NotificationListRecord extends FirestoreRecord {
     _subject = snapshotData['subject'] as String?;
     _detail = snapshotData['detail'] as String?;
     _docPath = snapshotData['doc_path'] as String?;
+    _residentRef = snapshotData['resident_ref'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -97,6 +103,7 @@ Map<String, dynamic> createNotificationListRecordData({
   String? subject,
   String? detail,
   String? docPath,
+  DocumentReference? residentRef,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -106,6 +113,7 @@ Map<String, dynamic> createNotificationListRecordData({
       'subject': subject,
       'detail': detail,
       'doc_path': docPath,
+      'resident_ref': residentRef,
     }.withoutNulls,
   );
 
@@ -123,12 +131,20 @@ class NotificationListRecordDocumentEquality
         e1?.type == e2?.type &&
         e1?.subject == e2?.subject &&
         e1?.detail == e2?.detail &&
-        e1?.docPath == e2?.docPath;
+        e1?.docPath == e2?.docPath &&
+        e1?.residentRef == e2?.residentRef;
   }
 
   @override
-  int hash(NotificationListRecord? e) => const ListEquality().hash(
-      [e?.createDate, e?.receiver, e?.type, e?.subject, e?.detail, e?.docPath]);
+  int hash(NotificationListRecord? e) => const ListEquality().hash([
+        e?.createDate,
+        e?.receiver,
+        e?.type,
+        e?.subject,
+        e?.detail,
+        e?.docPath,
+        e?.residentRef
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is NotificationListRecord;

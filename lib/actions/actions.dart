@@ -59,6 +59,7 @@ Future<bool?> checkStatusLiveInProject(
   if (!currentProjectList!
       .contains(FFAppState().currentProjectData.projectRef)) {
     FFAppState().currentProjectData = ProjectDataStruct();
+    FFAppState().currentResidentData = ResidentDataStruct();
     return false;
   } else {
     return true;
