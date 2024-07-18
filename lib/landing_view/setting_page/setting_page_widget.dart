@@ -37,7 +37,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
         context,
         currentProjectList: (currentUserDocument?.projectList?.toList() ?? []),
       );
-      if (_model.isLiveInProject!) {
+      if (!_model.isLiveInProject!) {
         context.goNamed(
           'SelectProjectPage',
           queryParameters: {
