@@ -2,11 +2,13 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
+import '/component/loading_view/loading_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/component/stamp_detail_view/stamp_detail_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'notification_page_widget.dart' show NotificationPageWidget;
@@ -20,9 +22,15 @@ import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
+  ///  Local state fields for this page.
+
+  bool isLoading = true;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - checkStatusLiveInProject] action in NotificationPage widget.
+  bool? isLiveInProject;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for ListView widget.
@@ -36,10 +44,13 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
   TransactionListRecord? transactionDoc;
   // Stores action output result for [Bottom Sheet - StampDetailView] action in Container widget.
   String? isStamp;
+  // Model for LoadingView component.
+  late LoadingViewModel loadingViewModel;
 
   @override
   void initState(BuildContext context) {
     backgroundViewModel = createModel(context, () => BackgroundViewModel());
+    loadingViewModel = createModel(context, () => LoadingViewModel());
   }
 
   @override
@@ -48,6 +59,8 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
     backgroundViewModel.dispose();
     listViewStreamSubscriptions.forEach((s) => s?.cancel());
     listViewPagingController?.dispose();
+
+    loadingViewModel.dispose();
   }
 
   /// Additional helper methods.
