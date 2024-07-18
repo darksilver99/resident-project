@@ -32,6 +32,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ResidentListRecord? residentDoc;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   ResidentListRecord? residentDoc2;
+  // Stores action output result for [Action Block - checkStatusLiveInProject] action in HomePage widget.
+  bool? isLiveInProject;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // Model for LoadingView component.
