@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'setting_page_widget.dart' show SettingPageWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,8 @@ class SettingPageModel extends FlutterFlowModel<SettingPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - checkStatusLiveInProject] action in SettingPage widget.
+  bool? isLiveInProject;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Text widget.

@@ -21,6 +21,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - checkStatusLiveInProject] action in HomePage widget.
+  bool? isLiveInProject;
   // Stores action output result for [Backend Call - Read Document] action in HomePage widget.
   ProjectListRecord? projectResult;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
