@@ -25,5 +25,7 @@ Future<ResidentListRecord> joinProject(
     "status": 0,
     "contact_address": contactAddress
   });
-  return ResidentListRecord.getDocumentOnce(docRef);
+  ResidentListRecord residentDoc =
+      await ResidentListRecord.getDocumentOnce(docRef);
+  return residentDoc;
 }
