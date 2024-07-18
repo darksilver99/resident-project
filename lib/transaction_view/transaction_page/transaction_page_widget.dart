@@ -71,7 +71,7 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
             },
           ),
           title: Text(
-            'รายการผู้เข้าพบ',
+            'รายการผู้เข้าพบ ต้องทำให้ คิวรี้ จาก resident ref แทนที่จะเป็น receive เพราะถ้าลบแล้วเข้ามาใหม่จะเห็นรายการเดิม',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Kanit',
                   color: Colors.white,

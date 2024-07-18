@@ -51,3 +51,16 @@ Future setCurrentResidentData(
   );
   FFAppState().update(() {});
 }
+
+Future<bool?> checkStatusLiveInProject(
+  BuildContext context, {
+  required List<DocumentReference>? currentProjectList,
+}) async {
+  if (!currentProjectList!
+      .contains(FFAppState().currentProjectData.projectRef)) {
+    FFAppState().currentProjectData = ProjectDataStruct();
+    return false;
+  } else {
+    return true;
+  }
+}

@@ -38,41 +38,60 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (valueOrDefault(currentUserDocument?.type, '') == 'resident') {
-        if (FFAppState().currentProjectData.name == null ||
-            FFAppState().currentProjectData.name == '') {
-          if ((currentUserDocument?.projectList?.toList() ?? []).length == 1) {
-            _model.projectResult = await ProjectListRecord.getDocumentOnce(
-                (currentUserDocument?.projectList?.toList() ?? []).first);
-            await action_blocks.setCurrentProjectData(
-              context,
-              projectDocument: _model.projectResult,
-            );
-            _model.residentDoc = await queryResidentListRecordOnce(
-              queryBuilder: (residentListRecord) => residentListRecord.where(
-                'create_by',
-                isEqualTo: currentUserReference,
-              ),
-              singleRecord: true,
-            ).then((s) => s.firstOrNull);
-            await action_blocks.setCurrentResidentData(
-              context,
-              residentDocument: _model.residentDoc,
-            );
-            await _model.setFirebaseToken(context);
-          } else {
-            context.goNamedAuth(
-              'SelectProjectPage',
-              context.mounted,
-              queryParameters: {
-                'isCanBack': serializeParam(
-                  false,
-                  ParamType.bool,
+        _model.isLiveInProject = await action_blocks.checkStatusLiveInProject(
+          context,
+          currentProjectList:
+              (currentUserDocument?.projectList?.toList() ?? []),
+        );
+        if (_model.isLiveInProject!) {
+          if (FFAppState().currentProjectData.name == null ||
+              FFAppState().currentProjectData.name == '') {
+            if ((currentUserDocument?.projectList?.toList() ?? []).length ==
+                1) {
+              _model.projectResult = await ProjectListRecord.getDocumentOnce(
+                  (currentUserDocument?.projectList?.toList() ?? []).first);
+              await action_blocks.setCurrentProjectData(
+                context,
+                projectDocument: _model.projectResult,
+              );
+              _model.residentDoc = await queryResidentListRecordOnce(
+                queryBuilder: (residentListRecord) => residentListRecord.where(
+                  'create_by',
+                  isEqualTo: currentUserReference,
                 ),
-              }.withoutNulls,
-            );
+                singleRecord: true,
+              ).then((s) => s.firstOrNull);
+              await action_blocks.setCurrentResidentData(
+                context,
+                residentDocument: _model.residentDoc,
+              );
+              await _model.setFirebaseToken(context);
+            } else {
+              context.goNamedAuth(
+                'SelectProjectPage',
+                context.mounted,
+                queryParameters: {
+                  'isCanBack': serializeParam(
+                    false,
+                    ParamType.bool,
+                  ),
+                }.withoutNulls,
+              );
+            }
+          } else {
+            await _model.setFirebaseToken(context);
           }
         } else {
-          await _model.setFirebaseToken(context);
+          context.goNamedAuth(
+            'SelectProjectPage',
+            context.mounted,
+            queryParameters: {
+              'isCanBack': serializeParam(
+                false,
+                ParamType.bool,
+              ),
+            }.withoutNulls,
+          );
         }
       } else {
         await showDialog(

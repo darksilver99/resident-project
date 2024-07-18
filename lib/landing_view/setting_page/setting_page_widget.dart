@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,25 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SettingPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.isLiveInProject = await action_blocks.checkStatusLiveInProject(
+        context,
+        currentProjectList: (currentUserDocument?.projectList?.toList() ?? []),
+      );
+      if (_model.isLiveInProject!) {
+        context.goNamed(
+          'SelectProjectPage',
+          queryParameters: {
+            'isCanBack': serializeParam(
+              false,
+              ParamType.bool,
+            ),
+          }.withoutNulls,
+        );
+      }
+    });
   }
 
   @override
