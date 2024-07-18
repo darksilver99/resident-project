@@ -73,6 +73,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             );
           }
         } else {
+          _model.residentDoc2 = await queryResidentListRecordOnce(
+            queryBuilder: (residentListRecord) => residentListRecord.where(
+              'create_by',
+              isEqualTo: currentUserReference,
+            ),
+            singleRecord: true,
+          ).then((s) => s.firstOrNull);
+          await action_blocks.setCurrentResidentData(
+            context,
+            residentDocument: _model.residentDoc2,
+          );
           await _model.setFirebaseToken(context);
         }
       } else {
