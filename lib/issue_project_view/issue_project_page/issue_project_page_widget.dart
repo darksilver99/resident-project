@@ -58,6 +58,8 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -515,6 +517,9 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
                                                 _model.textController3.text,
                                             contactPhone:
                                                 _model.textController2.text,
+                                            residentRef: FFAppState()
+                                                .currentResidentData
+                                                .residentRef,
                                           ));
                                       await showDialog(
                                         context: context,

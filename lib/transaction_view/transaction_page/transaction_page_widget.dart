@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
@@ -46,6 +45,8 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -112,8 +113,9 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                   NotificationListRecord.collection
                       .where(Filter.or(
                         Filter(
-                          'receiver',
-                          isEqualTo: currentUserReference,
+                          'resident_ref',
+                          isEqualTo:
+                              FFAppState().currentResidentData.residentRef,
                         ),
                         Filter(
                           'type',
