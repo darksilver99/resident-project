@@ -71,8 +71,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
               }.withoutNulls,
             );
+
+            return;
           }
         } else {
+          await _model.setFirebaseToken(context);
           _model.residentDoc2 = await queryResidentListRecordOnce(
             queryBuilder: (residentListRecord) => residentListRecord.where(
               'create_by',
@@ -85,6 +88,26 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             residentDocument: _model.residentDoc2,
           );
           await _model.setFirebaseToken(context);
+        }
+
+        _model.isLiveInProject = await action_blocks.checkStatusLiveInProject(
+          context,
+          currentProjectList:
+              (currentUserDocument?.projectList?.toList() ?? []),
+        );
+        if (!_model.isLiveInProject!) {
+          context.goNamedAuth(
+            'SelectProjectPage',
+            context.mounted,
+            queryParameters: {
+              'isCanBack': serializeParam(
+                false,
+                ParamType.bool,
+              ),
+            }.withoutNulls,
+          );
+
+          return;
         }
       } else {
         await showDialog(
