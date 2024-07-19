@@ -39,7 +39,8 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
     _model.textController2 ??= TextEditingController(text: currentPhoneNumber);
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
+    _model.textController3 ??= TextEditingController(
+        text: FFAppState().currentResidentData.contactAddress);
     _model.textFieldFocusNode3 ??= FocusNode();
 
     _model.textController4 ??= TextEditingController();
@@ -85,7 +86,7 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
             },
           ),
           title: Text(
-            'แจ้งปัญหาต่างๆ',
+            'แจ้งปัญหาโครงการ',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Kanit',
                   color: Colors.white,

@@ -20,3 +20,4 @@ export '/issue_project_view/issue_project_page/issue_project_page_widget.dart'
     show IssueProjectPageWidget;
 export '/transaction_view/transaction_page/transaction_page_widget.dart'
     show TransactionPageWidget;
+export '/news_view/news_page/news_page_widget.dart' show NewsPageWidget;
