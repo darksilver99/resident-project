@@ -45,7 +45,7 @@ class _BackgroundViewWidgetState extends State<BackgroundViewWidget> {
         image: DecorationImage(
           fit: BoxFit.cover,
           image: Image.asset(
-            'assets/images/graphic-2d-colorful-wallpaper-with-grainy-gradients_23-2151001614.jpg',
+            'assets/images/2149661457.jpg',
           ).image,
         ),
       ),
