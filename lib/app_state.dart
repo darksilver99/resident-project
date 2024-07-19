@@ -85,6 +85,13 @@ class FFAppState extends ChangeNotifier {
     updateFn(_currentResidentData);
     prefs.setString('ff_currentResidentData', _currentResidentData.serialize());
   }
+
+  String _defaultNetworkImage =
+      'https://www.silver-api.com/smart-product/resident_app/no_pic.jpg';
+  String get defaultNetworkImage => _defaultNetworkImage;
+  set defaultNetworkImage(String value) {
+    _defaultNetworkImage = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
