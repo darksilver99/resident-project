@@ -194,11 +194,7 @@ class _NewsPageWidgetState extends State<NewsPageWidget> {
                                         Expanded(
                                           flex: 3,
                                           child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
+                                            decoration: BoxDecoration(),
                                           ),
                                         ),
                                         Expanded(
@@ -228,7 +224,7 @@ class _NewsPageWidgetState extends State<NewsPageWidget> {
                                                     child: Text(
                                                       gridViewNewsListRecord
                                                           .subject,
-                                                      maxLines: 3,
+                                                      maxLines: 2,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
