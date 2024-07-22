@@ -71,6 +71,11 @@ class IssueProjectListRecord extends FirestoreRecord {
   DocumentReference? get residentRef => _residentRef;
   bool hasResidentRef() => _residentRef != null;
 
+  // "remark_not_complete" field.
+  String? _remarkNotComplete;
+  String get remarkNotComplete => _remarkNotComplete ?? '';
+  bool hasRemarkNotComplete() => _remarkNotComplete != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -83,6 +88,7 @@ class IssueProjectListRecord extends FirestoreRecord {
     _contactAddress = snapshotData['contact_address'] as String?;
     _contactPhone = snapshotData['contact_phone'] as String?;
     _residentRef = snapshotData['resident_ref'] as DocumentReference?;
+    _remarkNotComplete = snapshotData['remark_not_complete'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -132,6 +138,7 @@ Map<String, dynamic> createIssueProjectListRecordData({
   String? contactAddress,
   String? contactPhone,
   DocumentReference? residentRef,
+  String? remarkNotComplete,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -146,6 +153,7 @@ Map<String, dynamic> createIssueProjectListRecordData({
       'contact_address': contactAddress,
       'contact_phone': contactPhone,
       'resident_ref': residentRef,
+      'remark_not_complete': remarkNotComplete,
     }.withoutNulls,
   );
 
@@ -168,7 +176,8 @@ class IssueProjectListRecordDocumentEquality
         e1?.contactName == e2?.contactName &&
         e1?.contactAddress == e2?.contactAddress &&
         e1?.contactPhone == e2?.contactPhone &&
-        e1?.residentRef == e2?.residentRef;
+        e1?.residentRef == e2?.residentRef &&
+        e1?.remarkNotComplete == e2?.remarkNotComplete;
   }
 
   @override
@@ -183,7 +192,8 @@ class IssueProjectListRecordDocumentEquality
         e?.contactName,
         e?.contactAddress,
         e?.contactPhone,
-        e?.residentRef
+        e?.residentRef,
+        e?.remarkNotComplete
       ]);
 
   @override
