@@ -322,6 +322,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                       FFAppState().currentBackgroundNumber =
                                           _model.selected;
                                       setState(() {});
+                                      context.safePop();
                                     },
                                     text: 'บันทึกข้อมูล',
                                     options: FFButtonOptions(
