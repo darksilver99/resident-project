@@ -37,29 +37,65 @@ class _BackgroundViewWidgetState extends State<BackgroundViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: double.infinity,
       height: double.infinity,
       child: Stack(
         children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Image.asset(
-                  'assets/images/2149661457.jpg',
-                ).image,
-              ),
-            ),
+          Builder(
+            builder: (context) {
+              if (FFAppState().currentBackgroundNumber == 2) {
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/1913.jpg',
+                      ).image,
+                    ),
+                  ),
+                );
+              } else if (FFAppState().currentBackgroundNumber == 3) {
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/2149661457.jpg',
+                      ).image,
+                    ),
+                  ),
+                );
+              } else {
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/2149239098.jpg',
+                      ).image,
+                    ),
+                  ),
+                );
+              }
+            },
           ),
           Container(
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: Color(0x40000000),
+              color: Color(0x4D000000),
             ),
           ),
         ],
