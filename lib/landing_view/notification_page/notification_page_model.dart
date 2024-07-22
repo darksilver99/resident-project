@@ -8,6 +8,7 @@ import '/component/no_data_view/no_data_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/news_view/news_detail_view/news_detail_view_widget.dart';
 import '/stamp_online_view/stamp_detail_view/stamp_detail_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
@@ -45,6 +46,8 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
   TransactionListRecord? transactionDoc;
   // Stores action output result for [Bottom Sheet - StampDetailView] action in Container widget.
   String? isStamp;
+  // Stores action output result for [Custom Action - getNewsDocument] action in Container widget.
+  NewsListRecord? newsDoc;
   // Model for LoadingView component.
   late LoadingViewModel loadingViewModel;
 
