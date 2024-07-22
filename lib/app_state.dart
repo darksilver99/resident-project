@@ -43,6 +43,10 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    _safeInit(() {
+      _currentBackgroundNumber = prefs.getInt('ff_currentBackgroundNumber') ??
+          _currentBackgroundNumber;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -91,6 +95,13 @@ class FFAppState extends ChangeNotifier {
   String get defaultNetworkImage => _defaultNetworkImage;
   set defaultNetworkImage(String value) {
     _defaultNetworkImage = value;
+  }
+
+  int _currentBackgroundNumber = 1;
+  int get currentBackgroundNumber => _currentBackgroundNumber;
+  set currentBackgroundNumber(int value) {
+    _currentBackgroundNumber = value;
+    prefs.setInt('ff_currentBackgroundNumber', value);
   }
 }
 
