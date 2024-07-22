@@ -14,7 +14,7 @@ import '/backend/schema/structs/index.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
 DocumentReference configReference() {
-  return FirebaseFirestore.instance.doc("config/park_car_app");
+  return FirebaseFirestore.instance.doc("config/resident_app");
 }
 
 DocumentReference projectReference(String projectDocID) {
