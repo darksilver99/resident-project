@@ -49,9 +49,10 @@ class _IsStampViewWidgetState extends State<IsStampViewWidget> {
             _model.transactionDoc?.stamp != '') {
           _model.stampText = _model.transactionDoc!.stamp;
           _model.isStampSet = true;
-          setState(() {});
         }
       }
+      _model.isLoading = false;
+      setState(() {});
     });
   }
 
@@ -64,16 +65,19 @@ class _IsStampViewWidgetState extends State<IsStampViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      _model.stampText,
-      maxLines: 1,
-      style: FlutterFlowTheme.of(context).bodyMedium.override(
-            fontFamily: 'Kanit',
-            color: _model.isStampSet
-                ? FlutterFlowTheme.of(context).success
-                : FlutterFlowTheme.of(context).error,
-            letterSpacing: 0.0,
-          ),
+    return Visibility(
+      visible: _model.isLoading,
+      child: Text(
+        _model.stampText,
+        maxLines: 1,
+        style: FlutterFlowTheme.of(context).bodyMedium.override(
+              fontFamily: 'Kanit',
+              color: _model.isStampSet
+                  ? FlutterFlowTheme.of(context).success
+                  : FlutterFlowTheme.of(context).error,
+              letterSpacing: 0.0,
+            ),
+      ),
     );
   }
 }
