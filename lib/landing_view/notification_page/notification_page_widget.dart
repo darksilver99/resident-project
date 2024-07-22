@@ -330,7 +330,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
-                                                      size: 32.0,
+                                                      size: 24.0,
                                                     ),
                                                   ),
                                                   Expanded(
@@ -371,31 +371,48 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                                           .bold,
                                                                 ),
                                                           ),
-                                                          if (listViewNotificationListRecord
-                                                                      .detail !=
-                                                                  null &&
-                                                              listViewNotificationListRecord
-                                                                      .detail !=
-                                                                  '')
-                                                            Text(
-                                                              listViewNotificationListRecord
-                                                                  .detail,
-                                                              maxLines: 2,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Kanit',
-                                                                    color: FlutterFlowTheme.of(
+                                                          Builder(
+                                                            builder: (context) {
+                                                              if (listViewNotificationListRecord
+                                                                      .type ==
+                                                                  'park') {
+                                                                return IsStampViewWidget(
+                                                                  key: Key(
+                                                                      'Keywn3_${listViewIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
+                                                                  docPath:
+                                                                      listViewNotificationListRecord
+                                                                          .docPath,
+                                                                );
+                                                              } else {
+                                                                return Visibility(
+                                                                  visible: listViewNotificationListRecord
+                                                                              .detail !=
+                                                                          null &&
+                                                                      listViewNotificationListRecord
+                                                                              .detail !=
+                                                                          '',
+                                                                  child: Text(
+                                                                    listViewNotificationListRecord
+                                                                        .detail,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .secondaryText,
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Kanit',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                        ),
                                                                   ),
-                                                            ),
+                                                                );
+                                                              }
+                                                            },
+                                                          ),
                                                         ],
                                                       ),
                                                     ),
@@ -416,32 +433,6 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.end,
                                                 children: [
-                                                  Expanded(
-                                                    child: Builder(
-                                                      builder: (context) {
-                                                        if (listViewNotificationListRecord
-                                                                .type ==
-                                                            'park') {
-                                                          return IsStampViewWidget(
-                                                            key: Key(
-                                                                'Keywn3_${listViewIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
-                                                            docPath:
-                                                                listViewNotificationListRecord
-                                                                    .docPath,
-                                                          );
-                                                        } else {
-                                                          return Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                            ),
-                                                          );
-                                                        }
-                                                      },
-                                                    ),
-                                                  ),
                                                   Text(
                                                     functions.dateTimeTh(
                                                         listViewNotificationListRecord
