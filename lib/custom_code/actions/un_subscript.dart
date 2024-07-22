@@ -12,8 +12,13 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-Future subscriptTopic() async {
+Future unSubscript() async {
   // Add your function code here!
-  FirebaseMessaging.instance
-      .subscribeToTopic(FFAppState().currentProjectData.projectRef!.id);
+
+  FirebaseMessaging.instance.deleteToken();
+
+  if (FFAppState().currentProjectData != null) {
+    FirebaseMessaging.instance
+        .unsubscribeFromTopic(FFAppState().currentProjectData.projectRef!.id);
+  }
 }
