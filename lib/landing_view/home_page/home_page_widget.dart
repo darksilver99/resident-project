@@ -60,6 +60,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               residentDocument: _model.residentDoc,
             );
             await _model.setFirebaseToken(context);
+            await actions.subscriptTopic();
           } else {
             context.goNamedAuth(
               'SelectProjectPage',
