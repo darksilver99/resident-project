@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/custom_confirm_dialog_view/custom_confirm_dialog_view_widget.dart';
+import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -17,6 +18,8 @@ class StampDetailViewModel extends FlutterFlowModel<StampDetailViewWidget> {
 
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   bool? isConfirm;
+  // Stores action output result for [Backend Call - Read Document] action in Button widget.
+  TransactionListRecord? isStamp;
 
   @override
   void initState(BuildContext context) {}

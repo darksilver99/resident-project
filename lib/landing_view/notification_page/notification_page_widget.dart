@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
+import '/component/is_stamp_view/is_stamp_view_widget.dart';
 import '/component/loading_view/loading_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -415,6 +416,32 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.end,
                                                 children: [
+                                                  Expanded(
+                                                    child: Builder(
+                                                      builder: (context) {
+                                                        if (listViewNotificationListRecord
+                                                                .type ==
+                                                            'park') {
+                                                          return IsStampViewWidget(
+                                                            key: Key(
+                                                                'Keywn3_${listViewIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
+                                                            docPath:
+                                                                listViewNotificationListRecord
+                                                                    .docPath,
+                                                          );
+                                                        } else {
+                                                          return Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                            ),
+                                                          );
+                                                        }
+                                                      },
+                                                    ),
+                                                  ),
                                                   Text(
                                                     functions.dateTimeTh(
                                                         listViewNotificationListRecord
