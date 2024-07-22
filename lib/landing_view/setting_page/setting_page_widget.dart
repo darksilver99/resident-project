@@ -387,7 +387,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('SettingPage');
+                                    context.pushNamed('SettingGeneralPage');
                                   },
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
