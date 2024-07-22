@@ -66,7 +66,7 @@ class _IsStampViewWidgetState extends State<IsStampViewWidget> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: _model.isLoading,
+      visible: !_model.isLoading,
       child: Text(
         _model.stampText,
         maxLines: 1,
