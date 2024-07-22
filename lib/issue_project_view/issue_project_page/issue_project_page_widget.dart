@@ -105,8 +105,8 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
                 size: 30.0,
               ),
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                context.pushNamed('IssueProjectListPage');
               },
             ),
           ],
