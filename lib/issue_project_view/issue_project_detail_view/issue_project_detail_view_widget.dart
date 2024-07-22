@@ -313,9 +313,8 @@ class _IssueProjectDetailViewWidgetState
                                 ],
                               ),
                             ),
-                            if (widget!.issueDocument?.remarkNotComplete !=
-                                    null &&
-                                widget!.issueDocument?.remarkNotComplete != '')
+                            if (widget!.issueDocument?.remark != null &&
+                                widget!.issueDocument?.remark != '')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
@@ -343,8 +342,7 @@ class _IssueProjectDetailViewWidgetState
                                           0.0, 0.0, 8.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget!
-                                              .issueDocument?.remarkNotComplete,
+                                          widget!.issueDocument?.remark,
                                           '-',
                                         ),
                                         style: FlutterFlowTheme.of(context)
