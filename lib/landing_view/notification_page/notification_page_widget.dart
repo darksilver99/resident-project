@@ -113,8 +113,8 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                   pagingController: _model.setListViewController(
                     NotificationListRecord.collection
                         .where(
-                          'resident_ref',
-                          isEqualTo:
+                          'resident_ref_list',
+                          arrayContains:
                               FFAppState().currentResidentData.residentRef,
                         )
                         .orderBy('create_date', descending: true),

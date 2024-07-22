@@ -92,8 +92,9 @@ class _StampListPageWidgetState extends State<StampListPageWidget> {
                 NotificationListRecord.collection
                     .where(Filter.or(
                       Filter(
-                        'resident_ref',
-                        isEqualTo: FFAppState().currentResidentData.residentRef,
+                        'resident_ref_list',
+                        arrayContains:
+                            FFAppState().currentResidentData.residentRef,
                       ),
                       Filter(
                         'type',
