@@ -182,6 +182,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'IssueProjectListPage',
           path: '/issueProjectListPage',
           builder: (context, params) => IssueProjectListPageWidget(),
+        ),
+        FFRoute(
+          name: 'ForgetPasswordPage',
+          path: '/forgetPasswordPage',
+          builder: (context, params) => ForgetPasswordPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
