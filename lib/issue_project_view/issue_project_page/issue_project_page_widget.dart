@@ -94,7 +94,22 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: [
+            FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.history_rounded,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+                size: 30.0,
+              ),
+              onPressed: () {
+                print('IconButton pressed ...');
+              },
+            ),
+          ],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -553,7 +568,10 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
                                         },
                                       ).then((value) => setState(() {}));
 
-                                      context.safePop();
+                                      if (Navigator.of(context).canPop()) {
+                                        context.pop();
+                                      }
+                                      context.pushNamed('IssueProjectListPage');
                                     },
                                     text: 'แจ้งปัญหา',
                                     options: FFButtonOptions(

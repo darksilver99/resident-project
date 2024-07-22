@@ -177,6 +177,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SettingGeneralPage',
           path: '/settingGeneralPage',
           builder: (context, params) => SettingGeneralPageWidget(),
+        ),
+        FFRoute(
+          name: 'IssueProjectListPage',
+          path: '/issueProjectListPage',
+          builder: (context, params) => IssueProjectListPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -32,3 +32,15 @@ String dateTimeTh(DateTime date) {
   final buddhistYear = date.year + 543;
   return formatter.format(date).replaceFirst('${date.year}', '$buddhistYear');
 }
+
+String getIssueStatus(
+  int status,
+  List<IssueStatusDataStruct> issueStatusList,
+) {
+  for (var dataStatus in issueStatusList) {
+    if (dataStatus.status == status) {
+      return dataStatus.subject;
+    }
+  }
+  return '-';
+}
