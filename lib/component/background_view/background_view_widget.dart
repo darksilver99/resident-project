@@ -40,14 +40,29 @@ class _BackgroundViewWidgetState extends State<BackgroundViewWidget> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: Image.asset(
-            'assets/images/2149661457.jpg',
-          ).image,
-        ),
+      child: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: Image.asset(
+                  'assets/images/2149661457.jpg',
+                ).image,
+              ),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: Color(0x40000000),
+            ),
+          ),
+        ],
       ),
     );
   }

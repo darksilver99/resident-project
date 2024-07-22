@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/custom_confirm_dialog_view/custom_confirm_dialog_view_widget.dart';
+import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -176,7 +177,7 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'จุดประสงค์ : ${widget!.transactionDocument?.objective}',
+                                'วัตถุประสงค์ : ${widget!.transactionDocument?.objective}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -196,31 +197,73 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Kanit',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                                      color:
+                                          FlutterFlowTheme.of(context).success,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
                             ),
-                            if (widget!.transactionDocument?.stamp != null &&
-                                widget!.transactionDocument?.stamp != '')
+                            if (widget!.transactionDocument?.isOut ?? true)
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
+                                    0.0, 0.0, 0.0, 8.0),
                                 child: Text(
-                                  'ตราประทับ : ${widget!.transactionDocument?.stamp}',
+                                  'เวลาออก : ${functions.dateTimeTh(widget!.transactionDocument!.dateOut!)}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Kanit',
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
                               ),
+                            Builder(
+                              builder: (context) {
+                                if (widget!.transactionDocument?.stamp !=
+                                        null &&
+                                    widget!.transactionDocument?.stamp != '') {
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: Text(
+                                      'ตราประทับ : ${widget!.transactionDocument?.stamp}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  );
+                                } else {
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: Text(
+                                      'ยังไม่ได้ประทับตรา/ลายเซ็น',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
                             if (widget!.transactionDocument?.stamp == null ||
                                 widget!.transactionDocument?.stamp == '')
                               Builder(
@@ -250,15 +293,67 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
 
                                     if ((_model.isConfirm != null) &&
                                         (_model.isConfirm == true)) {
-                                      await widget!
-                                          .transactionDocument!.reference
-                                          .update(
-                                              createTransactionListRecordData(
-                                        stamp: 'ประทับตราโดยลูกบ้าน',
-                                        stampDate: getCurrentTimestamp,
-                                        stampBy: currentUserReference,
-                                        isStampByResident: true,
-                                      ));
+                                      _model.isStamp =
+                                          await TransactionListRecord
+                                              .getDocumentOnce(widget!
+                                                  .transactionDocument!
+                                                  .reference);
+                                      if (_model.isStamp?.stamp == null ||
+                                          _model.isStamp?.stamp == '') {
+                                        await widget!
+                                            .transactionDocument!.reference
+                                            .update(
+                                                createTransactionListRecordData(
+                                          stamp: 'ประทับตราโดยลูกบ้าน',
+                                          stampDate: getCurrentTimestamp,
+                                          stampBy: currentUserReference,
+                                          isStampByResident: true,
+                                        ));
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: Text(
+                                                    'ประทับตราเรียบร้อยแล้ว'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('ตกลง'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child:
+                                                    CustomInfoAlertViewWidget(
+                                                  title:
+                                                      'รายการนี้มีการประทับตราไปแล้ว',
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+                                      }
+
                                       Navigator.pop(context, 'update');
                                     }
 

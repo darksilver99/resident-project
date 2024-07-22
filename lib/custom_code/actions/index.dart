@@ -6,3 +6,4 @@ export 'get_firebase_token.dart' show getFirebaseToken;
 export 'go_to_page.dart' show goToPage;
 export 'get_transaction_document.dart' show getTransactionDocument;
 export 'get_q_r_code_data_from_image_path.dart' show getQRCodeDataFromImagePath;
+export 'get_transaction_ref.dart' show getTransactionRef;
