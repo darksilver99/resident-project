@@ -89,6 +89,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             residentDocument: _model.residentDoc2,
           );
           await _model.setFirebaseToken(context);
+          await actions.subscriptTopic();
         }
 
         _model.isLiveInProject = await action_blocks.checkStatusLiveInProject(
