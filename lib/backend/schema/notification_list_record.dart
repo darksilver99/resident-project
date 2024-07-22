@@ -21,11 +21,6 @@ class NotificationListRecord extends FirestoreRecord {
   DateTime? get createDate => _createDate;
   bool hasCreateDate() => _createDate != null;
 
-  // "receiver" field.
-  DocumentReference? _receiver;
-  DocumentReference? get receiver => _receiver;
-  bool hasReceiver() => _receiver != null;
-
   // "type" field.
   String? _type;
   String get type => _type ?? '';
@@ -53,7 +48,6 @@ class NotificationListRecord extends FirestoreRecord {
 
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
-    _receiver = snapshotData['receiver'] as DocumentReference?;
     _type = snapshotData['type'] as String?;
     _subject = snapshotData['subject'] as String?;
     _detail = snapshotData['detail'] as String?;
@@ -98,7 +92,6 @@ class NotificationListRecord extends FirestoreRecord {
 
 Map<String, dynamic> createNotificationListRecordData({
   DateTime? createDate,
-  DocumentReference? receiver,
   String? type,
   String? subject,
   String? detail,
@@ -107,7 +100,6 @@ Map<String, dynamic> createNotificationListRecordData({
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'create_date': createDate,
-      'receiver': receiver,
       'type': type,
       'subject': subject,
       'detail': detail,
@@ -126,7 +118,6 @@ class NotificationListRecordDocumentEquality
   bool equals(NotificationListRecord? e1, NotificationListRecord? e2) {
     const listEquality = ListEquality();
     return e1?.createDate == e2?.createDate &&
-        e1?.receiver == e2?.receiver &&
         e1?.type == e2?.type &&
         e1?.subject == e2?.subject &&
         e1?.detail == e2?.detail &&
@@ -137,7 +128,6 @@ class NotificationListRecordDocumentEquality
   @override
   int hash(NotificationListRecord? e) => const ListEquality().hash([
         e?.createDate,
-        e?.receiver,
         e?.type,
         e?.subject,
         e?.detail,
