@@ -248,7 +248,7 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Text(
-                                      'ยังไม่ได้ประทับตรา/ลายเซ็น',
+                                      'ยังไม่ได้ประทับตรา',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -311,23 +311,27 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                                         ));
                                         await showDialog(
                                           context: context,
-                                          builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text(
-                                                    'ประทับตราเรียบร้อยแล้ว'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('ตกลง'),
-                                                  ),
-                                                ],
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child:
+                                                    CustomInfoAlertViewWidget(
+                                                  title:
+                                                      'ประทับตราเรียบร้อยแล้ว',
+                                                ),
                                               ),
                                             );
                                           },
-                                        );
+                                        ).then((value) => setState(() {}));
                                       } else {
                                         await showDialog(
                                           context: context,
