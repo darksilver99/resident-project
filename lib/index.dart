@@ -25,3 +25,5 @@ export '/setting_view/setting_general_page/setting_general_page_widget.dart'
     show SettingGeneralPageWidget;
 export '/issue_project_view/issue_project_list_page/issue_project_list_page_widget.dart'
     show IssueProjectListPageWidget;
+export '/authen_view/forget_password_page/forget_password_page_widget.dart'
+    show ForgetPasswordPageWidget;
