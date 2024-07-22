@@ -19,12 +19,12 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "resident_ref",
+          "fieldPath": "type",
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "type",
-          "order": "ASCENDING"
+          "fieldPath": "resident_ref_list",
+          "arrayConfig": "CONTAINS"
         },
         {
           "fieldPath": "create_date",
@@ -37,8 +37,8 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "resident_ref",
-          "order": "ASCENDING"
+          "fieldPath": "resident_ref_list",
+          "arrayConfig": "CONTAINS"
         },
         {
           "fieldPath": "create_date",

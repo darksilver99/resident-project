@@ -113,8 +113,9 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                 pagingController: _model.setListViewController(
                   NotificationListRecord.collection
                       .where(
-                        'resident_ref',
-                        isEqualTo: FFAppState().currentResidentData.residentRef,
+                        'resident_ref_list',
+                        arrayContains:
+                            FFAppState().currentResidentData.residentRef,
                       )
                       .where(
                         'type',

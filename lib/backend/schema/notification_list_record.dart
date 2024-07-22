@@ -21,11 +21,6 @@ class NotificationListRecord extends FirestoreRecord {
   DateTime? get createDate => _createDate;
   bool hasCreateDate() => _createDate != null;
 
-  // "receiver" field.
-  DocumentReference? _receiver;
-  DocumentReference? get receiver => _receiver;
-  bool hasReceiver() => _receiver != null;
-
   // "type" field.
   String? _type;
   String get type => _type ?? '';
@@ -46,19 +41,18 @@ class NotificationListRecord extends FirestoreRecord {
   String get docPath => _docPath ?? '';
   bool hasDocPath() => _docPath != null;
 
-  // "resident_ref" field.
-  DocumentReference? _residentRef;
-  DocumentReference? get residentRef => _residentRef;
-  bool hasResidentRef() => _residentRef != null;
+  // "resident_ref_list" field.
+  List<DocumentReference>? _residentRefList;
+  List<DocumentReference> get residentRefList => _residentRefList ?? const [];
+  bool hasResidentRefList() => _residentRefList != null;
 
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
-    _receiver = snapshotData['receiver'] as DocumentReference?;
     _type = snapshotData['type'] as String?;
     _subject = snapshotData['subject'] as String?;
     _detail = snapshotData['detail'] as String?;
     _docPath = snapshotData['doc_path'] as String?;
-    _residentRef = snapshotData['resident_ref'] as DocumentReference?;
+    _residentRefList = getDataList(snapshotData['resident_ref_list']);
   }
 
   static CollectionReference get collection =>
@@ -98,22 +92,18 @@ class NotificationListRecord extends FirestoreRecord {
 
 Map<String, dynamic> createNotificationListRecordData({
   DateTime? createDate,
-  DocumentReference? receiver,
   String? type,
   String? subject,
   String? detail,
   String? docPath,
-  DocumentReference? residentRef,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'create_date': createDate,
-      'receiver': receiver,
       'type': type,
       'subject': subject,
       'detail': detail,
       'doc_path': docPath,
-      'resident_ref': residentRef,
     }.withoutNulls,
   );
 
@@ -126,24 +116,23 @@ class NotificationListRecordDocumentEquality
 
   @override
   bool equals(NotificationListRecord? e1, NotificationListRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.createDate == e2?.createDate &&
-        e1?.receiver == e2?.receiver &&
         e1?.type == e2?.type &&
         e1?.subject == e2?.subject &&
         e1?.detail == e2?.detail &&
         e1?.docPath == e2?.docPath &&
-        e1?.residentRef == e2?.residentRef;
+        listEquality.equals(e1?.residentRefList, e2?.residentRefList);
   }
 
   @override
   int hash(NotificationListRecord? e) => const ListEquality().hash([
         e?.createDate,
-        e?.receiver,
         e?.type,
         e?.subject,
         e?.detail,
         e?.docPath,
-        e?.residentRef
+        e?.residentRefList
       ]);
 
   @override
