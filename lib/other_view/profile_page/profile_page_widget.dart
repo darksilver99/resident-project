@@ -325,6 +325,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                 photoUrl: _model
                                                                     .uploadedFileUrl,
                                                               ));
+
+                                                              FFAppState()
+                                                                  .update(
+                                                                      () {});
                                                             }
                                                           },
                                                           child: Material(
