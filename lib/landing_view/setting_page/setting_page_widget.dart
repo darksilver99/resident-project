@@ -64,6 +64,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -529,7 +531,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        'Version 1.0.0 (1)',
+                                        FFAppState().appVersion,
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
