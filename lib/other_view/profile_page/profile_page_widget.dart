@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,14 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProfilePageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (currentUserPhoto != null && currentUserPhoto != '') {
+        _model.photoUrl = currentUserPhoto;
+        setState(() {});
+      }
+    });
 
     _model.firstNameTextController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.firstName, ''));
@@ -157,9 +166,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                     children: [
                                                       Builder(
                                                         builder: (context) {
-                                                          if (currentUserDisplayName !=
+                                                          if (_model.photoUrl !=
                                                                   null &&
-                                                              currentUserDisplayName !=
+                                                              _model.photoUrl !=
                                                                   '') {
                                                             return Container(
                                                               width: double
@@ -175,7 +184,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                               ),
                                                               child:
                                                                   Image.network(
-                                                                currentUserPhoto,
+                                                                _model
+                                                                    .photoUrl!,
                                                                 fit: BoxFit
                                                                     .cover,
                                                                 errorBuilder: (context,
@@ -319,16 +329,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                     null &&
                                                                 _model.uploadedFileUrl !=
                                                                     '') {
-                                                              await currentUserReference!
-                                                                  .update(
-                                                                      createUsersRecordData(
-                                                                photoUrl: _model
-                                                                    .uploadedFileUrl,
-                                                              ));
-
-                                                              FFAppState()
-                                                                  .update(
-                                                                      () {});
+                                                              _model.photoUrl =
+                                                                  _model
+                                                                      .uploadedFileUrl;
+                                                              setState(() {});
                                                             }
                                                           },
                                                           child: Material(
@@ -800,6 +804,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                     lastName: _model
                                                         .lastNameTextController
                                                         .text,
+                                                    photoUrl: _model.photoUrl,
                                                   ));
                                                   await showDialog(
                                                     context: context,
