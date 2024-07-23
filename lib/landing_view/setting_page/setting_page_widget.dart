@@ -110,9 +110,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                       children: [
                                         Builder(
                                           builder: (context) {
-                                            if (currentUserDisplayName !=
-                                                    null &&
-                                                currentUserDisplayName != '') {
+                                            if (currentUserPhoto != null &&
+                                                currentUserPhoto != '') {
                                               return Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
