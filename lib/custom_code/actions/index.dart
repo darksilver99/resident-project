@@ -10,3 +10,5 @@ export 'get_q_r_code_data_from_image_path.dart' show getQRCodeDataFromImagePath;
 export 'get_transaction_ref.dart' show getTransactionRef;
 export 'subscript_topic.dart' show subscriptTopic;
 export 'un_subscript.dart' show unSubscript;
+export 'set_app_version.dart' show setAppVersion;
+export 'close_app.dart' show closeApp;

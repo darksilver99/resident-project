@@ -56,6 +56,18 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
+  String _appVersion = '';
+  String get appVersion => _appVersion;
+  set appVersion(String value) {
+    _appVersion = value;
+  }
+
+  int _appBuildVersion = 0;
+  int get appBuildVersion => _appBuildVersion;
+  set appBuildVersion(int value) {
+    _appBuildVersion = value;
+  }
+
   ConfigDataStruct _configData = ConfigDataStruct();
   ConfigDataStruct get configData => _configData;
   set configData(ConfigDataStruct value) {
