@@ -264,16 +264,45 @@ class _StockDetailViewWidgetState extends State<StockDetailViewWidget> {
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
-                              child: Text(
-                                'หมายเลขพัสดุ : ${widget!.stockDocument?.stockNumber}',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Kanit',
-                                      fontSize: 16.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    'สถานะ : ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      functions.getStockStatus(
+                                          widget!.stockDocument!.status,
+                                          FFAppState()
+                                              .stockStatusList
+                                              .toList()),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            color: widget!.stockDocument
+                                                        ?.status ==
+                                                    0
+                                                ? FlutterFlowTheme.of(context)
+                                                    .warning
+                                                : FlutterFlowTheme.of(context)
+                                                    .success,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                     ),
+                                  ),
+                                ],
                               ),
                             ),
                             Row(
