@@ -29,3 +29,6 @@ export '/authen_view/forget_password_page/forget_password_page_widget.dart'
     show ForgetPasswordPageWidget;
 export '/other_view/profile_page/profile_page_widget.dart'
     show ProfilePageWidget;
+export '/stock_view/stock_page/stock_page_widget.dart' show StockPageWidget;
+export '/stock_view/stock_history_page/stock_history_page_widget.dart'
+    show StockHistoryPageWidget;

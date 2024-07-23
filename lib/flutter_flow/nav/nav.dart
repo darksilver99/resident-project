@@ -192,6 +192,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ProfilePage',
           path: '/profilePage',
           builder: (context, params) => ProfilePageWidget(),
+        ),
+        FFRoute(
+          name: 'StockPage',
+          path: '/stockPage',
+          builder: (context, params) => StockPageWidget(),
+        ),
+        FFRoute(
+          name: 'StockHistoryPage',
+          path: '/stockHistoryPage',
+          builder: (context, params) => StockHistoryPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

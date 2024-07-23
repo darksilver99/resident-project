@@ -14,6 +14,7 @@ import 'schema/notification_list_record.dart';
 import 'schema/transaction_list_record.dart';
 import 'schema/issue_project_list_record.dart';
 import 'schema/news_list_record.dart';
+import 'schema/stock_list_record.dart';
 import 'dart:async';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -33,6 +34,7 @@ export 'schema/notification_list_record.dart';
 export 'schema/transaction_list_record.dart';
 export 'schema/issue_project_list_record.dart';
 export 'schema/news_list_record.dart';
+export 'schema/stock_list_record.dart';
 
 /// Functions to query ResidentListRecords (as a Stream and as a Future).
 Future<int> queryResidentListRecordCount({
@@ -728,6 +730,84 @@ Future<FFFirestorePage<NewsListRecord>> queryNewsListRecordPage({
       if (isStream) {
         final streamSubscription =
             (page.dataStream)?.listen((List<NewsListRecord> data) {
+          data.forEach((item) {
+            final itemIndexes = controller.itemList!
+                .asMap()
+                .map((k, v) => MapEntry(v.reference.id, k));
+            final index = itemIndexes[item.reference.id];
+            final items = controller.itemList!;
+            if (index != null) {
+              items.replaceRange(index, index + 1, [item]);
+              controller.itemList = {
+                for (var item in items) item.reference: item
+              }.values.toList();
+            }
+          });
+        });
+        streamSubscriptions?.add(streamSubscription);
+      }
+      return page;
+    });
+
+/// Functions to query StockListRecords (as a Stream and as a Future).
+Future<int> queryStockListRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      StockListRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<StockListRecord>> queryStockListRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      StockListRecord.collection,
+      StockListRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<StockListRecord>> queryStockListRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      StockListRecord.collection,
+      StockListRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+Future<FFFirestorePage<StockListRecord>> queryStockListRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+  required PagingController<DocumentSnapshot?, StockListRecord> controller,
+  List<StreamSubscription?>? streamSubscriptions,
+}) =>
+    queryCollectionPage(
+      StockListRecord.collection,
+      StockListRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    ).then((page) {
+      controller.appendPage(
+        page.data,
+        page.nextPageMarker,
+      );
+      if (isStream) {
+        final streamSubscription =
+            (page.dataStream)?.listen((List<StockListRecord> data) {
           data.forEach((item) {
             final itemIndexes = controller.itemList!
                 .asMap()

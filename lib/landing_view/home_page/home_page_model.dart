@@ -4,6 +4,7 @@ import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/loading_view/loading_view_widget.dart';
+import '/component/stock_total_view/stock_total_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -105,6 +106,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
       } else {
         await launchURL(FFAppState().configData.storeIosLink);
       }
+
+      await actions.closeApp();
     }
   }
 }
