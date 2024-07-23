@@ -118,7 +118,7 @@ class StockListRecord extends FirestoreRecord {
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('stock_list');
+      FirebaseFirestore.instance.collection('project_list/${FFAppState().currentProjectData.projectRef!.id}/stock_list');
 
   static Stream<StockListRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => StockListRecord.fromSnapshot(s));
