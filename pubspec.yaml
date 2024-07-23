@@ -115,6 +115,7 @@ dependencies:
   flutter_local_notifications: ^17.2.1+1
   qr_code_scanner: ^1.0.1
   scan: ^1.6.0
+  package_info_plus: ^3.0.3
 
 dependency_overrides:
   http: 1.2.1
