@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/news_view/news_detail_view/news_detail_view_widget.dart';
 import '/stamp_online_view/stamp_detail_view/stamp_detail_view_widget.dart';
+import '/stock_view/stock_detail_view/stock_detail_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -225,35 +226,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                       );
                                     }
                                   } else {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: CustomInfoAlertViewWidget(
-                                                title:
-                                                    'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => setState(() {}));
+                                    await _model.noDataAlertBlock(context);
                                   }
                                 } else if (listViewNotificationListRecord
                                         .type ==
@@ -291,35 +264,44 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                       },
                                     ).then((value) => safeSetState(() {}));
                                   } else {
-                                    await showDialog(
+                                    await _model.noDataAlertBlock(context);
+                                  }
+                                } else if (listViewNotificationListRecord
+                                        .type ==
+                                    'stock') {
+                                  _model.stockDoc =
+                                      await actions.getStockDocument(
+                                    listViewNotificationListRecord.docPath,
+                                  );
+                                  if (_model.stockDoc != null) {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      enableDrag: false,
                                       context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: CustomInfoAlertViewWidget(
-                                                title:
-                                                    'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
+                                      builder: (context) {
+                                        return WebViewAware(
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: StockDetailViewWidget(
+                                                stockDocument: _model.stockDoc!,
                                               ),
                                             ),
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    ).then((value) => safeSetState(() {}));
+                                  } else {
+                                    await _model.noDataAlertBlock(context);
                                   }
                                 }
                               } else {
@@ -425,6 +407,26 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                           child: Icon(
                                                             Icons
                                                                 .newspaper_rounded,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                        );
+                                                      } else if (listViewNotificationListRecord
+                                                              .type ==
+                                                          'stock') {
+                                                        return Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: FaIcon(
+                                                            FontAwesomeIcons
+                                                                .box,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryText,
