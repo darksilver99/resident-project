@@ -229,7 +229,7 @@ class _StockDetailViewWidgetState extends State<StockDetailViewWidget> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  'รับเมื่อ : ${functions.dateTimeTh(widget!.stockDocument!.receiveDate!)}',
+                                  'รับเข้าระบบเมื่อ : ${functions.dateTimeTh(widget!.stockDocument!.createDate!)}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -242,6 +242,25 @@ class _StockDetailViewWidgetState extends State<StockDetailViewWidget> {
                                 ),
                               ],
                             ),
+                            if (widget!.stockDocument?.receiveDate != null)
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'รับพัสดุเมื่อ : ${functions.dateTimeTh(widget!.stockDocument!.receiveDate!)}',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
