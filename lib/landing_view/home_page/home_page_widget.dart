@@ -39,6 +39,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (valueOrDefault(currentUserDocument?.type, '') == 'resident') {
+        await _model.checkAppVersion(context);
         if (FFAppState().currentProjectData.name == null ||
             FFAppState().currentProjectData.name == '') {
           if ((currentUserDocument?.projectList?.toList() ?? []).length == 1) {
