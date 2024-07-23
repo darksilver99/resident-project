@@ -193,16 +193,6 @@ class _StockPageWidgetState extends State<StockPageWidget> {
 
                             if ((_model.isConfirm != null) &&
                                 _model.isConfirm!) {
-                              await listViewStockListRecord.reference
-                                  .update(createStockListRecordData(
-                                status: 1,
-                                receiveDate: getCurrentTimestamp,
-                                receiveBy: 'ลูกบ้าน',
-                                receiveResidentByRef: FFAppState()
-                                    .currentResidentData
-                                    .residentRef,
-                                receiveUserByRef: currentUserReference,
-                              ));
                               await showDialog(
                                 context: context,
                                 builder: (dialogContext) {
@@ -229,6 +219,17 @@ class _StockPageWidgetState extends State<StockPageWidget> {
                                   );
                                 },
                               ).then((value) => setState(() {}));
+
+                              await listViewStockListRecord.reference
+                                  .update(createStockListRecordData(
+                                status: 1,
+                                receiveDate: getCurrentTimestamp,
+                                receiveBy: 'ลูกบ้าน',
+                                receiveResidentByRef: FFAppState()
+                                    .currentResidentData
+                                    .residentRef,
+                                receiveUserByRef: currentUserReference,
+                              ));
                             }
 
                             setState(() {});

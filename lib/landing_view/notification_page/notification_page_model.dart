@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/news_view/news_detail_view/news_detail_view_widget.dart';
 import '/stamp_online_view/stamp_detail_view/stamp_detail_view_widget.dart';
+import '/stock_view/stock_detail_view/stock_detail_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -48,6 +49,8 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
   String? isStamp;
   // Stores action output result for [Custom Action - getNewsDocument] action in Container widget.
   NewsListRecord? newsDoc;
+  // Stores action output result for [Custom Action - getStockDocument] action in Container widget.
+  StockListRecord? stockDoc;
   // Model for LoadingView component.
   late LoadingViewModel loadingViewModel;
 
@@ -65,6 +68,32 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
     listViewPagingController?.dispose();
 
     loadingViewModel.dispose();
+  }
+
+  /// Action blocks.
+  Future noDataAlertBlock(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return Dialog(
+          elevation: 0,
+          insetPadding: EdgeInsets.zero,
+          backgroundColor: Colors.transparent,
+          alignment: AlignmentDirectional(0.0, 0.0)
+              .resolve(Directionality.of(context)),
+          child: WebViewAware(
+            child: GestureDetector(
+              onTap: () => unfocusNode.canRequestFocus
+                  ? FocusScope.of(context).requestFocus(unfocusNode)
+                  : FocusScope.of(context).unfocus(),
+              child: CustomInfoAlertViewWidget(
+                title: 'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   /// Additional helper methods.
