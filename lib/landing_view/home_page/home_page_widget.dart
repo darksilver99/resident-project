@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/loading_view/loading_view_widget.dart';
+import '/component/stock_total_view/stock_total_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -237,10 +238,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               onTap: () async {
                                 if (FFAppState().currentResidentData.status ==
                                     1) {
-                                  await actions.goToPage(
-                                    context,
-                                    gridViewResidentServiceListRecord.pathName,
-                                  );
+                                  if (gridViewResidentServiceListRecord.type ==
+                                      'app') {
+                                    await actions.goToPage(
+                                      context,
+                                      gridViewResidentServiceListRecord
+                                          .pathName,
+                                    );
+                                  } else if (gridViewResidentServiceListRecord
+                                          .type ==
+                                      'web') {
+                                    context.pushNamed(
+                                      'WebViewPage',
+                                      queryParameters: {
+                                        'title': serializeParam(
+                                          gridViewResidentServiceListRecord
+                                              .subject,
+                                          ParamType.String,
+                                        ),
+                                        'url': serializeParam(
+                                          gridViewResidentServiceListRecord
+                                              .pathName,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  } else if (gridViewResidentServiceListRecord
+                                          .type ==
+                                      'app_image') {
+                                  } else {
+                                    await launchURL(
+                                        gridViewResidentServiceListRecord
+                                            .pathName);
+                                  }
                                 } else {
                                   await showDialog(
                                     context: context,
@@ -356,50 +386,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ],
                                         ),
                                       ),
-                                      Opacity(
-                                        opacity: 0.0,
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(1.0, -1.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 8.0, 8.0, 0.0),
-                                            child: Container(
-                                              width: 32.0,
-                                              height: 32.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                shape: BoxShape.circle,
+                                      Builder(
+                                        builder: (context) {
+                                          if (gridViewResidentServiceListRecord
+                                                  .pathName ==
+                                              'StockPage') {
+                                            return Align(
+                                              alignment: AlignmentDirectional(
+                                                  1.0, -1.0),
+                                              child: StockTotalViewWidget(
+                                                key: Key(
+                                                    'Keyxkd_${gridViewIndex}_of_${gridViewResidentServiceListRecordList.length}'),
                                               ),
-                                              child: Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          2.0, 0.0, 2.0, 0.0),
-                                                  child: Text(
-                                                    '99',
-                                                    maxLines: 1,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Kanit',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .info,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
+                                            );
+                                          } else {
+                                            return Opacity(
+                                              opacity: 0.0,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                        ),
+                                            );
+                                          }
+                                        },
                                       ),
                                     ],
                                   ),
