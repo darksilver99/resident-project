@@ -1,13 +1,19 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/custom_confirm_dialog_view/custom_confirm_dialog_view_widget.dart';
+import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'stock_detail_view_model.dart';
 export 'stock_detail_view_model.dart';
 
@@ -47,6 +53,8 @@ class _StockDetailViewWidgetState extends State<StockDetailViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -248,6 +256,125 @@ class _StockDetailViewWidgetState extends State<StockDetailViewWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if (widget!.stockDocument?.status == 0)
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) => FFButtonWidget(
+                                        onPressed: () async {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child:
+                                                      CustomConfirmDialogViewWidget(
+                                                    title: 'ยืนยันการรับพัสดุ',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => safeSetState(
+                                              () => _model.isConfirm = value));
+
+                                          if ((_model.isConfirm != null) &&
+                                              _model.isConfirm!) {
+                                            _model.stockResult =
+                                                await StockListRecord
+                                                    .getDocumentOnce(widget!
+                                                        .stockDocument!
+                                                        .reference);
+                                            if (_model.stockResult?.status ==
+                                                0) {
+                                              await widget!
+                                                  .stockDocument!.reference
+                                                  .update(
+                                                      createStockListRecordData(
+                                                receiveDate:
+                                                    getCurrentTimestamp,
+                                                receiveBy: 'ลูกบ้าน',
+                                                receiveResidentByRef:
+                                                    FFAppState()
+                                                        .currentResidentData
+                                                        .residentRef,
+                                                receiveUserByRef:
+                                                    currentUserReference,
+                                                status: 1,
+                                              ));
+                                            }
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child:
+                                                        CustomInfoAlertViewWidget(
+                                                      title:
+                                                          'รับพัสดุเรียบร้อยแล้วรายการจะย้ายไปยัง \"รายการประวัติพัสดุ\"',
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+
+                                            Navigator.pop(context);
+                                          }
+
+                                          setState(() {});
+                                        },
+                                        text: 'รับพัสดุ',
+                                        options: FFButtonOptions(
+                                          height: 48.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .success,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Kanit',
+                                                    color: Colors.white,
+                                                    fontSize: 22.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ],
                         ),
