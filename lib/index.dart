@@ -5,17 +5,17 @@ export '/authen_view/register_page/register_page_widget.dart'
     show RegisterPageWidget;
 export '/landing_view/setting_page/setting_page_widget.dart'
     show SettingPageWidget;
-export '/landing_view/web_view_page/web_view_page_widget.dart'
+export '/other_view/web_view_page/web_view_page_widget.dart'
     show WebViewPageWidget;
-export '/landing_view/select_project_page/select_project_page_widget.dart'
+export '/other_view/select_project_page/select_project_page_widget.dart'
     show SelectProjectPageWidget;
 export '/stamp_online_view/stamp_list_page/stamp_list_page_widget.dart'
     show StampListPageWidget;
 export '/landing_view/notification_page/notification_page_widget.dart'
     show NotificationPageWidget;
-export '/landing_view/scan_and_upload_q_r_code_page/scan_and_upload_q_r_code_page_widget.dart'
+export '/other_view/scan_and_upload_q_r_code_page/scan_and_upload_q_r_code_page_widget.dart'
     show ScanAndUploadQRCodePageWidget;
-export '/landing_view/test_page/test_page_widget.dart' show TestPageWidget;
+export '/other_view/test_page/test_page_widget.dart' show TestPageWidget;
 export '/issue_project_view/issue_project_page/issue_project_page_widget.dart'
     show IssueProjectPageWidget;
 export '/transaction_view/transaction_page/transaction_page_widget.dart'
@@ -27,3 +27,5 @@ export '/issue_project_view/issue_project_list_page/issue_project_list_page_widg
     show IssueProjectListPageWidget;
 export '/authen_view/forget_password_page/forget_password_page_widget.dart'
     show ForgetPasswordPageWidget;
+export '/other_view/profile_page/profile_page_widget.dart'
+    show ProfilePageWidget;
