@@ -412,9 +412,9 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                                         0.0,
                                                                         8.0,
                                                                         0.0),
-                                                            child: Icon(
-                                                              Icons
-                                                                  .newspaper_rounded,
+                                                            child: FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .solidNewspaper,
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .secondaryText,
@@ -450,9 +450,9 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                                         0.0,
                                                                         8.0,
                                                                         0.0),
-                                                            child: Icon(
-                                                              Icons
-                                                                  .notifications_sharp,
+                                                            child: FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .solidBell,
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .secondaryText,
