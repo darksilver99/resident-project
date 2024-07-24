@@ -12,6 +12,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'home_page_widget.dart' show HomePageWidget;
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,10 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   bool? isLiveInProject;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
+  // State field(s) for Carousel widget.
+  CarouselController? carouselController;
+  int carouselCurrentIndex = 1;
+
   // Model for LoadingView component.
   late LoadingViewModel loadingViewModel;
 

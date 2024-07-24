@@ -378,89 +378,82 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 24.0,
-                                                                0.0, 0.0),
-                                                    child: Builder(
-                                                      builder: (context) {
-                                                        if (listViewNotificationListRecord
-                                                                .type ==
-                                                            'park') {
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0,
-                                                                        0.0),
-                                                            child: FaIcon(
+                                                                8.0, 0.0),
+                                                    child: Container(
+                                                      width: 32.0,
+                                                      height: 32.0,
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          if (listViewNotificationListRecord
+                                                                  .type ==
+                                                              'park') {
+                                                            return FaIcon(
                                                               FontAwesomeIcons
                                                                   .carSide,
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .secondaryText,
-                                                              size: 32.0,
-                                                            ),
-                                                          );
-                                                        } else if (listViewNotificationListRecord
-                                                                .type ==
-                                                            'news') {
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0,
-                                                                        0.0),
-                                                            child: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .solidNewspaper,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 32.0,
-                                                            ),
-                                                          );
-                                                        } else if (listViewNotificationListRecord
-                                                                .type ==
-                                                            'stock') {
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0,
-                                                                        0.0),
-                                                            child: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .box,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 32.0,
-                                                            ),
-                                                          );
-                                                        } else {
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0,
-                                                                        0.0),
-                                                            child: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .solidBell,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 32.0,
-                                                            ),
-                                                          );
-                                                        }
-                                                      },
+                                                            );
+                                                          } else if (listViewNotificationListRecord
+                                                                  .type ==
+                                                              'news') {
+                                                            return Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .solidNewspaper,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                            );
+                                                          } else if (listViewNotificationListRecord
+                                                                  .type ==
+                                                              'stock') {
+                                                            return Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .box,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                            );
+                                                          } else {
+                                                            return Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .solidBell,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                            );
+                                                          }
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                                   Expanded(
