@@ -46,11 +46,6 @@ class BannerProjectListRecord extends FirestoreRecord {
   String get subject => _subject ?? '';
   bool hasSubject() => _subject != null;
 
-  // "image" field.
-  String? _image;
-  String get image => _image ?? '';
-  bool hasImage() => _image != null;
-
   // "seq" field.
   int? _seq;
   int get seq => _seq ?? 0;
@@ -61,6 +56,11 @@ class BannerProjectListRecord extends FirestoreRecord {
   String get url => _url ?? '';
   bool hasUrl() => _url != null;
 
+  // "images" field.
+  List<String>? _images;
+  List<String> get images => _images ?? const [];
+  bool hasImages() => _images != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -68,9 +68,9 @@ class BannerProjectListRecord extends FirestoreRecord {
     _updateBy = snapshotData['update_by'] as DocumentReference?;
     _status = castToType<int>(snapshotData['status']);
     _subject = snapshotData['subject'] as String?;
-    _image = snapshotData['image'] as String?;
     _seq = castToType<int>(snapshotData['seq']);
     _url = snapshotData['url'] as String?;
+    _images = getDataList(snapshotData['images']);
   }
 
   static CollectionReference get collection =>
@@ -115,7 +115,6 @@ Map<String, dynamic> createBannerProjectListRecordData({
   DocumentReference? updateBy,
   int? status,
   String? subject,
-  String? image,
   int? seq,
   String? url,
 }) {
@@ -127,7 +126,6 @@ Map<String, dynamic> createBannerProjectListRecordData({
       'update_by': updateBy,
       'status': status,
       'subject': subject,
-      'image': image,
       'seq': seq,
       'url': url,
     }.withoutNulls,
@@ -142,15 +140,16 @@ class BannerProjectListRecordDocumentEquality
 
   @override
   bool equals(BannerProjectListRecord? e1, BannerProjectListRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.createDate == e2?.createDate &&
         e1?.createBy == e2?.createBy &&
         e1?.updateDate == e2?.updateDate &&
         e1?.updateBy == e2?.updateBy &&
         e1?.status == e2?.status &&
         e1?.subject == e2?.subject &&
-        e1?.image == e2?.image &&
         e1?.seq == e2?.seq &&
-        e1?.url == e2?.url;
+        e1?.url == e2?.url &&
+        listEquality.equals(e1?.images, e2?.images);
   }
 
   @override
@@ -161,9 +160,9 @@ class BannerProjectListRecordDocumentEquality
         e?.updateBy,
         e?.status,
         e?.subject,
-        e?.image,
         e?.seq,
-        e?.url
+        e?.url,
+        e?.images
       ]);
 
   @override
