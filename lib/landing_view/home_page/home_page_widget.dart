@@ -226,101 +226,206 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           return Container(
                                             width: double.infinity,
                                             height: 200.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                width: 3.0,
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                            child: Stack(
                                               children: [
-                                                Expanded(
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          child:
-                                                              FlutterFlowExpandedImageView(
-                                                            image:
-                                                                Image.network(
-                                                              bannerProjectListViewItem
-                                                                  .image,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                              errorBuilder: (context,
-                                                                      error,
-                                                                      stackTrace) =>
-                                                                  Image.asset(
-                                                                'assets/images/error_image.jpg',
-                                                                fit: BoxFit
-                                                                    .contain,
+                                                Container(
+                                                  width: double.infinity,
+                                                  height: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      width: 3.0,
+                                                    ),
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Expanded(
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            await Navigator
+                                                                .push(
+                                                              context,
+                                                              PageTransition(
+                                                                type:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                child:
+                                                                    FlutterFlowExpandedImageView(
+                                                                  image: Image
+                                                                      .network(
+                                                                    bannerProjectListViewItem
+                                                                        .image,
+                                                                    fit: BoxFit
+                                                                        .contain,
+                                                                    errorBuilder: (context,
+                                                                            error,
+                                                                            stackTrace) =>
+                                                                        Image
+                                                                            .asset(
+                                                                      'assets/images/error_image.jpg',
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                    ),
+                                                                  ),
+                                                                  allowRotation:
+                                                                      false,
+                                                                  tag: bannerProjectListViewItem
+                                                                      .image,
+                                                                  useHeroAnimation:
+                                                                      true,
+                                                                ),
                                                               ),
-                                                            ),
-                                                            allowRotation:
-                                                                false,
+                                                            );
+                                                          },
+                                                          child: Hero(
                                                             tag:
                                                                 bannerProjectListViewItem
                                                                     .image,
-                                                            useHeroAnimation:
+                                                            transitionOnUserGestures:
                                                                 true,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0.0),
+                                                              child:
+                                                                  Image.network(
+                                                                bannerProjectListViewItem
+                                                                    .image,
+                                                                width: double
+                                                                    .infinity,
+                                                                height: 200.0,
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                                errorBuilder: (context,
+                                                                        error,
+                                                                        stackTrace) =>
+                                                                    Image.asset(
+                                                                  'assets/images/error_image.jpg',
+                                                                  width: double
+                                                                      .infinity,
+                                                                  height: 200.0,
+                                                                  fit: BoxFit
+                                                                      .contain,
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      );
-                                                    },
-                                                    child: Hero(
-                                                      tag:
-                                                          bannerProjectListViewItem
-                                                              .image,
-                                                      transitionOnUserGestures:
-                                                          true,
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(0.0),
-                                                        child: Image.network(
-                                                          bannerProjectListViewItem
-                                                              .image,
-                                                          width:
-                                                              double.infinity,
-                                                          height: 200.0,
-                                                          fit: BoxFit.contain,
-                                                          errorBuilder: (context,
-                                                                  error,
-                                                                  stackTrace) =>
-                                                              Image.asset(
-                                                            'assets/images/error_image.jpg',
-                                                            width:
-                                                                double.infinity,
-                                                            height: 200.0,
-                                                            fit: BoxFit.contain,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                if (bannerProjectListViewItem
+                                                            .url !=
+                                                        null &&
+                                                    bannerProjectListViewItem
+                                                            .url !=
+                                                        '')
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, -1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  8.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          if (bannerProjectListViewItem
+                                                                      .url !=
+                                                                  null &&
+                                                              bannerProjectListViewItem
+                                                                      .url !=
+                                                                  '') {
+                                                            await launchURL(
+                                                                bannerProjectListViewItem
+                                                                    .url);
+                                                          }
+                                                        },
+                                                        text: 'ข้อมูลเพิ่มเติม',
+                                                        icon: Icon(
+                                                          Icons.search_rounded,
+                                                          size: 12.0,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 24.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Kanit',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                          elevation: 3.0,
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
                                                           ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      4.0),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                           );
