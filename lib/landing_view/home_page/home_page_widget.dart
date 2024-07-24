@@ -321,7 +321,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         image: Image
                                                                             .network(
                                                                           bannerProjectListViewItem
-                                                                              .image,
+                                                                              .images
+                                                                              .first,
                                                                           fit: BoxFit
                                                                               .contain,
                                                                           errorBuilder: (context, error, stackTrace) =>
@@ -334,7 +335,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         allowRotation:
                                                                             false,
                                                                         tag: bannerProjectListViewItem
-                                                                            .image,
+                                                                            .images
+                                                                            .first,
                                                                         useHeroAnimation:
                                                                             true,
                                                                       ),
@@ -343,7 +345,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 },
                                                                 child: Hero(
                                                                   tag: bannerProjectListViewItem
-                                                                      .image,
+                                                                      .images
+                                                                      .first,
                                                                   transitionOnUserGestures:
                                                                       true,
                                                                   child:
@@ -354,7 +357,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     child: Image
                                                                         .network(
                                                                       bannerProjectListViewItem
-                                                                          .image,
+                                                                          .images
+                                                                          .first,
                                                                       width: double
                                                                           .infinity,
                                                                       height:
