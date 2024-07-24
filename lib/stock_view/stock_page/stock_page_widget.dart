@@ -227,7 +227,7 @@ class _StockPageWidgetState extends State<StockPageWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
-                                                  size: 24.0,
+                                                  size: 32.0,
                                                 ),
                                               ),
                                               Expanded(

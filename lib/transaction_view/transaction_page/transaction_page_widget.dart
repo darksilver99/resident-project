@@ -283,17 +283,19 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                                     16.0, 0.0, 16.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          0.0, 0.0, 8.0, 0.0),
+                                                          0.0, 24.0, 8.0, 0.0),
                                                   child: FaIcon(
                                                     FontAwesomeIcons.carSide,
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryText,
-                                                    size: 24.0,
+                                                    size: 32.0,
                                                   ),
                                                 ),
                                                 Expanded(
