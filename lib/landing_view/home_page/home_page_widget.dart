@@ -217,6 +217,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           color: Color(0x66000000),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
                                         child: Padding(
                                           padding:
@@ -582,6 +584,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           color: Color(0x66000000),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
                                         child: Padding(
                                           padding:

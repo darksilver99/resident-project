@@ -32,3 +32,4 @@ export '/other_view/profile_page/profile_page_widget.dart'
 export '/stock_view/stock_page/stock_page_widget.dart' show StockPageWidget;
 export '/stock_view/stock_history_page/stock_history_page_widget.dart'
     show StockHistoryPageWidget;
+export '/issue_view/issue_page/issue_page_widget.dart' show IssuePageWidget;
