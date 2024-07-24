@@ -200,406 +200,413 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 4.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Flexible(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0x66000000),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 8.0, 16.0, 8.0),
-                                        child: Text(
-                                          'ประชาสัมพันธ์',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Kanit',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                fontSize: 18.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            if (_model.bannerProjectList.isNotEmpty)
-                              Container(
-                                height: 200.0,
-                                child: Stack(
+                      if (_model.bannerProjectList.isNotEmpty)
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 4.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Builder(
-                                      builder: (context) {
-                                        final bannerProjectListView =
-                                            _model.bannerProjectList.toList();
-
-                                        return Container(
-                                          width: double.infinity,
-                                          height: 200.0,
-                                          child: CarouselSlider.builder(
-                                            itemCount:
-                                                bannerProjectListView.length,
-                                            itemBuilder: (context,
-                                                bannerProjectListViewIndex, _) {
-                                              final bannerProjectListViewItem =
-                                                  bannerProjectListView[
-                                                      bannerProjectListViewIndex];
-                                              return Container(
-                                                width: double.infinity,
-                                                height: 200.0,
-                                                child: Stack(
-                                                  children: [
-                                                    Container(
-                                                      width: double.infinity,
-                                                      height: double.infinity,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        border: Border.all(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                          width: 3.0,
-                                                        ),
-                                                      ),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Expanded(
-                                                            child: InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                await Navigator
-                                                                    .push(
-                                                                  context,
-                                                                  PageTransition(
-                                                                    type: PageTransitionType
-                                                                        .fade,
-                                                                    child:
-                                                                        FlutterFlowExpandedImageView(
-                                                                      image: Image
-                                                                          .network(
-                                                                        bannerProjectListViewItem
-                                                                            .image,
-                                                                        fit: BoxFit
-                                                                            .contain,
-                                                                        errorBuilder: (context,
-                                                                                error,
-                                                                                stackTrace) =>
-                                                                            Image.asset(
-                                                                          'assets/images/error_image.jpg',
-                                                                          fit: BoxFit
-                                                                              .contain,
-                                                                        ),
-                                                                      ),
-                                                                      allowRotation:
-                                                                          false,
-                                                                      tag: bannerProjectListViewItem
-                                                                          .image,
-                                                                      useHeroAnimation:
-                                                                          true,
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                              child: Hero(
-                                                                tag:
-                                                                    bannerProjectListViewItem
-                                                                        .image,
-                                                                transitionOnUserGestures:
-                                                                    true,
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              0.0),
-                                                                  child: Image
-                                                                      .network(
-                                                                    bannerProjectListViewItem
-                                                                        .image,
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height:
-                                                                        200.0,
-                                                                    fit: BoxFit
-                                                                        .contain,
-                                                                    errorBuilder: (context,
-                                                                            error,
-                                                                            stackTrace) =>
-                                                                        Image
-                                                                            .asset(
-                                                                      'assets/images/error_image.jpg',
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height:
-                                                                          200.0,
-                                                                      fit: BoxFit
-                                                                          .contain,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    if (bannerProjectListViewItem
-                                                                .url !=
-                                                            null &&
-                                                        bannerProjectListViewItem
-                                                                .url !=
-                                                            '')
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1.0, -1.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      8.0,
-                                                                      8.0,
-                                                                      0.0),
-                                                          child: FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              if (bannerProjectListViewItem
-                                                                          .url !=
-                                                                      null &&
-                                                                  bannerProjectListViewItem
-                                                                          .url !=
-                                                                      '') {
-                                                                await launchURL(
-                                                                    bannerProjectListViewItem
-                                                                        .url);
-                                                              }
-                                                            },
-                                                            text:
-                                                                'ข้อมูลเพิ่มเติม',
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .search_rounded,
-                                                              size: 12.0,
-                                                            ),
-                                                            options:
-                                                                FFButtonOptions(
-                                                              height: 24.0,
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          8.0,
-                                                                          0.0),
-                                                              iconPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .tertiary,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Kanit',
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                      ),
-                                                              elevation: 3.0,
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          4.0),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                  ],
+                                    Flexible(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Color(0x66000000),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 8.0, 16.0, 8.0),
+                                          child: Text(
+                                            'ประชาสัมพันธ์',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .info,
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
-                                              );
-                                            },
-                                            carouselController:
-                                                _model.carouselController ??=
-                                                    CarouselController(),
-                                            options: CarouselOptions(
-                                              initialPage: max(
-                                                  0,
-                                                  min(
-                                                      1,
-                                                      bannerProjectListView
-                                                              .length -
-                                                          1)),
-                                              viewportFraction: 1.0,
-                                              disableCenter: true,
-                                              enlargeCenterPage: true,
-                                              enlargeFactor: 1.0,
-                                              enableInfiniteScroll: true,
-                                              scrollDirection: Axis.horizontal,
-                                              autoPlay: true,
-                                              autoPlayAnimationDuration:
-                                                  Duration(milliseconds: 800),
-                                              autoPlayInterval: Duration(
-                                                  milliseconds: (800 + 4000)),
-                                              autoPlayCurve: Curves.linear,
-                                              pauseAutoPlayInFiniteScroll:
-                                                  false,
-                                              onPageChanged: (index, _) async {
-                                                _model.carouselCurrentIndex =
-                                                    index;
-
-                                                setState(() {});
-                                              },
-                                            ),
                                           ),
-                                        );
-                                      },
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional(0.0, 1.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 8.0),
-                                        child: Builder(
-                                          builder: (context) {
-                                            final dotBannerProjectList = _model
-                                                .bannerProjectList
-                                                .toList();
-
-                                            return Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: List.generate(
-                                                  dotBannerProjectList.length,
-                                                  (dotBannerProjectListIndex) {
-                                                final dotBannerProjectListItem =
-                                                    dotBannerProjectList[
-                                                        dotBannerProjectListIndex];
-                                                return Container(
-                                                  width: 12.0,
-                                                  height: 12.0,
-                                                  decoration: BoxDecoration(
-                                                    color: dotBannerProjectListIndex ==
-                                                            _model
-                                                                .carouselCurrentIndex
-                                                        ? FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary
-                                                        : FlutterFlowTheme.of(
-                                                                context)
-                                                            .info,
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                );
-                                              }).divide(SizedBox(width: 4.0)),
-                                            );
-                                          },
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 4.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Flexible(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0x66000000),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 8.0, 16.0, 8.0),
-                                        child: Text(
-                                          'บริการต่างๆของโครงการ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Kanit',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                fontSize: 18.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
+                              if (_model.bannerProjectList.isNotEmpty)
+                                Container(
+                                  height: 200.0,
+                                  child: Stack(
+                                    children: [
+                                      Builder(
+                                        builder: (context) {
+                                          final bannerProjectListView =
+                                              _model.bannerProjectList.toList();
+
+                                          return Container(
+                                            width: double.infinity,
+                                            height: 200.0,
+                                            child: CarouselSlider.builder(
+                                              itemCount:
+                                                  bannerProjectListView.length,
+                                              itemBuilder: (context,
+                                                  bannerProjectListViewIndex,
+                                                  _) {
+                                                final bannerProjectListViewItem =
+                                                    bannerProjectListView[
+                                                        bannerProjectListViewIndex];
+                                                return Container(
+                                                  width: double.infinity,
+                                                  height: 200.0,
+                                                  child: Stack(
+                                                    children: [
+                                                      Container(
+                                                        width: double.infinity,
+                                                        height: double.infinity,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          border: Border.all(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                            width: 3.0,
+                                                          ),
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Expanded(
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  await Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type: PageTransitionType
+                                                                          .fade,
+                                                                      child:
+                                                                          FlutterFlowExpandedImageView(
+                                                                        image: Image
+                                                                            .network(
+                                                                          bannerProjectListViewItem
+                                                                              .image,
+                                                                          fit: BoxFit
+                                                                              .contain,
+                                                                          errorBuilder: (context, error, stackTrace) =>
+                                                                              Image.asset(
+                                                                            'assets/images/error_image.jpg',
+                                                                            fit:
+                                                                                BoxFit.contain,
+                                                                          ),
+                                                                        ),
+                                                                        allowRotation:
+                                                                            false,
+                                                                        tag: bannerProjectListViewItem
+                                                                            .image,
+                                                                        useHeroAnimation:
+                                                                            true,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                child: Hero(
+                                                                  tag: bannerProjectListViewItem
+                                                                      .image,
+                                                                  transitionOnUserGestures:
+                                                                      true,
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            0.0),
+                                                                    child: Image
+                                                                        .network(
+                                                                      bannerProjectListViewItem
+                                                                          .image,
+                                                                      width: double
+                                                                          .infinity,
+                                                                      height:
+                                                                          200.0,
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                      errorBuilder: (context,
+                                                                              error,
+                                                                              stackTrace) =>
+                                                                          Image
+                                                                              .asset(
+                                                                        'assets/images/error_image.jpg',
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            200.0,
+                                                                        fit: BoxFit
+                                                                            .contain,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      if (bannerProjectListViewItem
+                                                                  .url !=
+                                                              null &&
+                                                          bannerProjectListViewItem
+                                                                  .url !=
+                                                              '')
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  1.0, -1.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        8.0,
+                                                                        8.0,
+                                                                        0.0),
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                if (bannerProjectListViewItem
+                                                                            .url !=
+                                                                        null &&
+                                                                    bannerProjectListViewItem
+                                                                            .url !=
+                                                                        '') {
+                                                                  await launchURL(
+                                                                      bannerProjectListViewItem
+                                                                          .url);
+                                                                }
+                                                              },
+                                                              text:
+                                                                  'ข้อมูลเพิ่มเติม',
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .search_rounded,
+                                                                size: 12.0,
+                                                              ),
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                height: 24.0,
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            0.0,
+                                                                            8.0,
+                                                                            0.0),
+                                                                iconPadding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiary,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Kanit',
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                    ),
+                                                                elevation: 3.0,
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 1.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4.0),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                              carouselController:
+                                                  _model.carouselController ??=
+                                                      CarouselController(),
+                                              options: CarouselOptions(
+                                                initialPage: max(
+                                                    0,
+                                                    min(
+                                                        1,
+                                                        bannerProjectListView
+                                                                .length -
+                                                            1)),
+                                                viewportFraction: 1.0,
+                                                disableCenter: true,
+                                                enlargeCenterPage: true,
+                                                enlargeFactor: 1.0,
+                                                enableInfiniteScroll: true,
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                autoPlay: true,
+                                                autoPlayAnimationDuration:
+                                                    Duration(milliseconds: 800),
+                                                autoPlayInterval: Duration(
+                                                    milliseconds: (800 + 4000)),
+                                                autoPlayCurve: Curves.linear,
+                                                pauseAutoPlayInFiniteScroll:
+                                                    false,
+                                                onPageChanged:
+                                                    (index, _) async {
+                                                  _model.carouselCurrentIndex =
+                                                      index;
+
+                                                  setState(() {});
+                                                },
                                               ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 1.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 8.0, 0.0, 8.0),
+                                          child: Builder(
+                                            builder: (context) {
+                                              final dotBannerProjectList =
+                                                  _model.bannerProjectList
+                                                      .toList();
+
+                                              return Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: List.generate(
+                                                    dotBannerProjectList.length,
+                                                    (dotBannerProjectListIndex) {
+                                                  final dotBannerProjectListItem =
+                                                      dotBannerProjectList[
+                                                          dotBannerProjectListIndex];
+                                                  return Container(
+                                                    width: 12.0,
+                                                    height: 12.0,
+                                                    decoration: BoxDecoration(
+                                                      color: dotBannerProjectListIndex ==
+                                                              _model
+                                                                  .carouselCurrentIndex
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                  );
+                                                }).divide(SizedBox(width: 4.0)),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      if (FFAppState().currentProjectData.name != null &&
+                          FFAppState().currentProjectData.name != '')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 4.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Flexible(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Color(0x66000000),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 8.0, 16.0, 8.0),
+                                          child: Text(
+                                            'บริการต่างๆของโครงการ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .info,
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            if (FFAppState().currentProjectData.name != null &&
-                                FFAppState().currentProjectData.name != '')
                               StreamBuilder<List<ResidentServiceListRecord>>(
                                 stream: queryResidentServiceListRecord(
                                   parent: FFAppState()
@@ -888,9 +895,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   );
                                 },
                               ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
                     ]
                         .addToStart(SizedBox(height: 16.0))
                         .addToEnd(SizedBox(height: 16.0)),
