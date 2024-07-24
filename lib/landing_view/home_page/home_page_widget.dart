@@ -225,7 +225,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         carouselIndex];
                                 return Container(
                                   width: double.infinity,
-                                  height: double.infinity,
+                                  height: 200.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
@@ -259,7 +259,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         },
                                         child: ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(0.0),
                                           child: Image.network(
                                             carouselBannerProjectListRecord
                                                 .image,
@@ -291,10 +291,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         carouselBannerProjectListRecordList
                                                 .length -
                                             1)),
-                                viewportFraction: 0.8,
+                                viewportFraction: 0.95,
                                 disableCenter: true,
                                 enlargeCenterPage: true,
-                                enlargeFactor: 0.25,
+                                enlargeFactor: 1.0,
                                 enableInfiniteScroll: false,
                                 scrollDirection: Axis.horizontal,
                                 autoPlay: true,
