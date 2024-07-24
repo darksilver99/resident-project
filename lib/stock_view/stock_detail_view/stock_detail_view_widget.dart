@@ -122,6 +122,31 @@ class _StockDetailViewWidgetState extends State<StockDetailViewWidget> {
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      '(${widget!.stockDocument?.stockNumber})',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                             if (widget!.stockDocument?.images != null &&
                                 (widget!.stockDocument?.images)!.isNotEmpty)
                               Padding(
@@ -305,6 +330,28 @@ class _StockDetailViewWidgetState extends State<StockDetailViewWidget> {
                                 ],
                               ),
                             ),
+                            if (widget!.stockDocument?.receiveRemark != null &&
+                                widget!.stockDocument?.receiveRemark != '')
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'หมายเหตุ : ${widget!.stockDocument?.receiveRemark}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
