@@ -113,7 +113,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           );
 
           return;
+        } else {
+          _model.bannerProjectResult = await queryBannerProjectListRecordOnce(
+            queryBuilder: (bannerProjectListRecord) => bannerProjectListRecord
+                .where(
+                  'status',
+                  isEqualTo: 1,
+                )
+                .orderBy('seq'),
+            limit: 6,
+          );
         }
+
+        _model.isLoading = false;
+        _model.bannerProjectList = _model.bannerProjectResult!
+            .toList()
+            .cast<BannerProjectListRecord>();
+        setState(() {});
       } else {
         await showDialog(
           context: context,
@@ -144,10 +160,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         GoRouter.of(context).clearRedirectLocation();
 
         context.goNamedAuth('LoginPage', context.mounted);
-      }
 
-      _model.isLoading = false;
-      setState(() {});
+        return;
+      }
     });
   }
 
@@ -184,142 +199,147 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(8.0, 64.0, 8.0, 16.0),
-                      child: Stack(
-                        children: [
-                          StreamBuilder<List<BannerProjectListRecord>>(
-                            stream: queryBannerProjectListRecord(
-                              queryBuilder: (bannerProjectListRecord) =>
-                                  bannerProjectListRecord
-                                      .where(
-                                        'status',
-                                        isEqualTo: 1,
-                                      )
-                                      .orderBy('seq'),
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }
-                              List<BannerProjectListRecord>
-                                  carouselBannerProjectListRecordList =
-                                  snapshot.data!;
+                      child: Container(
+                        height: 200.0,
+                        child: Stack(
+                          children: [
+                            Builder(
+                              builder: (context) {
+                                final bannerProjectListView =
+                                    _model.bannerProjectList.toList();
 
-                              return Container(
-                                width: double.infinity,
-                                height: 200.0,
-                                child: CarouselSlider.builder(
-                                  itemCount: carouselBannerProjectListRecordList
-                                      .length,
-                                  itemBuilder: (context, carouselIndex, _) {
-                                    final carouselBannerProjectListRecord =
-                                        carouselBannerProjectListRecordList[
-                                            carouselIndex];
-                                    return Container(
-                                      width: double.infinity,
-                                      height: 200.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        border: Border.all(
+                                return Container(
+                                  width: double.infinity,
+                                  height: 200.0,
+                                  child: CarouselSlider.builder(
+                                    itemCount: bannerProjectListView.length,
+                                    itemBuilder: (context,
+                                        bannerProjectListViewIndex, _) {
+                                      final bannerProjectListViewItem =
+                                          bannerProjectListView[
+                                              bannerProjectListViewIndex];
+                                      return Container(
+                                        width: double.infinity,
+                                        height: 200.0,
+                                        decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 3.0,
+                                              .primaryText,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 3.0,
+                                          ),
                                         ),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Expanded(
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                if (carouselBannerProjectListRecord
-                                                            .url !=
-                                                        null &&
-                                                    carouselBannerProjectListRecord
-                                                            .url !=
-                                                        '') {
-                                                  await launchURL(
-                                                      carouselBannerProjectListRecord
-                                                          .url);
-                                                }
-                                              },
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(0.0),
-                                                child: Image.network(
-                                                  carouselBannerProjectListRecord
-                                                      .image,
-                                                  width: double.infinity,
-                                                  height: 200.0,
-                                                  fit: BoxFit.contain,
-                                                  errorBuilder: (context, error,
-                                                          stackTrace) =>
-                                                      Image.asset(
-                                                    'assets/images/error_image.jpg',
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Hero(
+                                                tag: bannerProjectListViewItem
+                                                    .image,
+                                                transitionOnUserGestures: true,
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0.0),
+                                                  child: Image.network(
+                                                    bannerProjectListViewItem
+                                                        .image,
                                                     width: double.infinity,
                                                     height: 200.0,
                                                     fit: BoxFit.contain,
+                                                    errorBuilder: (context,
+                                                            error,
+                                                            stackTrace) =>
+                                                        Image.asset(
+                                                      'assets/images/error_image.jpg',
+                                                      width: double.infinity,
+                                                      height: 200.0,
+                                                      fit: BoxFit.contain,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                    carouselController:
+                                        _model.carouselController ??=
+                                            CarouselController(),
+                                    options: CarouselOptions(
+                                      initialPage: max(
+                                          0,
+                                          min(
+                                              1,
+                                              bannerProjectListView.length -
+                                                  1)),
+                                      viewportFraction: 1.0,
+                                      disableCenter: true,
+                                      enlargeCenterPage: true,
+                                      enlargeFactor: 1.0,
+                                      enableInfiniteScroll: true,
+                                      scrollDirection: Axis.horizontal,
+                                      autoPlay: true,
+                                      autoPlayAnimationDuration:
+                                          Duration(milliseconds: 800),
+                                      autoPlayInterval:
+                                          Duration(milliseconds: (800 + 4000)),
+                                      autoPlayCurve: Curves.linear,
+                                      pauseAutoPlayInFiniteScroll: false,
+                                      onPageChanged: (index, _) =>
+                                          _model.carouselCurrentIndex = index,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 1.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 8.0, 0.0, 8.0),
+                                child: Builder(
+                                  builder: (context) {
+                                    final dotBannerProjectList =
+                                        _model.bannerProjectList.toList();
+
+                                    return Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: List.generate(
+                                          dotBannerProjectList.length,
+                                          (dotBannerProjectListIndex) {
+                                        final dotBannerProjectListItem =
+                                            dotBannerProjectList[
+                                                dotBannerProjectListIndex];
+                                        return Container(
+                                          width: 12.0,
+                                          height: 12.0,
+                                          decoration: BoxDecoration(
+                                            color: dotBannerProjectListIndex ==
+                                                    _model.carouselCurrentIndex
+                                                ? FlutterFlowTheme.of(context)
+                                                    .primary
+                                                : FlutterFlowTheme.of(context)
+                                                    .info,
+                                            shape: BoxShape.circle,
                                           ),
-                                        ],
-                                      ),
+                                        );
+                                      }).divide(SizedBox(width: 4.0)),
                                     );
                                   },
-                                  carouselController:
-                                      _model.carouselController ??=
-                                          CarouselController(),
-                                  options: CarouselOptions(
-                                    initialPage: max(
-                                        0,
-                                        min(
-                                            1,
-                                            carouselBannerProjectListRecordList
-                                                    .length -
-                                                1)),
-                                    viewportFraction: 1.0,
-                                    disableCenter: true,
-                                    enlargeCenterPage: true,
-                                    enlargeFactor: 1.0,
-                                    enableInfiniteScroll: false,
-                                    scrollDirection: Axis.horizontal,
-                                    autoPlay: true,
-                                    autoPlayAnimationDuration:
-                                        Duration(milliseconds: 800),
-                                    autoPlayInterval:
-                                        Duration(milliseconds: (800 + 4000)),
-                                    autoPlayCurve: Curves.linear,
-                                    pauseAutoPlayInFiniteScroll: false,
-                                    onPageChanged: (index, _) =>
-                                        _model.carouselCurrentIndex = index,
-                                  ),
                                 ),
-                              );
-                            },
-                          ),
-                        ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     if (FFAppState().currentProjectData.name != null &&
