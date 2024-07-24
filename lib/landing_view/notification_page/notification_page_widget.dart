@@ -377,7 +377,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 16.0,
+                                                            .fromSTEB(0.0, 24.0,
                                                                 0.0, 0.0),
                                                     child: Builder(
                                                       builder: (context) {
