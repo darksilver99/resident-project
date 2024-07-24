@@ -240,14 +240,41 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/271/600',
-                                          width: double.infinity,
-                                          height: 200.0,
-                                          fit: BoxFit.contain,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          if (carouselBannerProjectListRecord
+                                                      .url !=
+                                                  null &&
+                                              carouselBannerProjectListRecord
+                                                      .url !=
+                                                  '') {
+                                            await launchURL(
+                                                carouselBannerProjectListRecord
+                                                    .url);
+                                          }
+                                        },
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            carouselBannerProjectListRecord
+                                                .image,
+                                            width: double.infinity,
+                                            height: 200.0,
+                                            fit: BoxFit.contain,
+                                            errorBuilder:
+                                                (context, error, stackTrace) =>
+                                                    Image.asset(
+                                              'assets/images/error_image.jpg',
+                                              width: double.infinity,
+                                              height: 200.0,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ],

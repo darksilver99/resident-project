@@ -56,6 +56,11 @@ class BannerProjectListRecord extends FirestoreRecord {
   int get seq => _seq ?? 0;
   bool hasSeq() => _seq != null;
 
+  // "url" field.
+  String? _url;
+  String get url => _url ?? '';
+  bool hasUrl() => _url != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -65,6 +70,7 @@ class BannerProjectListRecord extends FirestoreRecord {
     _subject = snapshotData['subject'] as String?;
     _image = snapshotData['image'] as String?;
     _seq = castToType<int>(snapshotData['seq']);
+    _url = snapshotData['url'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -111,6 +117,7 @@ Map<String, dynamic> createBannerProjectListRecordData({
   String? subject,
   String? image,
   int? seq,
+  String? url,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -122,6 +129,7 @@ Map<String, dynamic> createBannerProjectListRecordData({
       'subject': subject,
       'image': image,
       'seq': seq,
+      'url': url,
     }.withoutNulls,
   );
 
@@ -141,7 +149,8 @@ class BannerProjectListRecordDocumentEquality
         e1?.status == e2?.status &&
         e1?.subject == e2?.subject &&
         e1?.image == e2?.image &&
-        e1?.seq == e2?.seq;
+        e1?.seq == e2?.seq &&
+        e1?.url == e2?.url;
   }
 
   @override
@@ -153,7 +162,8 @@ class BannerProjectListRecordDocumentEquality
         e?.status,
         e?.subject,
         e?.image,
-        e?.seq
+        e?.seq,
+        e?.url
       ]);
 
   @override
