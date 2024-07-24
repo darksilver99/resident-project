@@ -240,39 +240,41 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          if (carouselBannerProjectListRecord
-                                                      .url !=
-                                                  null &&
-                                              carouselBannerProjectListRecord
-                                                      .url !=
-                                                  '') {
-                                            await launchURL(
+                                      Expanded(
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            if (carouselBannerProjectListRecord
+                                                        .url !=
+                                                    null &&
                                                 carouselBannerProjectListRecord
-                                                    .url);
-                                          }
-                                        },
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: Image.network(
-                                            carouselBannerProjectListRecord
-                                                .image,
-                                            width: double.infinity,
-                                            height: 200.0,
-                                            fit: BoxFit.contain,
-                                            errorBuilder:
-                                                (context, error, stackTrace) =>
-                                                    Image.asset(
-                                              'assets/images/error_image.jpg',
+                                                        .url !=
+                                                    '') {
+                                              await launchURL(
+                                                  carouselBannerProjectListRecord
+                                                      .url);
+                                            }
+                                          },
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(0.0),
+                                            child: Image.network(
+                                              carouselBannerProjectListRecord
+                                                  .image,
                                               width: double.infinity,
                                               height: 200.0,
                                               fit: BoxFit.contain,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/error_image.jpg',
+                                                width: double.infinity,
+                                                height: 200.0,
+                                                fit: BoxFit.contain,
+                                              ),
                                             ),
                                           ),
                                         ),
