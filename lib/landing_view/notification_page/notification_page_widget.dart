@@ -278,6 +278,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                       isScrollControlled: true,
                                       backgroundColor: Colors.transparent,
                                       enableDrag: false,
+                                      useSafeArea: true,
                                       context: context,
                                       builder: (context) {
                                         return WebViewAware(
