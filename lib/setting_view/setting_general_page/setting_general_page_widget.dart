@@ -133,6 +133,195 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                 ),
                                           ),
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    FFAppState()
+                                                        .currentBackgroundNumber = 1;
+                                                    setState(() {});
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16.0),
+                                                      border: Border.all(
+                                                        color: (FFAppState()
+                                                                        .currentBackgroundNumber ==
+                                                                    1) ||
+                                                                (FFAppState()
+                                                                        .currentBackgroundNumber ==
+                                                                    null)
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary
+                                                            : Color(0xE6FFFFFF),
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.all(4.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child: Image.asset(
+                                                              'assets/images/2149239098.jpg',
+                                                              width: 300.0,
+                                                              height: 200.0,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                width: 4.0,
+                                                decoration: BoxDecoration(),
+                                              ),
+                                              Expanded(
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    FFAppState()
+                                                        .currentBackgroundNumber = 2;
+                                                    setState(() {});
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16.0),
+                                                      border: Border.all(
+                                                        color: FFAppState()
+                                                                    .currentBackgroundNumber ==
+                                                                2
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary
+                                                            : Color(0xE6FFFFFF),
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.all(4.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child: Image.asset(
+                                                              'assets/images/1913.jpg',
+                                                              width: 300.0,
+                                                              height: 200.0,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                width: 4.0,
+                                                decoration: BoxDecoration(),
+                                              ),
+                                              Expanded(
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    FFAppState()
+                                                        .currentBackgroundNumber = 3;
+                                                    setState(() {});
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16.0),
+                                                      border: Border.all(
+                                                        color: FFAppState()
+                                                                    .currentBackgroundNumber ==
+                                                                3
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary
+                                                            : Color(0xE6FFFFFF),
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.all(4.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child: Image.asset(
+                                                              'assets/images/2149661457.jpg',
+                                                              width: 300.0,
+                                                              height: 200.0,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -145,7 +334,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   FFAppState()
-                                                      .currentBackgroundNumber = 1;
+                                                      .currentBackgroundNumber = 4;
                                                   setState(() {});
                                                 },
                                                 child: Container(
@@ -154,12 +343,9 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                         BorderRadius.circular(
                                                             16.0),
                                                     border: Border.all(
-                                                      color: (FFAppState()
-                                                                      .currentBackgroundNumber ==
-                                                                  1) ||
-                                                              (FFAppState()
-                                                                      .currentBackgroundNumber ==
-                                                                  null)
+                                                      color: FFAppState()
+                                                                  .currentBackgroundNumber ==
+                                                              4
                                                           ? FlutterFlowTheme.of(
                                                                   context)
                                                               .primary
@@ -180,7 +366,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                                   .circular(
                                                                       8.0),
                                                           child: Image.asset(
-                                                            'assets/images/2149239098.jpg',
+                                                            'assets/images/3mjpg_4.jpg',
                                                             width: 300.0,
                                                             height: 200.0,
                                                             fit: BoxFit.cover,
@@ -205,7 +391,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   FFAppState()
-                                                      .currentBackgroundNumber = 2;
+                                                      .currentBackgroundNumber = 5;
                                                   setState(() {});
                                                 },
                                                 child: Container(
@@ -216,7 +402,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                     border: Border.all(
                                                       color: FFAppState()
                                                                   .currentBackgroundNumber ==
-                                                              2
+                                                              5
                                                           ? FlutterFlowTheme.of(
                                                                   context)
                                                               .primary
@@ -237,7 +423,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                                   .circular(
                                                                       8.0),
                                                           child: Image.asset(
-                                                            'assets/images/1913.jpg',
+                                                            'assets/images/5a6e9_5.jpg',
                                                             width: 300.0,
                                                             height: 200.0,
                                                             fit: BoxFit.cover,
@@ -262,7 +448,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   FFAppState()
-                                                      .currentBackgroundNumber = 3;
+                                                      .currentBackgroundNumber = 6;
                                                   setState(() {});
                                                 },
                                                 child: Container(
@@ -273,7 +459,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                     border: Border.all(
                                                       color: FFAppState()
                                                                   .currentBackgroundNumber ==
-                                                              3
+                                                              6
                                                           ? FlutterFlowTheme.of(
                                                                   context)
                                                               .primary
@@ -294,7 +480,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                                   .circular(
                                                                       8.0),
                                                           child: Image.asset(
-                                                            'assets/images/2149661457.jpg',
+                                                            'assets/images/75n71_6.jpg',
                                                             width: 300.0,
                                                             height: 200.0,
                                                             fit: BoxFit.cover,
