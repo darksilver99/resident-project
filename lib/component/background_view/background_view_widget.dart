@@ -74,6 +74,48 @@ class _BackgroundViewWidgetState extends State<BackgroundViewWidget> {
                     ),
                   ),
                 );
+              } else if (FFAppState().currentBackgroundNumber == 4) {
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/3mjpg_4.jpg',
+                      ).image,
+                    ),
+                  ),
+                );
+              } else if (FFAppState().currentBackgroundNumber == 5) {
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/5a6e9_5.jpg',
+                      ).image,
+                    ),
+                  ),
+                );
+              } else if (FFAppState().currentBackgroundNumber == 6) {
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/75n71_6.jpg',
+                      ).image,
+                    ),
+                  ),
+                );
               } else {
                 return Container(
                   width: double.infinity,
