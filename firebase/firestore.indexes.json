@@ -1,20 +1,6 @@
 {
   "indexes": [
     {
-      "collectionGroup": "banner_project_list",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "seq",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "resident_service_list",
       "queryScope": "COLLECTION",
       "fields": [
@@ -103,6 +89,20 @@
         {
           "fieldPath": "create_date",
           "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "banner_project_list",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "seq",
+          "order": "ASCENDING"
         }
       ]
     },

@@ -27,6 +27,20 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   bool isLoading = true;
 
+  List<BannerProjectListRecord> bannerProjectList = [];
+  void addToBannerProjectList(BannerProjectListRecord item) =>
+      bannerProjectList.add(item);
+  void removeFromBannerProjectList(BannerProjectListRecord item) =>
+      bannerProjectList.remove(item);
+  void removeAtIndexFromBannerProjectList(int index) =>
+      bannerProjectList.removeAt(index);
+  void insertAtIndexInBannerProjectList(
+          int index, BannerProjectListRecord item) =>
+      bannerProjectList.insert(index, item);
+  void updateBannerProjectListAtIndex(
+          int index, Function(BannerProjectListRecord) updateFn) =>
+      bannerProjectList[index] = updateFn(bannerProjectList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -38,6 +52,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ResidentListRecord? residentDoc2;
   // Stores action output result for [Action Block - checkStatusLiveInProject] action in HomePage widget.
   bool? isLiveInProject;
+  // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
+  List<BannerProjectListRecord>? bannerProjectResult;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for Carousel widget.
