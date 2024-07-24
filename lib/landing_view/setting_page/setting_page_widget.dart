@@ -522,15 +522,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed(
-                                      'SelectProjectPage',
-                                      queryParameters: {
-                                        'isCanBack': serializeParam(
-                                          true,
-                                          ParamType.bool,
-                                        ),
-                                      }.withoutNulls,
-                                    );
+                                    context.pushNamed('IssuePage');
                                   },
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
