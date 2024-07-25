@@ -135,10 +135,10 @@ class _StockPageWidgetState extends State<StockPageWidget> {
                 }
                 List<StockListRecord> listViewStockListRecordList =
                     snapshot.data!;
-
                 if (listViewStockListRecordList.isEmpty) {
                   return NoDataViewWidget();
                 }
+
                 return ListView.separated(
                   padding: EdgeInsets.fromLTRB(
                     0,

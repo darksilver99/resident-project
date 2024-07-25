@@ -290,94 +290,90 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             width: 3.0,
                                                           ),
                                                         ),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
+                                                        child: Stack(
                                                           children: [
-                                                            Expanded(
-                                                              child: InkWell(
-                                                                splashColor: Colors
-                                                                    .transparent,
-                                                                focusColor: Colors
-                                                                    .transparent,
-                                                                hoverColor: Colors
-                                                                    .transparent,
-                                                                highlightColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                onTap:
-                                                                    () async {
-                                                                  await Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    PageTransition(
-                                                                      type: PageTransitionType
-                                                                          .fade,
-                                                                      child:
-                                                                          FlutterFlowExpandedImageView(
-                                                                        image: Image
-                                                                            .network(
-                                                                          bannerProjectListViewItem
-                                                                              .images
-                                                                              .first,
-                                                                          fit: BoxFit
-                                                                              .contain,
-                                                                          errorBuilder: (context, error, stackTrace) =>
-                                                                              Image.asset(
-                                                                            'assets/images/error_image.jpg',
-                                                                            fit:
-                                                                                BoxFit.contain,
-                                                                          ),
-                                                                        ),
-                                                                        allowRotation:
-                                                                            false,
-                                                                        tag: bannerProjectListViewItem
+                                                            InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                await Navigator
+                                                                    .push(
+                                                                  context,
+                                                                  PageTransition(
+                                                                    type: PageTransitionType
+                                                                        .fade,
+                                                                    child:
+                                                                        FlutterFlowExpandedImageView(
+                                                                      image: Image
+                                                                          .network(
+                                                                        bannerProjectListViewItem
                                                                             .images
                                                                             .first,
-                                                                        useHeroAnimation:
-                                                                            true,
+                                                                        fit: BoxFit
+                                                                            .contain,
+                                                                        errorBuilder: (context,
+                                                                                error,
+                                                                                stackTrace) =>
+                                                                            Image.asset(
+                                                                          'assets/images/error_image.jpg',
+                                                                          fit: BoxFit
+                                                                              .contain,
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                                child: Hero(
-                                                                  tag: bannerProjectListViewItem
-                                                                      .images
-                                                                      .first,
-                                                                  transitionOnUserGestures:
-                                                                      true,
-                                                                  child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            0.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      bannerProjectListViewItem
+                                                                      allowRotation:
+                                                                          false,
+                                                                      tag: bannerProjectListViewItem
                                                                           .images
                                                                           .first,
+                                                                      useHeroAnimation:
+                                                                          true,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                              child: Hero(
+                                                                tag:
+                                                                    bannerProjectListViewItem
+                                                                        .images
+                                                                        .first,
+                                                                transitionOnUserGestures:
+                                                                    true,
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              0.0),
+                                                                  child: Image
+                                                                      .network(
+                                                                    bannerProjectListViewItem
+                                                                        .images
+                                                                        .first,
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height:
+                                                                        200.0,
+                                                                    fit: BoxFit
+                                                                        .contain,
+                                                                    errorBuilder: (context,
+                                                                            error,
+                                                                            stackTrace) =>
+                                                                        Image
+                                                                            .asset(
+                                                                      'assets/images/error_image.jpg',
                                                                       width: double
                                                                           .infinity,
                                                                       height:
                                                                           200.0,
                                                                       fit: BoxFit
                                                                           .contain,
-                                                                      errorBuilder: (context,
-                                                                              error,
-                                                                              stackTrace) =>
-                                                                          Image
-                                                                              .asset(
-                                                                        'assets/images/error_image.jpg',
-                                                                        width: double
-                                                                            .infinity,
-                                                                        height:
-                                                                            200.0,
-                                                                        fit: BoxFit
-                                                                            .contain,
-                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
