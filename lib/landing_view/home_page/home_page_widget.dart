@@ -198,57 +198,58 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 updateCallback: () => setState(() {}),
                 child: BackgroundViewWidget(),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 64.0, 0.0, 0.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      if (_model.bannerProjectList.isNotEmpty)
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 16.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 4.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Flexible(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Color(0x66000000),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 8.0),
-                                          child: Text(
-                                            'ประชาสัมพันธ์',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Kanit',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .info,
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+              if (!_model.isLoading)
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 64.0, 0.0, 0.0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        if (_model.bannerProjectList.isNotEmpty)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 4.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Flexible(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0x66000000),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 8.0, 16.0, 8.0),
+                                            child: Text(
+                                              'ประชาสัมพันธ์',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Kanit',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .info,
+                                                    fontSize: 18.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              if (_model.bannerProjectList.isNotEmpty)
                                 Container(
                                   height: 200.0,
                                   child: Stack(
@@ -602,351 +603,355 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ],
                                   ),
                                 ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      if (FFAppState().currentProjectData.name != null &&
-                          FFAppState().currentProjectData.name != '')
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 16.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 4.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Flexible(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Color(0x66000000),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 8.0),
-                                          child: Text(
-                                            'บริการต่างๆของโครงการ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Kanit',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .info,
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                        if (FFAppState().currentProjectData.name != null &&
+                            FFAppState().currentProjectData.name != '')
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 4.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Flexible(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0x66000000),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              StreamBuilder<List<ResidentServiceListRecord>>(
-                                stream: queryResidentServiceListRecord(
-                                  parent: FFAppState()
-                                      .currentProjectData
-                                      .projectRef,
-                                  queryBuilder: (residentServiceListRecord) =>
-                                      residentServiceListRecord
-                                          .where(
-                                            'status',
-                                            isEqualTo: 1,
-                                          )
-                                          .orderBy('seq'),
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  List<ResidentServiceListRecord>
-                                      gridViewResidentServiceListRecordList =
-                                      snapshot.data!;
-
-                                  return GridView.builder(
-                                    padding: EdgeInsets.zero,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
-                                      crossAxisSpacing: 8.0,
-                                      mainAxisSpacing: 8.0,
-                                      childAspectRatio: 1.0,
-                                    ),
-                                    primary: false,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount:
-                                        gridViewResidentServiceListRecordList
-                                            .length,
-                                    itemBuilder: (context, gridViewIndex) {
-                                      final gridViewResidentServiceListRecord =
-                                          gridViewResidentServiceListRecordList[
-                                              gridViewIndex];
-                                      return Builder(
-                                        builder: (context) => InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            if (FFAppState()
-                                                    .currentResidentData
-                                                    .status ==
-                                                1) {
-                                              if (gridViewResidentServiceListRecord
-                                                      .type ==
-                                                  'app') {
-                                                await actions.goToPage(
-                                                  context,
-                                                  gridViewResidentServiceListRecord
-                                                      .pathName,
-                                                );
-                                              } else if (gridViewResidentServiceListRecord
-                                                      .type ==
-                                                  'web') {
-                                                context.pushNamed(
-                                                  'WebViewPage',
-                                                  queryParameters: {
-                                                    'title': serializeParam(
-                                                      gridViewResidentServiceListRecord
-                                                          .subject,
-                                                      ParamType.String,
-                                                    ),
-                                                    'url': serializeParam(
-                                                      gridViewResidentServiceListRecord
-                                                          .pathName,
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
-                                              } else if (gridViewResidentServiceListRecord
-                                                      .type ==
-                                                  'app_image') {
-                                              } else {
-                                                await launchURL(
-                                                    gridViewResidentServiceListRecord
-                                                        .pathName);
-                                              }
-                                            } else {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: WebViewAware(
-                                                      child: GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
-                                                                .unfocus(),
-                                                        child:
-                                                            CustomInfoAlertViewWidget(
-                                                          title:
-                                                              'สถานะลูกบ้านอยู่ในระหว่างรออนุมัติ',
-                                                          detail:
-                                                              'กรุณารออนุมัติจากเจ้าหน้าที่โครงการ หรือหากเจ้าหน้าที่โครงการอนุมัติแล้วกรุณาปิด/เปิดแอปใหม่อีกครั้ง',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              ).then(
-                                                  (value) => setState(() {}));
-                                            }
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 3.0,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 8.0, 16.0, 8.0),
+                                            child: Text(
+                                              'บริการต่างๆของโครงการ',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Kanit',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .info,
+                                                    fontSize: 18.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                             ),
-                                            child: Container(
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                              child: Stack(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 16.0,
-                                                                8.0, 8.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .stretch,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Expanded(
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
-                                                                  child: Image
-                                                                      .network(
-                                                                    gridViewResidentServiceListRecord
-                                                                        .icon,
-                                                                    fit: BoxFit
-                                                                        .contain,
-                                                                    errorBuilder: (context,
-                                                                            error,
-                                                                            stackTrace) =>
-                                                                        Image
-                                                                            .asset(
-                                                                      'assets/images/error_image.jpg',
-                                                                      fit: BoxFit
-                                                                          .contain,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Text(
-                                                                gridViewResidentServiceListRecord
-                                                                    .subject,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                maxLines: 2,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Kanit',
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                    ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Builder(
-                                                    builder: (context) {
-                                                      if (gridViewResidentServiceListRecord
-                                                              .pathName ==
-                                                          'StockPage') {
-                                                        return Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1.0, -1.0),
-                                                          child:
-                                                              StockTotalViewWidget(
-                                                            key: Key(
-                                                                'Keyxkd_${gridViewIndex}_of_${gridViewResidentServiceListRecordList.length}'),
-                                                          ),
-                                                        );
-                                                      } else {
-                                                        return Opacity(
-                                                          opacity: 0.0,
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                StreamBuilder<List<ResidentServiceListRecord>>(
+                                  stream: queryResidentServiceListRecord(
+                                    parent: FFAppState()
+                                        .currentProjectData
+                                        .projectRef,
+                                    queryBuilder: (residentServiceListRecord) =>
+                                        residentServiceListRecord
+                                            .where(
+                                              'status',
+                                              isEqualTo: 1,
+                                            )
+                                            .orderBy('seq'),
+                                  ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
                                             ),
                                           ),
                                         ),
                                       );
-                                    },
-                                  );
-                                },
-                              ),
-                            ],
+                                    }
+                                    List<ResidentServiceListRecord>
+                                        gridViewResidentServiceListRecordList =
+                                        snapshot.data!;
+
+                                    return GridView.builder(
+                                      padding: EdgeInsets.zero,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 3,
+                                        crossAxisSpacing: 8.0,
+                                        mainAxisSpacing: 8.0,
+                                        childAspectRatio: 1.0,
+                                      ),
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount:
+                                          gridViewResidentServiceListRecordList
+                                              .length,
+                                      itemBuilder: (context, gridViewIndex) {
+                                        final gridViewResidentServiceListRecord =
+                                            gridViewResidentServiceListRecordList[
+                                                gridViewIndex];
+                                        return Builder(
+                                          builder: (context) => InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              if (FFAppState()
+                                                      .currentResidentData
+                                                      .status ==
+                                                  1) {
+                                                if (gridViewResidentServiceListRecord
+                                                        .type ==
+                                                    'app') {
+                                                  await actions.goToPage(
+                                                    context,
+                                                    gridViewResidentServiceListRecord
+                                                        .pathName,
+                                                  );
+                                                } else if (gridViewResidentServiceListRecord
+                                                        .type ==
+                                                    'web') {
+                                                  context.pushNamed(
+                                                    'WebViewPage',
+                                                    queryParameters: {
+                                                      'title': serializeParam(
+                                                        gridViewResidentServiceListRecord
+                                                            .subject,
+                                                        ParamType.String,
+                                                      ),
+                                                      'url': serializeParam(
+                                                        gridViewResidentServiceListRecord
+                                                            .pathName,
+                                                        ParamType.String,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
+                                                } else if (gridViewResidentServiceListRecord
+                                                        .type ==
+                                                    'app_image') {
+                                                } else {
+                                                  await launchURL(
+                                                      gridViewResidentServiceListRecord
+                                                          .pathName);
+                                                }
+                                              } else {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () => _model
+                                                                  .unfocusNode
+                                                                  .canRequestFocus
+                                                              ? FocusScope.of(
+                                                                      context)
+                                                                  .requestFocus(
+                                                                      _model
+                                                                          .unfocusNode)
+                                                              : FocusScope.of(
+                                                                      context)
+                                                                  .unfocus(),
+                                                          child:
+                                                              CustomInfoAlertViewWidget(
+                                                            title:
+                                                                'สถานะลูกบ้านอยู่ในระหว่างรออนุมัติ',
+                                                            detail:
+                                                                'กรุณารออนุมัติจากเจ้าหน้าที่โครงการ หรือหากเจ้าหน้าที่โครงการอนุมัติแล้วกรุณาปิด/เปิดแอปใหม่อีกครั้ง',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then(
+                                                    (value) => setState(() {}));
+                                              }
+                                            },
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              elevation: 3.0,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              child: Container(
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                child: Stack(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  16.0,
+                                                                  8.0,
+                                                                  8.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .stretch,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Expanded(
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    child: Image
+                                                                        .network(
+                                                                      gridViewResidentServiceListRecord
+                                                                          .icon,
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                      errorBuilder: (context,
+                                                                              error,
+                                                                              stackTrace) =>
+                                                                          Image
+                                                                              .asset(
+                                                                        'assets/images/error_image.jpg',
+                                                                        fit: BoxFit
+                                                                            .contain,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Expanded(
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  gridViewResidentServiceListRecord
+                                                                      .subject,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  maxLines: 2,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Kanit',
+                                                                        fontSize:
+                                                                            16.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Builder(
+                                                      builder: (context) {
+                                                        if (gridViewResidentServiceListRecord
+                                                                .pathName ==
+                                                            'StockPage') {
+                                                          return Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    1.0, -1.0),
+                                                            child:
+                                                                StockTotalViewWidget(
+                                                              key: Key(
+                                                                  'Keyxkd_${gridViewIndex}_of_${gridViewResidentServiceListRecordList.length}'),
+                                                            ),
+                                                          );
+                                                        } else {
+                                                          return Opacity(
+                                                            opacity: 0.0,
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                    ]
-                        .addToStart(SizedBox(height: 16.0))
-                        .addToEnd(SizedBox(height: 16.0)),
+                      ]
+                          .addToStart(SizedBox(height: 16.0))
+                          .addToEnd(SizedBox(height: 16.0)),
+                    ),
                   ),
                 ),
-              ),
               if (_model.isLoading)
                 wrapWithModel(
                   model: _model.loadingViewModel,
