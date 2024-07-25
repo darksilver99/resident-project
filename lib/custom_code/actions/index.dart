@@ -14,3 +14,4 @@ export 'un_subscript.dart' show unSubscript;
 export 'set_app_version.dart' show setAppVersion;
 export 'close_app.dart' show closeApp;
 export 'get_device_detail.dart' show getDeviceDetail;
+export 'upload_image_to_firebase.dart' show uploadImageToFirebase;

@@ -93,6 +93,20 @@
       ]
     },
     {
+      "collectionGroup": "water_payment_list",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "resident_ref",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "create_date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "banner_project_list",
       "queryScope": "COLLECTION",
       "fields": [
