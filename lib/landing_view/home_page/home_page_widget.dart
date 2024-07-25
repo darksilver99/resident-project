@@ -272,6 +272,57 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   child: Stack(
                                                     children: [
                                                       Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        child: Stack(
+                                                          children: [
+                                                            Hero(
+                                                              tag:
+                                                                  bannerProjectListViewItem
+                                                                      .images
+                                                                      .first,
+                                                              transitionOnUserGestures:
+                                                                  true,
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            0.0),
+                                                                child: Image
+                                                                    .network(
+                                                                  bannerProjectListViewItem
+                                                                      .images
+                                                                      .first,
+                                                                  width: double
+                                                                      .infinity,
+                                                                  height: 200.0,
+                                                                  fit: BoxFit
+                                                                      .contain,
+                                                                  errorBuilder: (context,
+                                                                          error,
+                                                                          stackTrace) =>
+                                                                      Image
+                                                                          .asset(
+                                                                    'assets/images/error_image.jpg',
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height:
+                                                                        200.0,
+                                                                    fit: BoxFit
+                                                                        .contain,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Container(
                                                         width: double.infinity,
                                                         height: double.infinity,
                                                         decoration:
@@ -290,130 +341,30 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             width: 3.0,
                                                           ),
                                                         ),
-                                                        child: Stack(
-                                                          children: [
-                                                            Container(
-                                                              width: double
-                                                                  .infinity,
-                                                              height: 200.0,
-                                                              child: Stack(
-                                                                children: [
-                                                                  ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            6.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      bannerProjectListViewItem
-                                                                          .images
-                                                                          .first,
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height: double
-                                                                          .infinity,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                      errorBuilder: (context,
-                                                                              error,
-                                                                              stackTrace) =>
-                                                                          Image
-                                                                              .asset(
-                                                                        'assets/images/error_image.jpg',
-                                                                        width: double
-                                                                            .infinity,
-                                                                        height:
-                                                                            double.infinity,
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  Container(
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height: double
-                                                                        .infinity,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              6.0),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                await Navigator
-                                                                    .push(
-                                                                  context,
-                                                                  PageTransition(
-                                                                    type: PageTransitionType
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            await Navigator
+                                                                .push(
+                                                              context,
+                                                              PageTransition(
+                                                                type:
+                                                                    PageTransitionType
                                                                         .fade,
-                                                                    child:
-                                                                        FlutterFlowExpandedImageView(
-                                                                      image: Image
-                                                                          .network(
-                                                                        bannerProjectListViewItem
-                                                                            .images
-                                                                            .first,
-                                                                        fit: BoxFit
-                                                                            .contain,
-                                                                        errorBuilder: (context,
-                                                                                error,
-                                                                                stackTrace) =>
-                                                                            Image.asset(
-                                                                          'assets/images/error_image.jpg',
-                                                                          fit: BoxFit
-                                                                              .contain,
-                                                                        ),
-                                                                      ),
-                                                                      allowRotation:
-                                                                          false,
-                                                                      tag: bannerProjectListViewItem
-                                                                          .images
-                                                                          .first,
-                                                                      useHeroAnimation:
-                                                                          true,
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                              child: Hero(
-                                                                tag:
-                                                                    bannerProjectListViewItem
-                                                                        .images
-                                                                        .first,
-                                                                transitionOnUserGestures:
-                                                                    true,
                                                                 child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              0.0),
-                                                                  child: Image
+                                                                    FlutterFlowExpandedImageView(
+                                                                  image: Image
                                                                       .network(
                                                                     bannerProjectListViewItem
                                                                         .images
                                                                         .first,
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height:
-                                                                        200.0,
                                                                     fit: BoxFit
                                                                         .contain,
                                                                     errorBuilder: (context,
@@ -422,18 +373,57 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         Image
                                                                             .asset(
                                                                       'assets/images/error_image.jpg',
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height:
-                                                                          200.0,
                                                                       fit: BoxFit
                                                                           .contain,
                                                                     ),
                                                                   ),
+                                                                  allowRotation:
+                                                                      false,
+                                                                  tag: bannerProjectListViewItem
+                                                                      .images
+                                                                      .first,
+                                                                  useHeroAnimation:
+                                                                      true,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                          child: Hero(
+                                                            tag:
+                                                                bannerProjectListViewItem
+                                                                    .images
+                                                                    .first,
+                                                            transitionOnUserGestures:
+                                                                true,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0.0),
+                                                              child:
+                                                                  Image.network(
+                                                                bannerProjectListViewItem
+                                                                    .images
+                                                                    .first,
+                                                                width: double
+                                                                    .infinity,
+                                                                height: 200.0,
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                                errorBuilder: (context,
+                                                                        error,
+                                                                        stackTrace) =>
+                                                                    Image.asset(
+                                                                  'assets/images/error_image.jpg',
+                                                                  width: double
+                                                                      .infinity,
+                                                                  height: 200.0,
+                                                                  fit: BoxFit
+                                                                      .contain,
                                                                 ),
                                                               ),
                                                             ),
-                                                          ],
+                                                          ),
                                                         ),
                                                       ),
                                                       if (bannerProjectListViewItem
