@@ -115,10 +115,10 @@ class _IssueProjectListPageWidgetState
                 }
                 List<IssueProjectListRecord>
                     listViewIssueProjectListRecordList = snapshot.data!;
-
                 if (listViewIssueProjectListRecordList.isEmpty) {
                   return NoDataViewWidget();
                 }
+
                 return ListView.separated(
                   padding: EdgeInsets.fromLTRB(
                     0,
