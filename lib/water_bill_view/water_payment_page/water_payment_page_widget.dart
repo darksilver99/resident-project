@@ -530,8 +530,6 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                         onPressed: () async {
                                           final selectedMedia =
                                               await selectMedia(
-                                            maxWidth: 600.00,
-                                            maxHeight: 80.00,
                                             imageQuality: 100,
                                             mediaSource:
                                                 MediaSource.photoGallery,
@@ -795,8 +793,6 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                         onPressed: () async {
                                           final selectedMedia =
                                               await selectMedia(
-                                            maxWidth: 600.00,
-                                            maxHeight: 80.00,
                                             imageQuality: 100,
                                             mediaSource:
                                                 MediaSource.photoGallery,
