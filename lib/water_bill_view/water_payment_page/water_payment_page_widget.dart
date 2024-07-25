@@ -1011,6 +1011,12 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                               residentRef: FFAppState()
                                                   .currentResidentData
                                                   .residentRef,
+                                              contactName:
+                                                  _model.textController1.text,
+                                              contactPhone:
+                                                  _model.textController2.text,
+                                              contactAddress:
+                                                  _model.textController3.text,
                                             ),
                                             ...mapToFirestore(
                                               {
