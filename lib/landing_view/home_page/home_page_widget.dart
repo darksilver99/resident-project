@@ -65,8 +65,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               context,
               residentDocument: _model.residentDoc,
             );
-            await _model.setFirebaseToken(context);
-            await actions.subscriptTopic();
           } else {
             context.goNamedAuth(
               'SelectProjectPage',
@@ -82,7 +80,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             return;
           }
         } else {
-          await _model.setFirebaseToken(context);
+          _model.projectResult2 = await ProjectListRecord.getDocumentOnce(
+              (currentUserDocument?.projectList?.toList() ?? []).first);
+          await action_blocks.setCurrentProjectData(
+            context,
+            projectDocument: _model.projectResult2,
+          );
           _model.residentDoc2 = await queryResidentListRecordOnce(
             queryBuilder: (residentListRecord) => residentListRecord.where(
               'create_by',
@@ -94,10 +97,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             context,
             residentDocument: _model.residentDoc2,
           );
-          await _model.setFirebaseToken(context);
-          await actions.subscriptTopic();
         }
 
+        await _model.setFirebaseToken(context);
+        await actions.subscriptTopic();
         _model.isLiveInProject = await action_blocks.checkStatusLiveInProject(
           context,
           currentProjectList:
