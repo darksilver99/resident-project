@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_confirm_dialog_view/custom_confirm_dialog_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -12,6 +13,7 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'water_payment_page_model.dart';
@@ -147,7 +149,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
+                                      0.0, 0.0, 0.0, 16.0),
                                   child: Builder(
                                     builder: (context) {
                                       if (FFAppState()
@@ -157,14 +159,54 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                         return Align(
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              'https://picsum.photos/seed/894/600',
-                                              width: double.infinity,
-                                              height: 250.0,
-                                              fit: BoxFit.contain,
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.fade,
+                                                  child:
+                                                      FlutterFlowExpandedImageView(
+                                                    image: Image.network(
+                                                      FFAppState()
+                                                          .currentProjectData
+                                                          .imageWaterPayment
+                                                          .first,
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                    allowRotation: false,
+                                                    tag: FFAppState()
+                                                        .currentProjectData
+                                                        .imageWaterPayment
+                                                        .first,
+                                                    useHeroAnimation: true,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Hero(
+                                              tag: FFAppState()
+                                                  .currentProjectData
+                                                  .imageWaterPayment
+                                                  .first,
+                                              transitionOnUserGestures: true,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  FFAppState()
+                                                      .currentProjectData
+                                                      .imageWaterPayment
+                                                      .first,
+                                                  width: double.infinity,
+                                                  height: 300.0,
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         );
