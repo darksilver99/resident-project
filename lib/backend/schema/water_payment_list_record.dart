@@ -66,6 +66,21 @@ class WaterPaymentListRecord extends FirestoreRecord {
   List<String> get imagesSlip => _imagesSlip ?? const [];
   bool hasImagesSlip() => _imagesSlip != null;
 
+  // "contact_name" field.
+  String? _contactName;
+  String get contactName => _contactName ?? '';
+  bool hasContactName() => _contactName != null;
+
+  // "contact_phone" field.
+  String? _contactPhone;
+  String get contactPhone => _contactPhone ?? '';
+  bool hasContactPhone() => _contactPhone != null;
+
+  // "contact_address" field.
+  String? _contactAddress;
+  String get contactAddress => _contactAddress ?? '';
+  bool hasContactAddress() => _contactAddress != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -77,6 +92,9 @@ class WaterPaymentListRecord extends FirestoreRecord {
     _remark = snapshotData['remark'] as String?;
     _imagesBill = getDataList(snapshotData['images_bill']);
     _imagesSlip = getDataList(snapshotData['images_slip']);
+    _contactName = snapshotData['contact_name'] as String?;
+    _contactPhone = snapshotData['contact_phone'] as String?;
+    _contactAddress = snapshotData['contact_address'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -123,6 +141,9 @@ Map<String, dynamic> createWaterPaymentListRecordData({
   DocumentReference? residentRef,
   String? adminDetail,
   String? remark,
+  String? contactName,
+  String? contactPhone,
+  String? contactAddress,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -134,6 +155,9 @@ Map<String, dynamic> createWaterPaymentListRecordData({
       'resident_ref': residentRef,
       'admin_detail': adminDetail,
       'remark': remark,
+      'contact_name': contactName,
+      'contact_phone': contactPhone,
+      'contact_address': contactAddress,
     }.withoutNulls,
   );
 
@@ -156,7 +180,10 @@ class WaterPaymentListRecordDocumentEquality
         e1?.adminDetail == e2?.adminDetail &&
         e1?.remark == e2?.remark &&
         listEquality.equals(e1?.imagesBill, e2?.imagesBill) &&
-        listEquality.equals(e1?.imagesSlip, e2?.imagesSlip);
+        listEquality.equals(e1?.imagesSlip, e2?.imagesSlip) &&
+        e1?.contactName == e2?.contactName &&
+        e1?.contactPhone == e2?.contactPhone &&
+        e1?.contactAddress == e2?.contactAddress;
   }
 
   @override
@@ -170,7 +197,10 @@ class WaterPaymentListRecordDocumentEquality
         e?.adminDetail,
         e?.remark,
         e?.imagesBill,
-        e?.imagesSlip
+        e?.imagesSlip,
+        e?.contactName,
+        e?.contactPhone,
+        e?.contactAddress
       ]);
 
   @override
