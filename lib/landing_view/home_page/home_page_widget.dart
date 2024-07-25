@@ -285,7 +285,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0.0),
+                                                                          8.0),
                                                               child:
                                                                   Image.network(
                                                                 bannerProjectListViewItem
@@ -295,7 +295,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     .infinity,
                                                                 height: 200.0,
                                                                 fit: BoxFit
-                                                                    .contain,
+                                                                    .cover,
                                                                 errorBuilder: (context,
                                                                         error,
                                                                         stackTrace) =>
@@ -305,7 +305,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       .infinity,
                                                                   height: 200.0,
                                                                   fit: BoxFit
-                                                                      .contain,
+                                                                      .cover,
                                                                 ),
                                                               ),
                                                             ),
@@ -317,9 +317,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         height: double.infinity,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
