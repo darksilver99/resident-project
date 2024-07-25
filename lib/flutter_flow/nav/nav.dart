@@ -207,6 +207,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'IssuePage',
           path: '/issuePage',
           builder: (context, params) => IssuePageWidget(),
+        ),
+        FFRoute(
+          name: 'WaterPaymentPage',
+          path: '/waterPaymentPage',
+          builder: (context, params) => WaterPaymentPageWidget(),
+        ),
+        FFRoute(
+          name: 'WaterPaymentListPage',
+          path: '/waterPaymentListPage',
+          builder: (context, params) => WaterPaymentListPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

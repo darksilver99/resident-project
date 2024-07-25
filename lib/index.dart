@@ -33,3 +33,7 @@ export '/stock_view/stock_page/stock_page_widget.dart' show StockPageWidget;
 export '/stock_view/stock_history_page/stock_history_page_widget.dart'
     show StockHistoryPageWidget;
 export '/issue_view/issue_page/issue_page_widget.dart' show IssuePageWidget;
+export '/water_bill_view/water_payment_page/water_payment_page_widget.dart'
+    show WaterPaymentPageWidget;
+export '/water_bill_view/water_payment_list_page/water_payment_list_page_widget.dart'
+    show WaterPaymentListPageWidget;
