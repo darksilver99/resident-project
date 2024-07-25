@@ -117,6 +117,7 @@ dependencies:
   scan: ^1.6.0
   package_info_plus: ^3.0.3
   device_info_plus: ^10.1.0
+  flutter_image_compress: ^2.3.0
 
 dependency_overrides:
   http: 1.2.1
