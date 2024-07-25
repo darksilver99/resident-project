@@ -61,7 +61,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for Carousel widget.
   CarouselController? carouselController;
-  int carouselCurrentIndex = 1;
+  int carouselCurrentIndex = 0;
 
   // Model for LoadingView component.
   late LoadingViewModel loadingViewModel;
