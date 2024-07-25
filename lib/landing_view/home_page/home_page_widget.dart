@@ -520,7 +520,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 initialPage: max(
                                                     0,
                                                     min(
-                                                        1,
+                                                        0,
                                                         bannerProjectListView
                                                                 .length -
                                                             1)),
