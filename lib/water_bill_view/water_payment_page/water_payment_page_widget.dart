@@ -102,8 +102,8 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
                 size: 30.0,
               ),
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                context.pushNamed('WaterPaymentListPage');
               },
             ),
           ],
