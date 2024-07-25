@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
+import '/component/blur_view/blur_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/loading_view/loading_view_widget.dart';
 import '/component/stock_total_view/stock_total_view_widget.dart';
