@@ -292,6 +292,44 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         ),
                                                         child: Stack(
                                                           children: [
+                                                            Hero(
+                                                              tag:
+                                                                  bannerProjectListViewItem
+                                                                      .images
+                                                                      .first,
+                                                              transitionOnUserGestures:
+                                                                  true,
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            0.0),
+                                                                child: Image
+                                                                    .network(
+                                                                  bannerProjectListViewItem
+                                                                      .images
+                                                                      .first,
+                                                                  width: double
+                                                                      .infinity,
+                                                                  height: 200.0,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  errorBuilder: (context,
+                                                                          error,
+                                                                          stackTrace) =>
+                                                                      Image
+                                                                          .asset(
+                                                                    'assets/images/error_image.jpg',
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height:
+                                                                        200.0,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
                                                             InkWell(
                                                               splashColor: Colors
                                                                   .transparent,
