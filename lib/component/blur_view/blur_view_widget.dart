@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'blur_view_model.dart';
 export 'blur_view_model.dart';
 
+import 'dart:ui';
+
 class BlurViewWidget extends StatefulWidget {
   const BlurViewWidget({super.key});
 
@@ -37,6 +39,16 @@ class _BlurViewWidgetState extends State<BlurViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Positioned.fill(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 5.0, // Horizontal blur radius
+          sigmaY: 5.0, // Vertical blur radius
+        ),
+        child: Container(
+          color: Colors.transparent,
+        ),
+      ),
+    );
   }
 }
