@@ -898,77 +898,113 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                               .validate()) {
                                         return;
                                       }
-                                      if (_model.imageBillList.isNotEmpty) {
-                                        _model.urlBillList =
-                                            await actions.uploadImageToFirebase(
-                                          'water_payment',
-                                          _model.imageBillList.toList(),
-                                        );
-                                        _model.urlSlipList =
-                                            await actions.uploadImageToFirebase(
-                                          'water_bill',
-                                          _model.imageSlipList.toList(),
-                                        );
+                                      if (_model.imageSlipList.isNotEmpty) {
+                                        if (_model.imageBillList.isNotEmpty) {
+                                          _model.urlBillList = await actions
+                                              .uploadImageToFirebase(
+                                            'water_payment',
+                                            _model.imageBillList.toList(),
+                                          );
+                                          _model.urlSlipList = await actions
+                                              .uploadImageToFirebase(
+                                            'water_bill',
+                                            _model.imageSlipList.toList(),
+                                          );
 
-                                        await WaterPaymentListRecord.collection
-                                            .doc()
-                                            .set({
-                                          ...createWaterPaymentListRecordData(
-                                            createDate: getCurrentTimestamp,
-                                            createBy: currentUserReference,
-                                            status: 0,
-                                            residentRef: FFAppState()
-                                                .currentResidentData
-                                                .residentRef,
-                                          ),
-                                          ...mapToFirestore(
-                                            {
-                                              'images_slip': _model.urlSlipList,
-                                              'images_bill': _model.urlBillList,
-                                            },
-                                          ),
-                                        });
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: WebViewAware(
-                                                child: GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child:
-                                                      CustomInfoAlertViewWidget(
-                                                    title:
-                                                        'ส่งข้อมูลไปยังเจ้าหน้าที่โครงการแล้ว',
-                                                    detail:
-                                                        'กรุณารอการตรวจสอบจากเจ้าหน้าที่ และสามารถตรวจสอบสถานะได้ที่เมนูประวัติการชำระ (มุมขวาบน)',
+                                          await WaterPaymentListRecord
+                                              .collection
+                                              .doc()
+                                              .set({
+                                            ...createWaterPaymentListRecordData(
+                                              createDate: getCurrentTimestamp,
+                                              createBy: currentUserReference,
+                                              status: 0,
+                                              residentRef: FFAppState()
+                                                  .currentResidentData
+                                                  .residentRef,
+                                            ),
+                                            ...mapToFirestore(
+                                              {
+                                                'images_slip':
+                                                    _model.urlSlipList,
+                                                'images_bill':
+                                                    _model.urlBillList,
+                                              },
+                                            ),
+                                          });
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child:
+                                                        CustomInfoAlertViewWidget(
+                                                      title:
+                                                          'ส่งข้อมูลไปยังเจ้าหน้าที่โครงการแล้ว',
+                                                      detail:
+                                                          'กรุณารอการตรวจสอบจากเจ้าหน้าที่ และสามารถตรวจสอบสถานะได้ที่เมนูประวัติการชำระ (มุมขวาบน)',
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => setState(() {}));
+                                              );
+                                            },
+                                          ).then((value) => setState(() {}));
 
-                                        if (Navigator.of(context).canPop()) {
-                                          context.pop();
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
+                                          context.pushNamed(
+                                              'WaterPaymentListPage');
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child:
+                                                        CustomInfoAlertViewWidget(
+                                                      title: 'กรุณาแนบรูปบิล',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => setState(() {}));
                                         }
-                                        context
-                                            .pushNamed('WaterPaymentListPage');
                                       } else {
                                         await showDialog(
                                           context: context,
