@@ -31,10 +31,16 @@ class ProjectListRecord extends FirestoreRecord {
   String get stampField => _stampField ?? '';
   bool hasStampField() => _stampField != null;
 
+  // "image_water_payment" field.
+  List<String>? _imageWaterPayment;
+  List<String> get imageWaterPayment => _imageWaterPayment ?? const [];
+  bool hasImageWaterPayment() => _imageWaterPayment != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _stampList = getDataList(snapshotData['stamp_list']);
     _stampField = snapshotData['stamp_field'] as String?;
+    _imageWaterPayment = getDataList(snapshotData['image_water_payment']);
   }
 
   static CollectionReference get collection =>
@@ -93,12 +99,13 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
     const listEquality = ListEquality();
     return e1?.name == e2?.name &&
         listEquality.equals(e1?.stampList, e2?.stampList) &&
-        e1?.stampField == e2?.stampField;
+        e1?.stampField == e2?.stampField &&
+        listEquality.equals(e1?.imageWaterPayment, e2?.imageWaterPayment);
   }
 
   @override
-  int hash(ProjectListRecord? e) =>
-      const ListEquality().hash([e?.name, e?.stampList, e?.stampField]);
+  int hash(ProjectListRecord? e) => const ListEquality()
+      .hash([e?.name, e?.stampList, e?.stampField, e?.imageWaterPayment]);
 
   @override
   bool isValidKey(Object? o) => o is ProjectListRecord;

@@ -148,6 +148,53 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
+                                  child: Builder(
+                                    builder: (context) {
+                                      if (FFAppState()
+                                          .currentProjectData
+                                          .imageWaterPayment
+                                          .isNotEmpty) {
+                                        return Align(
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/894/600',
+                                              width: double.infinity,
+                                              height: 250.0,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        return Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                'กรุณาติดต่อเจ้าหน้าที่เพื่อขอช่องทางการชำระเงิน',
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Kanit',
+                                                          fontSize: 22.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      }
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => TextFormField(
                                       controller: _model.textController1,
@@ -636,7 +683,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'รูปหลักฐานการโอนเงิน',
+                                        'รูปหลักฐานการโอนเงิน (สลิปโอนเงิน)',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
