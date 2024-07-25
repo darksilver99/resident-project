@@ -23,7 +23,7 @@ Future<List<String>> uploadImageToFirebase(
   List<String> urlList = [];
   for (var i = 0; i < imageList.length; i++) {
     String path =
-        'transaction/${FFAppState().currentProjectData.projectRef!.id}/$type/${imageList[i].name}';
+        '$type/${FFAppState().currentProjectData.projectRef!.id}/${FFAppState().currentResidentData.residentRef!.id}/${imageList[i].name}';
 
     Uint8List compress = await FlutterImageCompress.compressWithList(
       imageList[i].bytes!,

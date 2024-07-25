@@ -911,7 +911,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                         _model.urlSlipList =
                                             await actions.uploadImageToFirebase(
                                           'water_bill',
-                                          _model.imageBillList.toList(),
+                                          _model.imageSlipList.toList(),
                                         );
 
                                         await WaterPaymentListRecord.collection
