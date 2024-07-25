@@ -351,10 +351,16 @@ class _WaterPaymentDetailViewWidgetState
                                                     3) {
                                                   return FlutterFlowTheme.of(
                                                           context)
-                                                      .success;
+                                                      .warning;
                                                 } else if (widget!
                                                         .dataDocument?.status ==
                                                     4) {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .success;
+                                                } else if (widget!
+                                                        .dataDocument?.status ==
+                                                    5) {
                                                   return FlutterFlowTheme.of(
                                                           context)
                                                       .error;

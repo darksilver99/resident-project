@@ -234,10 +234,16 @@ class _WaterPaymentListPageWidgetState
                                                 3) {
                                               return FlutterFlowTheme.of(
                                                       context)
-                                                  .success;
+                                                  .warning;
                                             } else if (listViewWaterPaymentListRecord
                                                     .status ==
                                                 4) {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .success;
+                                            } else if (listViewWaterPaymentListRecord
+                                                    .status ==
+                                                5) {
                                               return FlutterFlowTheme.of(
                                                       context)
                                                   .error;
