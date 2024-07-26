@@ -136,6 +136,28 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                   },
                 ),
               });
+              await showDialog(
+                context: context,
+                builder: (dialogContext) {
+                  return Dialog(
+                    elevation: 0,
+                    insetPadding: EdgeInsets.zero,
+                    backgroundColor: Colors.transparent,
+                    alignment: AlignmentDirectional(0.0, 0.0)
+                        .resolve(Directionality.of(context)),
+                    child: WebViewAware(
+                      child: CustomInfoAlertViewWidget(
+                        title:
+                            'เข้าร่วมโครงการ \"${FFAppState().currentProjectData.name}\" แล้ว',
+                        detail:
+                            'กรุณารอการตรวจสอบข้อมูลและอนุมัติจากเจ้าหน้าที่',
+                        status: 'success',
+                      ),
+                    ),
+                  );
+                },
+              ).then((value) => setState(() {}));
+
               await actions.pushReplacement(
                 context,
               );
@@ -335,6 +357,30 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                       },
                                     ),
                                   });
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: WebViewAware(
+                                          child: CustomInfoAlertViewWidget(
+                                            title:
+                                                'เข้าร่วมโครงการ \"${FFAppState().currentProjectData.name}\" แล้ว',
+                                            detail:
+                                                'กรุณารอการตรวจสอบข้อมูลและอนุมัติจากเจ้าหน้าที่',
+                                            status: 'success',
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+
                                   await actions.pushReplacement(
                                     context,
                                   );
