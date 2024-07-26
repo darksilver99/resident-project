@@ -24,7 +24,6 @@ import 'package:webviewx_plus/webviewx_plus.dart';
 class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - qrCodeBlock] action in SelectProjectPage widget.
   String? qrCode;
   // Stores action output result for [Custom Action - checkIsHaveProject] action in SelectProjectPage widget.
@@ -63,7 +62,6 @@ class SelectProjectPageModel extends FlutterFlowModel<SelectProjectPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
   }
 

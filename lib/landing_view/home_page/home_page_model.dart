@@ -46,7 +46,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Read Document] action in HomePage widget.
   ProjectListRecord? projectResult;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
@@ -76,7 +75,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     loadingViewModel.dispose();
   }
@@ -114,14 +112,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
             alignment: AlignmentDirectional(0.0, 0.0)
                 .resolve(Directionality.of(context)),
             child: WebViewAware(
-              child: GestureDetector(
-                onTap: () => unfocusNode.canRequestFocus
-                    ? FocusScope.of(context).requestFocus(unfocusNode)
-                    : FocusScope.of(context).unfocus(),
-                child: CustomInfoAlertViewWidget(
-                  title: 'กรุณาอัพเดทแอปพลิเคชั่นและเปิดใหม่อีกครั้ง',
-                  status: 'info',
-                ),
+              child: CustomInfoAlertViewWidget(
+                title: 'กรุณาอัพเดทแอปพลิเคชั่นและเปิดใหม่อีกครั้ง',
+                status: 'info',
               ),
             ),
           );

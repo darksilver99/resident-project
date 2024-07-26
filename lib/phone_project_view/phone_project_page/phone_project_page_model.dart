@@ -15,7 +15,6 @@ import 'package:url_launcher/url_launcher.dart';
 class PhoneProjectPageModel extends FlutterFlowModel<PhoneProjectPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
 
@@ -26,7 +25,6 @@ class PhoneProjectPageModel extends FlutterFlowModel<PhoneProjectPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
   }
 }

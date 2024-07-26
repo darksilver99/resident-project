@@ -12,7 +12,6 @@ class SettingGeneralPageModel
     extends FlutterFlowModel<SettingGeneralPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
 
@@ -23,7 +22,6 @@ class SettingGeneralPageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
   }
 }

@@ -1,9 +1,12 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'custom_info_alert_view_model.dart';
 export 'custom_info_alert_view_model.dart';
@@ -25,8 +28,11 @@ class CustomInfoAlertViewWidget extends StatefulWidget {
       _CustomInfoAlertViewWidgetState();
 }
 
-class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
+class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget>
+    with TickerProviderStateMixin {
   late CustomInfoAlertViewModel _model;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -38,6 +44,45 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CustomInfoAlertViewModel());
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: Offset(-5.0, -5.0),
+            end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+      'iconOnPageLoadAnimation1': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 200.0.ms,
+            duration: 380.0.ms,
+            begin: Offset(-5.0, -5.0),
+            end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+      'iconOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 200.0.ms,
+            duration: 380.0.ms,
+            begin: Offset(-5.0, -5.0),
+            end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+    });
   }
 
   @override
@@ -100,23 +145,20 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                             Builder(
                               builder: (context) {
                                 if (widget!.status == 'failed') {
-                                  return Lottie.asset(
-                                    'assets/lottie_animations/warning.json',
-                                    width: 150.0,
-                                    height: 130.0,
-                                    fit: BoxFit.contain,
-                                    repeat: false,
-                                    animate: true,
-                                  );
+                                  return Icon(
+                                    Icons.error_rounded,
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    size: 64.0,
+                                  ).animateOnPageLoad(animationsMap[
+                                      'iconOnPageLoadAnimation1']!);
                                 } else if (widget!.status == 'success') {
-                                  return Lottie.asset(
-                                    'assets/lottie_animations/success.json',
-                                    width: 150.0,
-                                    height: 130.0,
-                                    fit: BoxFit.contain,
-                                    repeat: false,
-                                    animate: true,
-                                  );
+                                  return Icon(
+                                    Icons.check_circle_rounded,
+                                    color: FlutterFlowTheme.of(context).success,
+                                    size: 64.0,
+                                  ).animateOnPageLoad(animationsMap[
+                                      'iconOnPageLoadAnimation2']!);
                                 } else {
                                   return Container(
                                     decoration: BoxDecoration(
@@ -232,7 +274,7 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
               ),
             ),
           ),
-        ),
+        ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
       ),
     );
   }

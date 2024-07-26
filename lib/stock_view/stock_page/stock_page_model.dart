@@ -18,7 +18,6 @@ import 'package:webviewx_plus/webviewx_plus.dart';
 class StockPageModel extends FlutterFlowModel<StockPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
 
@@ -29,7 +28,6 @@ class StockPageModel extends FlutterFlowModel<StockPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
   }
 }

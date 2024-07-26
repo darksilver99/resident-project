@@ -24,7 +24,6 @@ class ProfilePageModel extends FlutterFlowModel<ProfilePageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
@@ -85,7 +84,6 @@ class ProfilePageModel extends FlutterFlowModel<ProfilePageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     firstNameFocusNode?.dispose();
     firstNameTextController?.dispose();

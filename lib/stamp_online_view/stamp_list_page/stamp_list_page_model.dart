@@ -15,7 +15,6 @@ import 'package:provider/provider.dart';
 class StampListPageModel extends FlutterFlowModel<StampListPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for ListView widget.
@@ -32,7 +31,6 @@ class StampListPageModel extends FlutterFlowModel<StampListPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     listViewStreamSubscriptions.forEach((s) => s?.cancel());
     listViewPagingController?.dispose();

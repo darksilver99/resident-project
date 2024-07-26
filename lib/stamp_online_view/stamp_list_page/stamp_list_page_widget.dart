@@ -42,212 +42,201 @@ class _StampListPageWidgetState extends State<StampListPageWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.chevron_left_rounded,
-              color: Colors.white,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      appBar: AppBar(
+        backgroundColor: FlutterFlowTheme.of(context).primary,
+        automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30.0,
+          borderWidth: 1.0,
+          buttonSize: 60.0,
+          icon: Icon(
+            Icons.chevron_left_rounded,
+            color: Colors.white,
+            size: 30.0,
           ),
-          title: Text(
-            'รายการรถที่เข้ามา',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Kanit',
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  letterSpacing: 0.0,
-                ),
-          ),
-          actions: [],
-          centerTitle: true,
-          elevation: 2.0,
+          onPressed: () async {
+            context.pop();
+          },
         ),
-        body: Stack(
-          children: [
-            wrapWithModel(
-              model: _model.backgroundViewModel,
-              updateCallback: () => setState(() {}),
-              child: BackgroundViewWidget(),
+        title: Text(
+          'รายการรถที่เข้ามา',
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
+                fontFamily: 'Kanit',
+                color: Colors.white,
+                fontSize: 22.0,
+                letterSpacing: 0.0,
+              ),
+        ),
+        actions: [],
+        centerTitle: true,
+        elevation: 2.0,
+      ),
+      body: Stack(
+        children: [
+          wrapWithModel(
+            model: _model.backgroundViewModel,
+            updateCallback: () => setState(() {}),
+            child: BackgroundViewWidget(),
+          ),
+          PagedListView<DocumentSnapshot<Object?>?,
+              NotificationListRecord>.separated(
+            pagingController: _model.setListViewController(
+              NotificationListRecord.collection
+                  .where(Filter.or(
+                    Filter(
+                      'resident_ref_list',
+                      arrayContains:
+                          FFAppState().currentResidentData.residentRef,
+                    ),
+                    Filter(
+                      'type',
+                      isEqualTo: ' park',
+                    ),
+                  ))
+                  .orderBy('create_date', descending: true),
             ),
-            PagedListView<DocumentSnapshot<Object?>?,
-                NotificationListRecord>.separated(
-              pagingController: _model.setListViewController(
-                NotificationListRecord.collection
-                    .where(Filter.or(
-                      Filter(
-                        'resident_ref_list',
-                        arrayContains:
-                            FFAppState().currentResidentData.residentRef,
-                      ),
-                      Filter(
-                        'type',
-                        isEqualTo: ' park',
-                      ),
-                    ))
-                    .orderBy('create_date', descending: true),
-              ),
-              padding: EdgeInsets.fromLTRB(
-                0,
-                16.0,
-                0,
-                16.0,
-              ),
-              reverse: false,
-              scrollDirection: Axis.vertical,
-              separatorBuilder: (_, __) => SizedBox(height: 8.0),
-              builderDelegate:
-                  PagedChildBuilderDelegate<NotificationListRecord>(
-                // Customize what your widget looks like when it's loading the first page.
-                firstPageProgressIndicatorBuilder: (_) => Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
+            padding: EdgeInsets.fromLTRB(
+              0,
+              16.0,
+              0,
+              16.0,
+            ),
+            reverse: false,
+            scrollDirection: Axis.vertical,
+            separatorBuilder: (_, __) => SizedBox(height: 8.0),
+            builderDelegate: PagedChildBuilderDelegate<NotificationListRecord>(
+              // Customize what your widget looks like when it's loading the first page.
+              firstPageProgressIndicatorBuilder: (_) => Center(
+                child: SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      FlutterFlowTheme.of(context).primary,
                     ),
                   ),
                 ),
-                // Customize what your widget looks like when it's loading another page.
-                newPageProgressIndicatorBuilder: (_) => Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
+              ),
+              // Customize what your widget looks like when it's loading another page.
+              newPageProgressIndicatorBuilder: (_) => Center(
+                child: SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      FlutterFlowTheme.of(context).primary,
                     ),
                   ),
                 ),
+              ),
 
-                itemBuilder: (context, _, listViewIndex) {
-                  final listViewNotificationListRecord =
-                      _model.listViewPagingController!.itemList![listViewIndex];
-                  return Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Material(
-                      color: Colors.transparent,
-                      elevation: 3.0,
-                      shape: RoundedRectangleBorder(
+              itemBuilder: (context, _, listViewIndex) {
+                final listViewNotificationListRecord =
+                    _model.listViewPagingController!.itemList![listViewIndex];
+                return Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  child: Material(
+                    color: Colors.transparent,
+                    elevation: 3.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Container(
+                      width: 100.0,
+                      height: 100.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(16.0),
                       ),
-                      child: Container(
-                        width: 100.0,
-                        height: 100.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Stack(
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 8.0, 0.0),
-                                            child: FaIcon(
-                                              FontAwesomeIcons.carSide,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 32.0,
-                                            ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Stack(
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 8.0, 0.0),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.carSide,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 32.0,
                                           ),
-                                          Expanded(
-                                            child: Text(
-                                              listViewNotificationListRecord
-                                                  .subject,
-                                              maxLines: 2,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Kanit',
-                                                        fontSize: 18.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional(1.0, 1.0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 8.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                            functions.dateTimeTh(
-                                                listViewNotificationListRecord
-                                                    .createDate!),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            listViewNotificationListRecord
+                                                .subject,
+                                            maxLines: 2,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Kanit',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  fontSize: 12.0,
+                                                  fontSize: 18.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional(1.0, 1.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          functions.dateTimeTh(
+                                              listViewNotificationListRecord
+                                                  .createDate!),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Kanit',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                fontSize: 12.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

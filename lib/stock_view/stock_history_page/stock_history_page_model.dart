@@ -19,7 +19,6 @@ import 'package:webviewx_plus/webviewx_plus.dart';
 class StockHistoryPageModel extends FlutterFlowModel<StockHistoryPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for ListView widget.
@@ -36,7 +35,6 @@ class StockHistoryPageModel extends FlutterFlowModel<StockHistoryPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     listViewStreamSubscriptions.forEach((s) => s?.cancel());
     listViewPagingController?.dispose();
