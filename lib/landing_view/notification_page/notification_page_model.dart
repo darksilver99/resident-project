@@ -88,6 +88,7 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
                   : FocusScope.of(context).unfocus(),
               child: CustomInfoAlertViewWidget(
                 title: 'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
+                status: 'failed',
               ),
             ),
           ),
