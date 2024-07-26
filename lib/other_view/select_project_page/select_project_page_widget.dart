@@ -64,6 +64,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                       : FocusScope.of(context).unfocus(),
                   child: CustomInfoAlertViewWidget(
                     title: 'สแกน QRCode จากเจ้าหน้าที่นิติเพื่อเข้าร่วมโครงการ',
+                    status: 'info',
                   ),
                 ),
               ),
@@ -98,6 +99,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                             : FocusScope.of(context).unfocus(),
                         child: CustomInfoAlertViewWidget(
                           title: 'ท่านอยู่ในโครงการนี้แล้ว',
+                          status: 'info',
                         ),
                       ),
                     ),
@@ -174,6 +176,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                       child: CustomInfoAlertViewWidget(
                         title:
                             'ขออภัยไม่พบโครงการนี้ กรุณาตรวจสอบ QR Code หรือติดต่อเจ้าหน้าโครงการ',
+                        status: 'failed',
                       ),
                     ),
                   ),
@@ -200,6 +203,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                     child: CustomInfoAlertViewWidget(
                       title:
                           'ขออภัยไม่พบโครงการนี้ กรุณาตรวจสอบ QR Code หรือติดต่อเจ้าหน้าโครงการ',
+                      status: 'failed',
                     ),
                   ),
                 ),
@@ -319,6 +323,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                               child: CustomInfoAlertViewWidget(
                                                 title:
                                                     'ท่านอยู่ในโครงการนี้แล้ว',
+                                                status: 'info',
                                               ),
                                             ),
                                           ),
@@ -412,6 +417,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                             child: CustomInfoAlertViewWidget(
                                               title:
                                                   'ขออภัยไม่พบโครงการนี้ กรุณาตรวจสอบ QR Code หรือติดต่อเจ้าหน้าโครงการ',
+                                              status: 'failed',
                                             ),
                                           ),
                                         ),
@@ -441,6 +447,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                           child: CustomInfoAlertViewWidget(
                                             title:
                                                 'ขออภัยไม่พบโครงการนี้ กรุณาตรวจสอบ QR Code หรือติดต่อเจ้าหน้าโครงการ',
+                                            status: 'failed',
                                           ),
                                         ),
                                       ),

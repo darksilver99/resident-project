@@ -327,6 +327,7 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                                                     CustomInfoAlertViewWidget(
                                                   title:
                                                       'ประทับตราเรียบร้อยแล้ว',
+                                                  status: 'success',
                                                 ),
                                               ),
                                             );
@@ -351,6 +352,7 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
                                                     CustomInfoAlertViewWidget(
                                                   title:
                                                       'รายการนี้มีการประทับตราไปแล้ว',
+                                                  status: 'info',
                                                 ),
                                               ),
                                             );

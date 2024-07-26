@@ -20,7 +20,12 @@ import 'water_payment_page_model.dart';
 export 'water_payment_page_model.dart';
 
 class WaterPaymentPageWidget extends StatefulWidget {
-  const WaterPaymentPageWidget({super.key});
+  const WaterPaymentPageWidget({
+    super.key,
+    required this.title,
+  });
+
+  final String? title;
 
   @override
   State<WaterPaymentPageWidget> createState() => _WaterPaymentPageWidgetState();
@@ -85,7 +90,10 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
             },
           ),
           title: Text(
-            'แจ้งชำระค่าน้ำ',
+            valueOrDefault<String>(
+              widget!.title,
+              '-',
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Kanit',
                   color: Colors.white,
@@ -1055,6 +1063,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                                           'ส่งข้อมูลไปยังเจ้าหน้าที่โครงการแล้ว',
                                                       detail:
                                                           'กรุณารอการตรวจสอบจากเจ้าหน้าที่ ท่านสามารถตรวจสอบสถานะได้ที่เมนูประวัติการชำระ (มุมขวาบน)',
+                                                      status: 'success',
                                                     ),
                                                   ),
                                                 ),
@@ -1093,6 +1102,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                                     child:
                                                         CustomInfoAlertViewWidget(
                                                       title: 'กรุณาแนบรูปบิล',
+                                                      status: 'failed',
                                                     ),
                                                   ),
                                                 ),
@@ -1127,6 +1137,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                                   child:
                                                       CustomInfoAlertViewWidget(
                                                     title: 'กรุณาแนบรูปสลิป',
+                                                    status: 'failed',
                                                   ),
                                                 ),
                                               ),

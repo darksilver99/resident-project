@@ -15,7 +15,12 @@ import 'issue_project_page_model.dart';
 export 'issue_project_page_model.dart';
 
 class IssueProjectPageWidget extends StatefulWidget {
-  const IssueProjectPageWidget({super.key});
+  const IssueProjectPageWidget({
+    super.key,
+    required this.title,
+  });
+
+  final String? title;
 
   @override
   State<IssueProjectPageWidget> createState() => _IssueProjectPageWidgetState();
@@ -86,7 +91,10 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
             },
           ),
           title: Text(
-            'แจ้งปัญหาโครงการ',
+            valueOrDefault<String>(
+              widget!.title,
+              '-',
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Kanit',
                   color: Colors.white,
@@ -561,6 +569,7 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
                                                     CustomInfoAlertViewWidget(
                                                   title:
                                                       'ส่งข้อมูลไปยังเจ้าหน้าที่โครงการแล้ว',
+                                                  status: 'success',
                                                 ),
                                               ),
                                             ),

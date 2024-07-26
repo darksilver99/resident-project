@@ -107,6 +107,20 @@
       ]
     },
     {
+      "collectionGroup": "phone_project_list",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "create_date",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "banner_project_list",
       "queryScope": "COLLECTION",
       "fields": [

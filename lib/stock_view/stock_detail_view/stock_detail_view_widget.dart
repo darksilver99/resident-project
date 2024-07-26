@@ -427,6 +427,7 @@ class _StockDetailViewWidgetState extends State<StockDetailViewWidget> {
                                                         CustomInfoAlertViewWidget(
                                                       title:
                                                           'รับพัสดุเรียบร้อยแล้วรายการจะย้ายไปยัง \"รายการประวัติพัสดุ\"',
+                                                      status: 'success',
                                                     ),
                                                   ),
                                                 );

@@ -15,7 +15,12 @@ import 'news_page_model.dart';
 export 'news_page_model.dart';
 
 class NewsPageWidget extends StatefulWidget {
-  const NewsPageWidget({super.key});
+  const NewsPageWidget({
+    super.key,
+    required this.title,
+  });
+
+  final String? title;
 
   @override
   State<NewsPageWidget> createState() => _NewsPageWidgetState();
@@ -68,7 +73,10 @@ class _NewsPageWidgetState extends State<NewsPageWidget> {
             },
           ),
           title: Text(
-            'แจ้งข่าวสาร',
+            valueOrDefault<String>(
+              widget!.title,
+              '-',
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Kanit',
                   color: Colors.white,

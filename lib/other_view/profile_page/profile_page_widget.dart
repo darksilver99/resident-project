@@ -839,6 +839,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                 CustomInfoAlertViewWidget(
                                                               title:
                                                                   'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                                              status: 'success',
                                                             ),
                                                           ),
                                                         ),
