@@ -196,7 +196,7 @@ class _PhoneProjectPageWidgetState extends State<PhoneProjectPageWidget> {
                                                       .secondaryText,
                                               fontSize: 16.0,
                                               letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ],
