@@ -251,6 +251,7 @@ class _ForgetPasswordPageWidgetState extends State<ForgetPasswordPageWidget> {
                                                       'ระบบได้ส่งข้อมูลการรีเซ็ตรหัสผ่านไปยังอีเมล ${_model.emailTextController.text} แล้ว',
                                                   detail:
                                                       'กรุณาตรวจสอบอีเมลของท่าน ทั้งใน \"Inbox\" และ \"Junk mail\"',
+                                                  status: 'info',
                                                 ),
                                               ),
                                             ),

@@ -161,17 +161,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'IssueProjectPage',
           path: '/issueProjectPage',
-          builder: (context, params) => IssueProjectPageWidget(),
+          builder: (context, params) => IssueProjectPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'TransactionPage',
           path: '/transactionPage',
-          builder: (context, params) => TransactionPageWidget(),
+          builder: (context, params) => TransactionPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'NewsPage',
           path: '/newsPage',
-          builder: (context, params) => NewsPageWidget(),
+          builder: (context, params) => NewsPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'SettingGeneralPage',
@@ -196,7 +211,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'StockPage',
           path: '/stockPage',
-          builder: (context, params) => StockPageWidget(),
+          builder: (context, params) => StockPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'StockHistoryPage',
@@ -211,12 +231,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'WaterPaymentPage',
           path: '/waterPaymentPage',
-          builder: (context, params) => WaterPaymentPageWidget(),
+          builder: (context, params) => WaterPaymentPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'WaterPaymentListPage',
           path: '/waterPaymentListPage',
           builder: (context, params) => WaterPaymentListPageWidget(),
+        ),
+        FFRoute(
+          name: 'PhoneProjectPage',
+          path: '/phoneProjectPage',
+          builder: (context, params) => PhoneProjectPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

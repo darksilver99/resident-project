@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -154,6 +155,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   child: CustomInfoAlertViewWidget(
                     title: 'ขออภัยผู้ใช้นี้ไม่สามารถใช้งานระบบนี้ได้',
                     detail: 'เนื่องจากบัญชีนี้มีการลงทะเบียนใช้ระบบอื่นแล้ว',
+                    status: 'info',
                   ),
                 ),
               ),
@@ -451,8 +453,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             .url !=
                                                                         '') {
                                                                   await launchURL(
-                                                                      bannerProjectListViewItem
-                                                                          .url);
+                                                                      functions.ensureHttps(
+                                                                          bannerProjectListViewItem
+                                                                              .url));
                                                                 }
                                                               },
                                                               text:
@@ -723,6 +726,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     context,
                                                     gridViewResidentServiceListRecord
                                                         .pathName,
+                                                    gridViewResidentServiceListRecord
+                                                        .subject,
                                                   );
                                                 } else if (gridViewResidentServiceListRecord
                                                         .type ==
@@ -785,6 +790,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 'สถานะลูกบ้านอยู่ในระหว่างรออนุมัติ',
                                                             detail:
                                                                 'กรุณารออนุมัติจากเจ้าหน้าที่โครงการ หรือหากเจ้าหน้าที่โครงการอนุมัติแล้วกรุณาปิด/เปิดแอปใหม่อีกครั้ง',
+                                                            status: 'info',
                                                           ),
                                                         ),
                                                       ),

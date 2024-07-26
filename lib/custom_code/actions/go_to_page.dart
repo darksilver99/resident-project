@@ -13,7 +13,20 @@ import 'package:flutter/material.dart';
 Future goToPage(
   BuildContext context,
   String pathName,
+  String title,
 ) async {
   // Add your function code here!
-  context.pushNamed(pathName);
+  if (title == "") {
+    context.pushNamed(pathName);
+  } else {
+    context.pushNamed(
+      pathName,
+      queryParameters: {
+        'title': serializeParam(
+          title,
+          ParamType.String,
+        ),
+      }.withoutNulls,
+    );
+  }
 }

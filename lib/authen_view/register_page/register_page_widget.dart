@@ -781,6 +781,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           CustomInfoAlertViewWidget(
                                                         title:
                                                             'กรุณายอมรับนโยบายความเป็นส่วนตัว',
+                                                        status: 'failed',
                                                       ),
                                                     ),
                                                   ),

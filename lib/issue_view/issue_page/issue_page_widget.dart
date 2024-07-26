@@ -478,6 +478,7 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                                       'ส่งข้อมูลไปยังระบบเรียบร้อยแล้ว',
                                                   detail:
                                                       'เราจะแก้ปัญหาของท่านโดยเร็วที่สุด ขออภัยในความไม่สะดวก',
+                                                  status: 'success',
                                                 ),
                                               ),
                                             ),

@@ -329,6 +329,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                 'สถานะลูกบ้านอยู่ในระหว่างรออนุมัติ',
                                             detail:
                                                 'กรุณารออนุมัติจากเจ้าหน้าที่โครงการ หรือหากเจ้าหน้าที่โครงการอนุมัติแล้วกรุณาปิด/เปิดแอปใหม่อีกครั้ง',
+                                            status: 'info',
                                           ),
                                         ),
                                       ),

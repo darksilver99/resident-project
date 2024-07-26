@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'custom_info_alert_view_model.dart';
 export 'custom_info_alert_view_model.dart';
@@ -12,7 +13,7 @@ class CustomInfoAlertViewWidget extends StatefulWidget {
     super.key,
     required this.title,
     this.detail,
-    this.status,
+    required this.status,
   });
 
   final String? title;
@@ -88,6 +89,52 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Builder(
+                              builder: (context) {
+                                if (widget!.status == 'failed') {
+                                  return Lottie.asset(
+                                    'assets/lottie_animations/warning.json',
+                                    width: 150.0,
+                                    height: 130.0,
+                                    fit: BoxFit.contain,
+                                    repeat: false,
+                                    animate: true,
+                                  );
+                                } else if (widget!.status == 'success') {
+                                  return Lottie.asset(
+                                    'assets/lottie_animations/success.json',
+                                    width: 150.0,
+                                    height: 130.0,
+                                    fit: BoxFit.contain,
+                                    repeat: false,
+                                    animate: true,
+                                  );
+                                } else {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Text(
                       valueOrDefault<String>(
                         widget!.title,
@@ -97,12 +144,14 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Kanit',
                             color: () {
-                              if (widget!.status == 'success') {
+                              if (widget!.status == 'failed') {
+                                return FlutterFlowTheme.of(context).error;
+                              } else if (widget!.status == 'success') {
                                 return FlutterFlowTheme.of(context).success;
                               } else if (widget!.status == 'info') {
                                 return FlutterFlowTheme.of(context).primaryText;
                               } else {
-                                return FlutterFlowTheme.of(context).error;
+                                return FlutterFlowTheme.of(context).primaryText;
                               }
                             }(),
                             fontSize: 20.0,

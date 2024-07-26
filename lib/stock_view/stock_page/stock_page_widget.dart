@@ -17,7 +17,12 @@ import 'stock_page_model.dart';
 export 'stock_page_model.dart';
 
 class StockPageWidget extends StatefulWidget {
-  const StockPageWidget({super.key});
+  const StockPageWidget({
+    super.key,
+    required this.title,
+  });
+
+  final String? title;
 
   @override
   State<StockPageWidget> createState() => _StockPageWidgetState();
@@ -70,7 +75,10 @@ class _StockPageWidgetState extends State<StockPageWidget> {
             },
           ),
           title: Text(
-            'รายการพัสดุ',
+            valueOrDefault<String>(
+              widget!.title,
+              '-',
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Kanit',
                   color: Colors.white,

@@ -68,3 +68,10 @@ String getIssueStatus(
   }
   return '-';
 }
+
+String ensureHttps(String url) {
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    return 'https://$url';
+  }
+  return url;
+}

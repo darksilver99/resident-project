@@ -20,7 +20,12 @@ import 'transaction_page_model.dart';
 export 'transaction_page_model.dart';
 
 class TransactionPageWidget extends StatefulWidget {
-  const TransactionPageWidget({super.key});
+  const TransactionPageWidget({
+    super.key,
+    required this.title,
+  });
+
+  final String? title;
 
   @override
   State<TransactionPageWidget> createState() => _TransactionPageWidgetState();
@@ -73,7 +78,10 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
             },
           ),
           title: Text(
-            'รายการผู้เข้าพบ',
+            valueOrDefault<String>(
+              widget!.title,
+              '-',
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Kanit',
                   color: Colors.white,
@@ -99,6 +107,12 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                 }
                 context.pushNamed(
                   'TransactionPage',
+                  queryParameters: {
+                    'title': serializeParam(
+                      widget!.title,
+                      ParamType.String,
+                    ),
+                  }.withoutNulls,
                   extra: <String, dynamic>{
                     kTransitionInfoKey: TransitionInfo(
                       hasTransition: true,
@@ -211,6 +225,12 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                 }
                                 context.pushNamed(
                                   'TransactionPage',
+                                  queryParameters: {
+                                    'title': serializeParam(
+                                      widget!.title,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -241,6 +261,7 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                         child: CustomInfoAlertViewWidget(
                                           title:
                                               'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
+                                          status: 'failed',
                                         ),
                                       ),
                                     ),
