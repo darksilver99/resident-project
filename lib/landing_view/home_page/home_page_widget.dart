@@ -46,8 +46,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (valueOrDefault(currentUserDocument?.type, '') == 'resident') {
         await _model.checkAppVersion(context);
-        if (FFAppState().currentProjectData.name == null ||
-            FFAppState().currentProjectData.name == '') {
+        if (FFAppState().currentProjectData.projectRef == null) {
           if ((currentUserDocument?.projectList?.toList() ?? []).length == 1) {
             _model.projectResult = await ProjectListRecord.getDocumentOnce(
                 (currentUserDocument?.projectList?.toList() ?? []).first);
@@ -81,57 +80,76 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             return;
           }
         } else {
-          _model.projectResult2 = await ProjectListRecord.getDocumentOnce(
-              (currentUserDocument?.projectList?.toList() ?? []).first);
-          await action_blocks.setCurrentProjectData(
+          _model.isLiveInProject = await action_blocks.checkStatusLiveInProject(
             context,
-            projectDocument: _model.projectResult2,
+            currentProjectList:
+                (currentUserDocument?.projectList?.toList() ?? []),
           );
-          _model.residentDoc2 = await queryResidentListRecordOnce(
-            queryBuilder: (residentListRecord) => residentListRecord.where(
-              'create_by',
-              isEqualTo: currentUserReference,
-            ),
-            singleRecord: true,
-          ).then((s) => s.firstOrNull);
-          await action_blocks.setCurrentResidentData(
-            context,
-            residentDocument: _model.residentDoc2,
-          );
+          if (_model.isLiveInProject!) {
+            _model.projectResult2 = await ProjectListRecord.getDocumentOnce(
+                FFAppState().currentProjectData.projectRef!);
+            await action_blocks.setCurrentProjectData(
+              context,
+              projectDocument: _model.projectResult2,
+            );
+            _model.residentDoc2 = await queryResidentListRecordOnce(
+              queryBuilder: (residentListRecord) => residentListRecord.where(
+                'create_by',
+                isEqualTo: currentUserReference,
+              ),
+              singleRecord: true,
+            ).then((s) => s.firstOrNull);
+            await action_blocks.setCurrentResidentData(
+              context,
+              residentDocument: _model.residentDoc2,
+            );
+          } else {
+            await showDialog(
+              context: context,
+              builder: (dialogContext) {
+                return Dialog(
+                  elevation: 0,
+                  insetPadding: EdgeInsets.zero,
+                  backgroundColor: Colors.transparent,
+                  alignment: AlignmentDirectional(0.0, 0.0)
+                      .resolve(Directionality.of(context)),
+                  child: WebViewAware(
+                    child: CustomInfoAlertViewWidget(
+                      title:
+                          'ท่านไม่ได้อยู่ในโครงการนี้แล้ว กรุณาติดต่อเจ้าหน้าที่โครงการ',
+                      status: 'failed',
+                    ),
+                  ),
+                );
+              },
+            ).then((value) => setState(() {}));
+
+            context.goNamedAuth(
+              'SelectProjectPage',
+              context.mounted,
+              queryParameters: {
+                'isCanBack': serializeParam(
+                  false,
+                  ParamType.bool,
+                ),
+              }.withoutNulls,
+            );
+
+            return;
+          }
         }
 
         await _model.setFirebaseToken(context);
         await actions.subscriptTopic();
-        _model.isLiveInProject = await action_blocks.checkStatusLiveInProject(
-          context,
-          currentProjectList:
-              (currentUserDocument?.projectList?.toList() ?? []),
+        _model.bannerProjectResult = await queryBannerProjectListRecordOnce(
+          queryBuilder: (bannerProjectListRecord) => bannerProjectListRecord
+              .where(
+                'status',
+                isEqualTo: 1,
+              )
+              .orderBy('seq'),
+          limit: 6,
         );
-        if (!_model.isLiveInProject!) {
-          context.goNamedAuth(
-            'SelectProjectPage',
-            context.mounted,
-            queryParameters: {
-              'isCanBack': serializeParam(
-                false,
-                ParamType.bool,
-              ),
-            }.withoutNulls,
-          );
-
-          return;
-        } else {
-          _model.bannerProjectResult = await queryBannerProjectListRecordOnce(
-            queryBuilder: (bannerProjectListRecord) => bannerProjectListRecord
-                .where(
-                  'status',
-                  isEqualTo: 1,
-                )
-                .orderBy('seq'),
-            limit: 6,
-          );
-        }
-
         _model.isLoading = false;
         _model.bannerProjectList = _model.bannerProjectResult!
             .toList()
