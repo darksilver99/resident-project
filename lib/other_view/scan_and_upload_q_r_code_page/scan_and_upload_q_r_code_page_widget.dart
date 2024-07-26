@@ -82,6 +82,7 @@ class _ScanAndUploadQRCodePageWidgetState
             decoration: BoxDecoration(
               color: Color(0x00FFFFFF),
             ),
+            child: CustomQRCodeView(),
           ),
           Align(
             alignment: AlignmentDirectional(0.0, 1.0),
