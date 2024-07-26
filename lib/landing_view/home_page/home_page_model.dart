@@ -120,6 +120,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
                     : FocusScope.of(context).unfocus(),
                 child: CustomInfoAlertViewWidget(
                   title: 'กรุณาอัพเดทแอปพลิเคชั่นและเปิดใหม่อีกครั้ง',
+                  status: 'info',
                 ),
               ),
             ),
