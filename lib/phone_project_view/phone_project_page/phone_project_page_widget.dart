@@ -170,20 +170,23 @@ class _PhoneProjectPageWidgetState extends State<PhoneProjectPageWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        listViewPhoneProjectListRecord.phone,
-                                        maxLines: 1,
+                                        listViewPhoneProjectListRecord.subject,
+                                        maxLines: 2,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Kanit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
                                               fontSize: 20.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
                                       ),
                                       Text(
-                                        listViewPhoneProjectListRecord.subject,
-                                        maxLines: 2,
+                                        listViewPhoneProjectListRecord.phone,
+                                        maxLines: 1,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
