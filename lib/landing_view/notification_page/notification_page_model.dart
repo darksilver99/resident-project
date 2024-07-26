@@ -31,7 +31,6 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - checkStatusLiveInProject] action in NotificationPage widget.
   bool? isLiveInProject;
   // Model for BackgroundView component.
@@ -62,7 +61,6 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     listViewStreamSubscriptions.forEach((s) => s?.cancel());
     listViewPagingController?.dispose();
@@ -82,14 +80,9 @@ class NotificationPageModel extends FlutterFlowModel<NotificationPageWidget> {
           alignment: AlignmentDirectional(0.0, 0.0)
               .resolve(Directionality.of(context)),
           child: WebViewAware(
-            child: GestureDetector(
-              onTap: () => unfocusNode.canRequestFocus
-                  ? FocusScope.of(context).requestFocus(unfocusNode)
-                  : FocusScope.of(context).unfocus(),
-              child: CustomInfoAlertViewWidget(
-                title: 'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
-                status: 'failed',
-              ),
+            child: CustomInfoAlertViewWidget(
+              title: 'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
+              status: 'failed',
             ),
           ),
         );

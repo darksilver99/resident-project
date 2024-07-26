@@ -21,7 +21,6 @@ import 'package:webviewx_plus/webviewx_plus.dart';
 class TransactionPageModel extends FlutterFlowModel<TransactionPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for ListView widget.
@@ -43,7 +42,6 @@ class TransactionPageModel extends FlutterFlowModel<TransactionPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     listViewStreamSubscriptions.forEach((s) => s?.cancel());
     listViewPagingController?.dispose();

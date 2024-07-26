@@ -21,7 +21,6 @@ class SettingPageModel extends FlutterFlowModel<SettingPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - checkStatusLiveInProject] action in SettingPage widget.
   bool? isLiveInProject;
   // Model for BackgroundView component.
@@ -39,7 +38,6 @@ class SettingPageModel extends FlutterFlowModel<SettingPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     loadingViewModel.dispose();
   }

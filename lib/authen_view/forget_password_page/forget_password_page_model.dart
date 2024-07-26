@@ -15,7 +15,6 @@ class ForgetPasswordPageModel
     extends FlutterFlowModel<ForgetPasswordPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
@@ -39,7 +38,6 @@ class ForgetPasswordPageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     emailFocusNode?.dispose();
     emailTextController?.dispose();

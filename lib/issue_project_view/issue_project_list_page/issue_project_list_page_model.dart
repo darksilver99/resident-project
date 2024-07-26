@@ -17,7 +17,6 @@ class IssueProjectListPageModel
     extends FlutterFlowModel<IssueProjectListPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
 
@@ -28,7 +27,6 @@ class IssueProjectListPageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
   }
 }

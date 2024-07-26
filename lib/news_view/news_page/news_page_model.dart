@@ -16,7 +16,6 @@ import 'package:webviewx_plus/webviewx_plus.dart';
 class NewsPageModel extends FlutterFlowModel<NewsPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for GridView widget.
@@ -32,7 +31,6 @@ class NewsPageModel extends FlutterFlowModel<NewsPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     gridViewStreamSubscriptions.forEach((s) => s?.cancel());
     gridViewPagingController?.dispose();

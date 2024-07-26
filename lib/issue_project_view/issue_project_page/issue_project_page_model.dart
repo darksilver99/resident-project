@@ -16,7 +16,6 @@ import 'package:webviewx_plus/webviewx_plus.dart';
 class IssueProjectPageModel extends FlutterFlowModel<IssueProjectPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
@@ -92,7 +91,6 @@ class IssueProjectPageModel extends FlutterFlowModel<IssueProjectPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     backgroundViewModel.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
