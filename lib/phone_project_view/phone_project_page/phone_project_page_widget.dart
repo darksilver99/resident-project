@@ -65,34 +65,17 @@ class _PhoneProjectPageWidgetState extends State<PhoneProjectPageWidget> {
             context.pop();
           },
         ),
-        title: InkWell(
-          splashColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () async {
-            context.pushNamed(
-              'PhoneProjectPage',
-              queryParameters: {
-                'title': serializeParam(
-                  'aaaa',
-                  ParamType.String,
-                ),
-              }.withoutNulls,
-            );
-          },
-          child: Text(
-            valueOrDefault<String>(
-              widget!.title,
-              '-',
-            ),
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Kanit',
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  letterSpacing: 0.0,
-                ),
+        title: Text(
+          valueOrDefault<String>(
+            widget!.title,
+            '-',
           ),
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
+                fontFamily: 'Kanit',
+                color: Colors.white,
+                fontSize: 22.0,
+                letterSpacing: 0.0,
+              ),
         ),
         actions: [],
         centerTitle: true,
@@ -187,13 +170,31 @@ class _PhoneProjectPageWidgetState extends State<PhoneProjectPageWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        listViewPhoneProjectListRecord.phone,
-                                        maxLines: 3,
+                                        listViewPhoneProjectListRecord.subject,
+                                        maxLines: 2,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Kanit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
                                               fontSize: 20.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                      Text(
+                                        listViewPhoneProjectListRecord.phone,
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              fontSize: 16.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
