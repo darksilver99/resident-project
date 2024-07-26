@@ -14,7 +14,9 @@ import '/stock_view/stock_detail_view/stock_detail_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -52,6 +54,14 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
         await currentUserReference!.update(createUsersRecordData(
           totalNotification: 0,
         ));
+        _model.serviceIcon = await queryResidentServiceListRecordOnce(
+          parent: FFAppState().currentProjectData.projectRef,
+          queryBuilder: (residentServiceListRecord) =>
+              residentServiceListRecord.where(
+            'status',
+            isEqualTo: 1,
+          ),
+        );
         _model.isLoading = false;
         setState(() {});
       } else {
@@ -344,66 +354,125 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                         if (listViewNotificationListRecord
                                                                 .type ==
                                                             'park') {
-                                                          return FaIcon(
-                                                            FontAwesomeIcons
-                                                                .carSide,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                          return ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        0.0),
+                                                            child:
+                                                                CachedNetworkImage(
+                                                              fadeInDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          500),
+                                                              fadeOutDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          500),
+                                                              imageUrl: _model
+                                                                  .serviceIcon!
+                                                                  .where((e) =>
+                                                                      e.pathName ==
+                                                                      'TransactionPage')
+                                                                  .toList()
+                                                                  .first
+                                                                  .icon,
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           );
                                                         } else if (listViewNotificationListRecord
                                                                 .type ==
                                                             'news') {
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0,
+                                                          return ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
                                                                         0.0),
-                                                            child: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .solidNewspaper,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
+                                                            child:
+                                                                CachedNetworkImage(
+                                                              fadeInDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          500),
+                                                              fadeOutDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          500),
+                                                              imageUrl: _model
+                                                                  .serviceIcon!
+                                                                  .where((e) =>
+                                                                      e.pathName ==
+                                                                      'NewsPage')
+                                                                  .toList()
+                                                                  .first
+                                                                  .icon,
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
                                                             ),
                                                           );
                                                         } else if (listViewNotificationListRecord
                                                                 .type ==
                                                             'stock') {
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0,
+                                                          return ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
                                                                         0.0),
-                                                            child: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .box,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
+                                                            child:
+                                                                CachedNetworkImage(
+                                                              fadeInDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          500),
+                                                              fadeOutDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          500),
+                                                              imageUrl: _model
+                                                                  .serviceIcon!
+                                                                  .where((e) =>
+                                                                      e.pathName ==
+                                                                      'StockPage')
+                                                                  .toList()
+                                                                  .first
+                                                                  .icon,
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
                                                             ),
                                                           );
                                                         } else {
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0,
+                                                          return ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
                                                                         0.0),
-                                                            child: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .solidBell,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
+                                                            child:
+                                                                CachedNetworkImage(
+                                                              fadeInDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          500),
+                                                              fadeOutDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          500),
+                                                              imageUrl:
+                                                                  'https://www.silver-api.com/smart-product/resident_app/icon/noti.png',
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
                                                             ),
                                                           );
                                                         }
