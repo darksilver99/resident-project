@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
+import '/component/no_data_view/no_data_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -145,7 +146,7 @@ class _NewsPageWidgetState extends State<NewsPageWidget> {
                           ),
                         ),
                       ),
-
+                      noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(),
                       itemBuilder: (context, _, gridViewIndex) {
                         final gridViewNewsListRecord = _model
                             .gridViewPagingController!.itemList![gridViewIndex];
