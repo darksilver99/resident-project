@@ -361,8 +361,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 image: Image
                                                                     .network(
                                                                   bannerProjectListViewItem
-                                                                      .images
-                                                                      .first,
+                                                                          .images
+                                                                          .isNotEmpty
+                                                                      ? bannerProjectListViewItem
+                                                                          .images
+                                                                          .first
+                                                                      : 'aaa',
                                                                   fit: BoxFit
                                                                       .contain,
                                                                   errorBuilder: (context,
@@ -377,10 +381,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 ),
                                                                 allowRotation:
                                                                     false,
-                                                                tag:
-                                                                    bannerProjectListViewItem
+                                                                tag: bannerProjectListViewItem
                                                                         .images
-                                                                        .first,
+                                                                        .isNotEmpty
+                                                                    ? bannerProjectListViewItem
+                                                                        .images
+                                                                        .first
+                                                                    : 'aaa',
                                                                 useHeroAnimation:
                                                                     true,
                                                               ),
@@ -388,9 +395,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           );
                                                         },
                                                         child: Hero(
-                                                          tag:
-                                                              bannerProjectListViewItem
-                                                                  .images.first,
+                                                          tag: bannerProjectListViewItem
+                                                                  .images
+                                                                  .isNotEmpty
+                                                              ? bannerProjectListViewItem
+                                                                  .images.first
+                                                              : 'aaa',
                                                           transitionOnUserGestures:
                                                               true,
                                                           child: ClipRRect(
@@ -401,7 +411,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             child:
                                                                 Image.network(
                                                               bannerProjectListViewItem
-                                                                  .images.first,
+                                                                      .images
+                                                                      .isNotEmpty
+                                                                  ? bannerProjectListViewItem
+                                                                      .images
+                                                                      .first
+                                                                  : 'aaa',
                                                               width: double
                                                                   .infinity,
                                                               height: 200.0,
