@@ -19,10 +19,6 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "type",
-          "order": "ASCENDING"
-        },
-        {
           "fieldPath": "resident_ref_list",
           "arrayConfig": "CONTAINS"
         },
@@ -36,6 +32,10 @@
       "collectionGroup": "notification_list",
       "queryScope": "COLLECTION",
       "fields": [
+        {
+          "fieldPath": "type",
+          "order": "ASCENDING"
+        },
         {
           "fieldPath": "resident_ref_list",
           "arrayConfig": "CONTAINS"

@@ -9,8 +9,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/news_view/news_detail_view/news_detail_view_widget.dart';
-import '/stamp_online_view/stamp_detail_view/stamp_detail_view_widget.dart';
 import '/stock_view/stock_detail_view/stock_detail_view_widget.dart';
+import '/transaction_view/transaction_detail_view/transaction_detail_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -195,7 +195,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: StampDetailViewWidget(
+                                          child: TransactionDetailViewWidget(
                                             transactionDocument:
                                                 _model.transactionDoc!,
                                           ),
