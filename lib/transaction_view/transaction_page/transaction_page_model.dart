@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/is_stamp_view/is_stamp_view_widget.dart';
+import '/component/loading_view/loading_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -44,10 +45,13 @@ class TransactionPageModel extends FlutterFlowModel<TransactionPageWidget> {
   TransactionListRecord? transactionDoc;
   // Stores action output result for [Bottom Sheet - TransactionDetailView] action in Container widget.
   String? isStamp;
+  // Model for LoadingView component.
+  late LoadingViewModel loadingViewModel;
 
   @override
   void initState(BuildContext context) {
     backgroundViewModel = createModel(context, () => BackgroundViewModel());
+    loadingViewModel = createModel(context, () => LoadingViewModel());
   }
 
   @override
@@ -55,6 +59,8 @@ class TransactionPageModel extends FlutterFlowModel<TransactionPageWidget> {
     backgroundViewModel.dispose();
     listViewStreamSubscriptions.forEach((s) => s?.cancel());
     listViewPagingController?.dispose();
+
+    loadingViewModel.dispose();
   }
 
   /// Additional helper methods.
