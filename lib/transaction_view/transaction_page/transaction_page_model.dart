@@ -23,6 +23,10 @@ import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class TransactionPageModel extends FlutterFlowModel<TransactionPageWidget> {
+  ///  Local state fields for this page.
+
+  bool isLoading = true;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in TransactionPage widget.
