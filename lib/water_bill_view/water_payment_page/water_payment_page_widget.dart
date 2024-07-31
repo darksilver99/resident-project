@@ -580,6 +580,14 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                                                 _model.removeFromImageBillList(
                                                                     imageBillListViewItem);
                                                                 setState(() {});
+                                                                setState(() {
+                                                                  _model.isDataUploading1 =
+                                                                      false;
+                                                                  _model.uploadedLocalFile1 =
+                                                                      FFUploadedFile(
+                                                                          bytes:
+                                                                              Uint8List.fromList([]));
+                                                                });
                                                               }
 
                                                               setState(() {});
@@ -822,6 +830,14 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                                                 _model.removeFromImageSlipList(
                                                                     imageSlipListViewItem);
                                                                 setState(() {});
+                                                                setState(() {
+                                                                  _model.isDataUploading2 =
+                                                                      false;
+                                                                  _model.uploadedLocalFile2 =
+                                                                      FFUploadedFile(
+                                                                          bytes:
+                                                                              Uint8List.fromList([]));
+                                                                });
                                                               }
 
                                                               setState(() {});
