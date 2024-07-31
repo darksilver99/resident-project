@@ -317,7 +317,7 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                                         .secondaryBackground,
                                                   ),
                                                   child: Visibility(
-                                                    visible: _model.isLoading,
+                                                    visible: !_model.isLoading,
                                                     child: ClipRRect(
                                                       borderRadius:
                                                           BorderRadius.circular(
