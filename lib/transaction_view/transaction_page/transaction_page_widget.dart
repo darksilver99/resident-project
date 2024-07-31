@@ -55,6 +55,8 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
           isEqualTo: 1,
         ),
       );
+      _model.isLoading = false;
+      setState(() {});
     });
   }
 
@@ -315,11 +317,7 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                                         .secondaryBackground,
                                                   ),
                                                   child: Visibility(
-                                                    visible: _model
-                                                                .serviceIcon !=
-                                                            null &&
-                                                        (_model.serviceIcon)!
-                                                            .isNotEmpty,
+                                                    visible: _model.isLoading,
                                                     child: ClipRRect(
                                                       borderRadius:
                                                           BorderRadius.circular(
