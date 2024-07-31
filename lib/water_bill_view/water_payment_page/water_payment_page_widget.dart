@@ -819,7 +819,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                                                       null) &&
                                                                   _model
                                                                       .isConfirm2!) {
-                                                                _model.removeFromImageBillList(
+                                                                _model.removeFromImageSlipList(
                                                                     imageSlipListViewItem);
                                                                 setState(() {});
                                                               }
