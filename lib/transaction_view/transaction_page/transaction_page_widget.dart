@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/is_stamp_view/is_stamp_view_widget.dart';
+import '/component/loading_view/loading_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -114,210 +115,210 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
             updateCallback: () => setState(() {}),
             child: BackgroundViewWidget(),
           ),
-          RefreshIndicator(
-            onRefresh: () async {
-              if (Navigator.of(context).canPop()) {
-                context.pop();
-              }
-              context.pushNamed(
-                'TransactionPage',
-                queryParameters: {
-                  'title': serializeParam(
-                    widget!.title,
-                    ParamType.String,
-                  ),
-                }.withoutNulls,
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
-            },
-            child: PagedListView<DocumentSnapshot<Object?>?,
-                NotificationListRecord>.separated(
-              pagingController: _model.setListViewController(
-                NotificationListRecord.collection
-                    .where(
-                      'resident_ref_list',
-                      arrayContains:
-                          FFAppState().currentResidentData.residentRef,
-                    )
-                    .where(
-                      'type',
-                      isEqualTo: 'park',
-                    )
-                    .orderBy('create_date', descending: true),
-              ),
-              padding: EdgeInsets.fromLTRB(
-                0,
-                16.0,
-                0,
-                16.0,
-              ),
-              reverse: false,
-              scrollDirection: Axis.vertical,
-              separatorBuilder: (_, __) => SizedBox(height: 8.0),
-              builderDelegate:
-                  PagedChildBuilderDelegate<NotificationListRecord>(
-                // Customize what your widget looks like when it's loading the first page.
-                firstPageProgressIndicatorBuilder: (_) => Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
+          if (!_model.isLoading)
+            RefreshIndicator(
+              onRefresh: () async {
+                if (Navigator.of(context).canPop()) {
+                  context.pop();
+                }
+                context.pushNamed(
+                  'TransactionPage',
+                  queryParameters: {
+                    'title': serializeParam(
+                      widget!.title,
+                      ParamType.String,
+                    ),
+                  }.withoutNulls,
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              },
+              child: PagedListView<DocumentSnapshot<Object?>?,
+                  NotificationListRecord>.separated(
+                pagingController: _model.setListViewController(
+                  NotificationListRecord.collection
+                      .where(
+                        'resident_ref_list',
+                        arrayContains:
+                            FFAppState().currentResidentData.residentRef,
+                      )
+                      .where(
+                        'type',
+                        isEqualTo: 'park',
+                      )
+                      .orderBy('create_date', descending: true),
+                ),
+                padding: EdgeInsets.fromLTRB(
+                  0,
+                  16.0,
+                  0,
+                  16.0,
+                ),
+                reverse: false,
+                scrollDirection: Axis.vertical,
+                separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                builderDelegate:
+                    PagedChildBuilderDelegate<NotificationListRecord>(
+                  // Customize what your widget looks like when it's loading the first page.
+                  firstPageProgressIndicatorBuilder: (_) => Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                // Customize what your widget looks like when it's loading another page.
-                newPageProgressIndicatorBuilder: (_) => Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
+                  // Customize what your widget looks like when it's loading another page.
+                  newPageProgressIndicatorBuilder: (_) => Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(),
-                itemBuilder: (context, _, listViewIndex) {
-                  final listViewNotificationListRecord =
-                      _model.listViewPagingController!.itemList![listViewIndex];
-                  return Builder(
-                    builder: (context) => Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          _model.transactionDoc =
-                              await actions.getTransactionDocument(
-                            listViewNotificationListRecord.docPath,
-                          );
-                          if (_model.transactionDoc != null) {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              enableDrag: false,
-                              useSafeArea: true,
-                              context: context,
-                              builder: (context) {
-                                return WebViewAware(
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: TransactionDetailViewWidget(
-                                      transactionDocument:
-                                          _model.transactionDoc!,
+                  noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(),
+                  itemBuilder: (context, _, listViewIndex) {
+                    final listViewNotificationListRecord = _model
+                        .listViewPagingController!.itemList![listViewIndex];
+                    return Builder(
+                      builder: (context) => Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            _model.transactionDoc =
+                                await actions.getTransactionDocument(
+                              listViewNotificationListRecord.docPath,
+                            );
+                            if (_model.transactionDoc != null) {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                useSafeArea: true,
+                                context: context,
+                                builder: (context) {
+                                  return WebViewAware(
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: TransactionDetailViewWidget(
+                                        transactionDocument:
+                                            _model.transactionDoc!,
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                            ).then((value) =>
-                                safeSetState(() => _model.isStamp = value));
-
-                            if (_model.isStamp == 'update') {
-                              if (Navigator.of(context).canPop()) {
-                                context.pop();
-                              }
-                              context.pushNamed(
-                                'TransactionPage',
-                                queryParameters: {
-                                  'title': serializeParam(
-                                    widget!.title,
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                  ),
+                                  );
                                 },
-                              );
-                            }
-                          } else {
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: WebViewAware(
-                                    child: CustomInfoAlertViewWidget(
-                                      title:
-                                          'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
-                                      status: 'failed',
-                                    ),
-                                  ),
-                                );
-                              },
-                            ).then((value) => setState(() {}));
-                          }
+                              ).then((value) =>
+                                  safeSetState(() => _model.isStamp = value));
 
-                          setState(() {});
-                        },
-                        child: Material(
-                          color: Colors.transparent,
-                          elevation: 3.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                          child: Container(
-                            width: 100.0,
-                            height: 120.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                              if (_model.isStamp == 'update') {
+                                if (Navigator.of(context).canPop()) {
+                                  context.pop();
+                                }
+                                context.pushNamed(
+                                  'TransactionPage',
+                                  queryParameters: {
+                                    'title': serializeParam(
+                                      widget!.title,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              }
+                            } else {
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: WebViewAware(
+                                      child: CustomInfoAlertViewWidget(
+                                        title:
+                                            'ไม่มีข้อมูลรายการนี้ อาจถูกลบไปแล้ว',
+                                        status: 'failed',
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+                            }
+
+                            setState(() {});
+                          },
+                          child: Material(
+                            color: Colors.transparent,
+                            elevation: 3.0,
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16.0),
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Stack(
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 24.0, 8.0, 0.0),
-                                                child: Container(
-                                                  width: 32.0,
-                                                  height: 32.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                  ),
-                                                  child: Visibility(
-                                                    visible: !_model.isLoading,
+                            child: Container(
+                              width: 100.0,
+                              height: 120.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 24.0, 8.0, 0.0),
+                                                  child: Container(
+                                                    width: 32.0,
+                                                    height: 32.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
                                                     child: ClipRRect(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -346,136 +347,143 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 16.0, 0.0, 16.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        listViewNotificationListRecord
-                                                            .subject,
-                                                        maxLines: 2,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Kanit',
-                                                              fontSize: 14.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                      ),
-                                                      Builder(
-                                                        builder: (context) {
-                                                          if (listViewNotificationListRecord
-                                                                  .type ==
-                                                              'park') {
-                                                            return IsStampViewWidget(
-                                                              key: Key(
-                                                                  'Key7xw_${listViewIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
-                                                              docPath:
-                                                                  listViewNotificationListRecord
-                                                                      .docPath,
-                                                            );
-                                                          } else {
-                                                            return Visibility(
-                                                              visible: listViewNotificationListRecord
-                                                                          .detail !=
-                                                                      null &&
-                                                                  listViewNotificationListRecord
-                                                                          .detail !=
-                                                                      '',
-                                                              child: Text(
-                                                                listViewNotificationListRecord
-                                                                    .detail,
-                                                                maxLines: 2,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Kanit',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 16.0,
+                                                                0.0, 16.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          listViewNotificationListRecord
+                                                              .subject,
+                                                          maxLines: 2,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Kanit',
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
                                                               ),
-                                                            );
-                                                          }
-                                                        },
-                                                      ),
-                                                    ],
+                                                        ),
+                                                        Builder(
+                                                          builder: (context) {
+                                                            if (listViewNotificationListRecord
+                                                                    .type ==
+                                                                'park') {
+                                                              return IsStampViewWidget(
+                                                                key: Key(
+                                                                    'Key7xw_${listViewIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
+                                                                docPath:
+                                                                    listViewNotificationListRecord
+                                                                        .docPath,
+                                                              );
+                                                            } else {
+                                                              return Visibility(
+                                                                visible: listViewNotificationListRecord
+                                                                            .detail !=
+                                                                        null &&
+                                                                    listViewNotificationListRecord
+                                                                            .detail !=
+                                                                        '',
+                                                                child: Text(
+                                                                  listViewNotificationListRecord
+                                                                      .detail,
+                                                                  maxLines: 2,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Kanit',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
+                                                              );
+                                                            }
+                                                          },
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(1.0, 1.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 4.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                functions.dateTimeTh(
-                                                    listViewNotificationListRecord
-                                                        .createDate!),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Kanit',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ],
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(1.0, 1.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 4.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  functions.dateTimeTh(
+                                                      listViewNotificationListRecord
+                                                          .createDate!),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
-          ),
+          if (_model.isLoading)
+            wrapWithModel(
+              model: _model.loadingViewModel,
+              updateCallback: () => setState(() {}),
+              child: LoadingViewWidget(),
+            ),
         ],
       ),
     );
