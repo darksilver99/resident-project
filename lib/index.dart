@@ -9,8 +9,6 @@ export '/other_view/web_view_page/web_view_page_widget.dart'
     show WebViewPageWidget;
 export '/other_view/select_project_page/select_project_page_widget.dart'
     show SelectProjectPageWidget;
-export '/stamp_online_view/stamp_list_page/stamp_list_page_widget.dart'
-    show StampListPageWidget;
 export '/landing_view/notification_page/notification_page_widget.dart'
     show NotificationPageWidget;
 export '/other_view/scan_and_upload_q_r_code_page/scan_and_upload_q_r_code_page_widget.dart'

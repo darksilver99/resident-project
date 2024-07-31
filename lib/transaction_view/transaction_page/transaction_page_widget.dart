@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
@@ -7,11 +8,14 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/stamp_online_view/stamp_detail_view/stamp_detail_view_widget.dart';
+import '/transaction_view/transaction_detail_view/transaction_detail_view_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +44,18 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TransactionPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.serviceIcon = await queryResidentServiceListRecordOnce(
+        parent: FFAppState().currentProjectData.projectRef,
+        queryBuilder: (residentServiceListRecord) =>
+            residentServiceListRecord.where(
+          'status',
+          isEqualTo: 1,
+        ),
+      );
+    });
   }
 
   @override
@@ -197,7 +213,7 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                 return WebViewAware(
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
-                                    child: StampDetailViewWidget(
+                                    child: TransactionDetailViewWidget(
                                       transactionDocument:
                                           _model.transactionDoc!,
                                     ),
@@ -290,12 +306,36 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 24.0, 8.0, 0.0),
-                                                child: FaIcon(
-                                                  FontAwesomeIcons.carSide,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 32.0,
+                                                child: Container(
+                                                  width: 32.0,
+                                                  height: 32.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                  ),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0.0),
+                                                    child: CachedNetworkImage(
+                                                      fadeInDuration: Duration(
+                                                          milliseconds: 500),
+                                                      fadeOutDuration: Duration(
+                                                          milliseconds: 500),
+                                                      imageUrl: _model
+                                                          .serviceIcon!
+                                                          .where((e) =>
+                                                              e.pathName ==
+                                                              'TransactionPage')
+                                                          .toList()
+                                                          .first
+                                                          .icon,
+                                                      width: double.infinity,
+                                                      height: double.infinity,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                               Expanded(

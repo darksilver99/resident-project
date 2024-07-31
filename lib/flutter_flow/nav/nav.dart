@@ -137,11 +137,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'StampListPage',
-          path: '/stampListPage',
-          builder: (context, params) => StampListPageWidget(),
-        ),
-        FFRoute(
           name: 'NotificationPage',
           path: '/notificationPage',
           builder: (context, params) => params.isEmpty

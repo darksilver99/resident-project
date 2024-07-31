@@ -11,11 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
-import 'stamp_detail_view_model.dart';
-export 'stamp_detail_view_model.dart';
+import 'transaction_detail_view_model.dart';
+export 'transaction_detail_view_model.dart';
 
-class StampDetailViewWidget extends StatefulWidget {
-  const StampDetailViewWidget({
+class TransactionDetailViewWidget extends StatefulWidget {
+  const TransactionDetailViewWidget({
     super.key,
     required this.transactionDocument,
   });
@@ -23,11 +23,13 @@ class StampDetailViewWidget extends StatefulWidget {
   final TransactionListRecord? transactionDocument;
 
   @override
-  State<StampDetailViewWidget> createState() => _StampDetailViewWidgetState();
+  State<TransactionDetailViewWidget> createState() =>
+      _TransactionDetailViewWidgetState();
 }
 
-class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
-  late StampDetailViewModel _model;
+class _TransactionDetailViewWidgetState
+    extends State<TransactionDetailViewWidget> {
+  late TransactionDetailViewModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -38,7 +40,7 @@ class _StampDetailViewWidgetState extends State<StampDetailViewWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => StampDetailViewModel());
+    _model = createModel(context, () => TransactionDetailViewModel());
   }
 
   @override
