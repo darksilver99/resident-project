@@ -314,26 +314,37 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                                             context)
                                                         .secondaryBackground,
                                                   ),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            0.0),
-                                                    child: CachedNetworkImage(
-                                                      fadeInDuration: Duration(
-                                                          milliseconds: 500),
-                                                      fadeOutDuration: Duration(
-                                                          milliseconds: 500),
-                                                      imageUrl: _model
-                                                          .serviceIcon!
-                                                          .where((e) =>
-                                                              e.pathName ==
-                                                              'TransactionPage')
-                                                          .toList()
-                                                          .first
-                                                          .icon,
-                                                      width: double.infinity,
-                                                      height: double.infinity,
-                                                      fit: BoxFit.cover,
+                                                  child: Visibility(
+                                                    visible: _model
+                                                                .serviceIcon !=
+                                                            null &&
+                                                        (_model.serviceIcon)!
+                                                            .isNotEmpty,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0),
+                                                      child: CachedNetworkImage(
+                                                        fadeInDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        fadeOutDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        imageUrl: _model
+                                                            .serviceIcon!
+                                                            .where((e) =>
+                                                                e.pathName ==
+                                                                'TransactionPage')
+                                                            .toList()
+                                                            .first
+                                                            .icon,
+                                                        width: double.infinity,
+                                                        height: double.infinity,
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
