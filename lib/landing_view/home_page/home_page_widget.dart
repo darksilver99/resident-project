@@ -301,7 +301,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             child:
                                                                 Image.network(
                                                               bannerProjectListViewItem
-                                                                  .images.first,
+                                                                      .images
+                                                                      .isNotEmpty
+                                                                  ? bannerProjectListViewItem
+                                                                      .images
+                                                                      .first
+                                                                  : 'aaa',
                                                               width: double
                                                                   .infinity,
                                                               height: 200.0,
