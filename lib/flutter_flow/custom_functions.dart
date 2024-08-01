@@ -75,3 +75,7 @@ String ensureHttps(String url) {
   }
   return url;
 }
+
+String stringToImage(String image) {
+  return image;
+}

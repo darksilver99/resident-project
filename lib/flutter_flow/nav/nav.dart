@@ -247,6 +247,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'DetailWithImagePage',
+          path: '/detailWithImagePage',
+          builder: (context, params) => DetailWithImagePageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+            image: params.getParam(
+              'image',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
