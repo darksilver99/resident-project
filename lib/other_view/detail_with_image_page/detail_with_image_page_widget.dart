@@ -107,61 +107,58 @@ class _DetailWithImagePageWidgetState extends State<DetailWithImagePageWidget> {
                         color: FlutterFlowTheme.of(context).backgroundBlock,
                         borderRadius: BorderRadius.circular(24.0),
                       ),
-                      child: Opacity(
-                        opacity: 8.0,
-                        child: Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: FlutterFlowExpandedImageView(
-                                        image: Image.network(
-                                          widget!.image!,
-                                          fit: BoxFit.contain,
-                                          errorBuilder:
-                                              (context, error, stackTrace) =>
-                                                  Image.asset(
-                                            'assets/images/error_image.jpg',
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                        allowRotation: false,
-                                        tag: widget!.image!,
-                                        useHeroAnimation: true,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Hero(
-                                  tag: widget!.image!,
-                                  transitionOnUserGestures: true,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.network(
-                                      widget!.image!,
-                                      fit: BoxFit.contain,
-                                      errorBuilder:
-                                          (context, error, stackTrace) =>
-                                              Image.asset(
-                                        'assets/images/error_image.jpg',
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: FlutterFlowExpandedImageView(
+                                      image: Image.network(
+                                        widget!.image!,
                                         fit: BoxFit.contain,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.jpg',
+                                          fit: BoxFit.contain,
+                                        ),
                                       ),
+                                      allowRotation: false,
+                                      tag: widget!.image!,
+                                      useHeroAnimation: true,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Hero(
+                                tag: widget!.image!,
+                                transitionOnUserGestures: true,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    widget!.image!,
+                                    fit: BoxFit.contain,
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            Image.asset(
+                                      'assets/images/error_image.jpg',
+                                      fit: BoxFit.contain,
                                     ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
