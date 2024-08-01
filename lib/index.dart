@@ -37,3 +37,5 @@ export '/water_bill_view/water_payment_list_page/water_payment_list_page_widget.
     show WaterPaymentListPageWidget;
 export '/phone_project_view/phone_project_page/phone_project_page_widget.dart'
     show PhoneProjectPageWidget;
+export '/other_view/detail_with_image_page/detail_with_image_page_widget.dart'
+    show DetailWithImagePageWidget;

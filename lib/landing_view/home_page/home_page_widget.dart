@@ -763,6 +763,22 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               } else if (gridViewResidentServiceListRecord
                                                       .type ==
                                                   'app_image') {
+                                                context.pushNamed(
+                                                  'DetailWithImagePage',
+                                                  queryParameters: {
+                                                    'title': serializeParam(
+                                                      gridViewResidentServiceListRecord
+                                                          .subject,
+                                                      ParamType.String,
+                                                    ),
+                                                    'image': serializeParam(
+                                                      functions.stringToImage(
+                                                          gridViewResidentServiceListRecord
+                                                              .pathName),
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
                                               } else {
                                                 await launchURL(
                                                     gridViewResidentServiceListRecord
