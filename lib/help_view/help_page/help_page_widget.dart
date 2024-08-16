@@ -2,35 +2,41 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
+import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/form_field_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
-import 'issue_page_model.dart';
-export 'issue_page_model.dart';
+import 'help_page_model.dart';
+export 'help_page_model.dart';
 
-class IssuePageWidget extends StatefulWidget {
-  const IssuePageWidget({super.key});
+class HelpPageWidget extends StatefulWidget {
+  const HelpPageWidget({
+    super.key,
+    required this.title,
+  });
+
+  final String? title;
 
   @override
-  State<IssuePageWidget> createState() => _IssuePageWidgetState();
+  State<HelpPageWidget> createState() => _HelpPageWidgetState();
 }
 
-class _IssuePageWidgetState extends State<IssuePageWidget> {
-  late IssuePageModel _model;
+class _HelpPageWidgetState extends State<HelpPageWidget> {
+  late HelpPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => IssuePageModel());
+    _model = createModel(context, () => HelpPageModel());
 
     _model.textController1 ??= TextEditingController(
         text:
@@ -40,7 +46,8 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
     _model.textController2 ??= TextEditingController(text: currentPhoneNumber);
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
+    _model.textController3 ??= TextEditingController(
+        text: FFAppState().currentResidentData.contactAddress);
     _model.textFieldFocusNode3 ??= FocusNode();
 
     _model.textController4 ??= TextEditingController();
@@ -79,7 +86,10 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
           },
         ),
         title: Text(
-          'แจ้งปัญหาการใช้งานแอปพลิเคชั่น',
+          valueOrDefault<String>(
+            widget!.title,
+            '-',
+          ),
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Kanit',
                 color: Colors.white,
@@ -87,7 +97,25 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-        actions: [],
+        actions: [
+          Visibility(
+            visible: false,
+            child: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.history_rounded,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+                size: 30.0,
+              ),
+              onPressed: () {
+                print('IconButton pressed ...');
+              },
+            ),
+          ),
+        ],
         centerTitle: true,
         elevation: 2.0,
       ),
@@ -124,6 +152,7 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                               16.0, 24.0, 16.0, 32.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -135,7 +164,7 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'ชื่อผู้ติดต่อ',
+                                      labelText: 'ชื่อลูกบ้าน/ผู้เช่า',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -272,71 +301,159 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 8.0),
-                                child: TextFormField(
-                                  controller: _model.textController3,
-                                  focusNode: _model.textFieldFocusNode3,
-                                  autofocus: false,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'หัวข้อ',
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Kanit',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Kanit',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(16.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(16.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(16.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(16.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                              TextFormField(
+                                controller: _model.textController3,
+                                focusNode: _model.textFieldFocusNode3,
+                                autofocus: false,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'บ้าน/ห้อง เลขที่ (เช่น 1/101)',
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
                                       .override(
                                         fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
-                                  validator: _model.textController3Validator
-                                      .asValidator(context),
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Kanit',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Kanit',
+                                      letterSpacing: 0.0,
+                                    ),
+                                validator: _model.textController3Validator
+                                    .asValidator(context),
+                              ),
+                              Divider(
+                                height: 32.0,
+                                thickness: 3.0,
+                                indent: 16.0,
+                                endIndent: 16.0,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'ต้องการความช่วยเหลือด้านใด',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 8.0),
+                                child: FlutterFlowChoiceChips(
+                                  options: [
+                                    ChipData('จับงู'),
+                                    ChipData('เรียกแท๊กซี่'),
+                                    ChipData('มีเหตุทะเลาะวิวาท'),
+                                    ChipData('อื่นๆ')
+                                  ],
+                                  onChanged: (val) => setState(() => _model
+                                      .choiceChipsValue = val?.firstOrNull),
+                                  selectedChipStyle: ChipStyle(
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 22.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    iconColor: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    iconSize: 18.0,
+                                    labelPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 8.0, 16.0, 8.0),
+                                    elevation: 4.0,
+                                    borderRadius: BorderRadius.circular(100.0),
+                                  ),
+                                  unselectedChipStyle: ChipStyle(
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 22.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    iconColor: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    iconSize: 18.0,
+                                    labelPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 8.0, 16.0, 8.0),
+                                    elevation: 0.0,
+                                    borderRadius: BorderRadius.circular(100.0),
+                                  ),
+                                  chipSpacing: 12.0,
+                                  rowSpacing: 12.0,
+                                  multiselect: false,
+                                  alignment: WrapAlignment.start,
+                                  controller:
+                                      _model.choiceChipsValueController ??=
+                                          FormFieldController<List<String>>(
+                                    [],
+                                  ),
+                                  wrapped: true,
                                 ),
                               ),
                               Padding(
@@ -348,13 +465,13 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'รายละเอียด',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Kanit',
                                           letterSpacing: 0.0,
                                         ),
+                                    hintText: 'รายละเอียดเพิ่มเติม',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -402,7 +519,7 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                         fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
-                                  maxLines: 5,
+                                  maxLines: 3,
                                   validator: _model.textController4Validator
                                       .asValidator(context),
                                 ),
@@ -415,29 +532,24 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                             .validate()) {
                                       return;
                                     }
-                                    _model.deviceData =
-                                        await actions.getDeviceDetail();
 
-                                    await IssueeListRecord.collection
+                                    await HelpListRecord.collection
                                         .doc()
-                                        .set(createIssueeListRecordData(
+                                        .set(createHelpListRecordData(
                                           createDate: getCurrentTimestamp,
                                           createBy: currentUserReference,
                                           status: 0,
-                                          subject: _model.textController3.text,
-                                          detail: _model.textController4.text,
+                                          residentRef: FFAppState()
+                                              .currentResidentData
+                                              .residentRef,
                                           contactName:
                                               _model.textController1.text,
                                           contactPhone:
                                               _model.textController2.text,
-                                          createProject: FFAppState()
-                                              .currentProjectData
-                                              .name,
-                                          createProjectRef: FFAppState()
-                                              .currentProjectData
-                                              .projectRef,
-                                          appName: 'resident_app',
-                                          deviceData: _model.deviceData,
+                                          contactAddress:
+                                              _model.textController3.text,
+                                          subject: _model.choiceChipsValue,
+                                          detail: _model.textController4.text,
                                         ));
                                     await showDialog(
                                       context: context,
@@ -453,9 +565,9 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                           child: WebViewAware(
                                             child: CustomInfoAlertViewWidget(
                                               title:
-                                                  'ส่งข้อมูลไปยังระบบเรียบร้อยแล้ว',
+                                                  'ส่งข้อมูลไปยังเจ้าหน้าที่รักษาความปลอดภัยแล้ว',
                                               detail:
-                                                  'เราจะแก้ปัญหาของท่านโดยเร็วที่สุด ขออภัยในความไม่สะดวก',
+                                                  'กรุณารอการติดต่อกลับจากเจ้าหน้า',
                                               status: 'success',
                                             ),
                                           ),
@@ -464,8 +576,6 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                     );
 
                                     context.safePop();
-
-                                    setState(() {});
                                   },
                                   text: 'ส่งข้อมูล',
                                   options: FFButtonOptions(

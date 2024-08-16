@@ -65,7 +65,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
               ),
             );
           },
-        ).then((value) => setState(() {}));
+        );
 
         _model.qrCode = await _model.qrCodeBlock(context);
         if (_model.qrCode != null && _model.qrCode != '') {
@@ -94,7 +94,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                     ),
                   );
                 },
-              ).then((value) => setState(() {}));
+              );
             } else {
               await showDialog(
                 context: context,
@@ -156,7 +156,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                     ),
                   );
                 },
-              ).then((value) => setState(() {}));
+              );
 
               await actions.pushReplacement(
                 context,
@@ -181,7 +181,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                   ),
                 );
               },
-            ).then((value) => setState(() {}));
+            );
           }
         } else {
           await showDialog(
@@ -202,7 +202,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                 ),
               );
             },
-          ).then((value) => setState(() {}));
+          );
         }
       }
     });
@@ -307,7 +307,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                         ),
                                       );
                                     },
-                                  ).then((value) => setState(() {}));
+                                  );
                                 } else {
                                   await showDialog(
                                     context: context,
@@ -379,7 +379,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                         ),
                                       );
                                     },
-                                  ).then((value) => setState(() {}));
+                                  );
 
                                   await actions.pushReplacement(
                                     context,
@@ -404,7 +404,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                       ),
                                     );
                                   },
-                                ).then((value) => setState(() {}));
+                                );
                               }
                             } else {
                               await showDialog(
@@ -425,7 +425,7 @@ class _SelectProjectPageWidgetState extends State<SelectProjectPageWidget> {
                                     ),
                                   );
                                 },
-                              ).then((value) => setState(() {}));
+                              );
                             }
 
                             setState(() {});

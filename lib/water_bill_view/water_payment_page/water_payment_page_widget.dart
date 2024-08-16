@@ -1022,7 +1022,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
 
                                         if (Navigator.of(context).canPop()) {
                                           context.pop();
@@ -1052,7 +1052,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       }
                                     } else {
                                       await showDialog(
@@ -1074,7 +1074,7 @@ class _WaterPaymentPageWidgetState extends State<WaterPaymentPageWidget> {
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     }
 
                                     setState(() {});

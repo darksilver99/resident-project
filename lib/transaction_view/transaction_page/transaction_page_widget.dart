@@ -267,7 +267,7 @@ class _TransactionPageWidgetState extends State<TransactionPageWidget> {
                                     ),
                                   );
                                 },
-                              ).then((value) => setState(() {}));
+                              );
                             }
 
                             setState(() {});

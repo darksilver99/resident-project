@@ -39,3 +39,4 @@ export '/phone_project_view/phone_project_page/phone_project_page_widget.dart'
     show PhoneProjectPageWidget;
 export '/other_view/detail_with_image_page/detail_with_image_page_widget.dart'
     show DetailWithImagePageWidget;
+export '/help_view/help_page/help_page_widget.dart' show HelpPageWidget;
