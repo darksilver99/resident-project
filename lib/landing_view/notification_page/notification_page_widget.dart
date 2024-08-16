@@ -301,7 +301,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                     ),
                                   );
                                 },
-                              ).then((value) => setState(() {}));
+                              );
                             }
 
                             setState(() {});

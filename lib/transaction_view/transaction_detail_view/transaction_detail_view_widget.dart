@@ -334,7 +334,7 @@ class _TransactionDetailViewWidgetState
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       } else {
                                         await showDialog(
                                           context: context,
@@ -359,7 +359,7 @@ class _TransactionDetailViewWidgetState
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       }
 
                                       Navigator.pop(context, 'update');

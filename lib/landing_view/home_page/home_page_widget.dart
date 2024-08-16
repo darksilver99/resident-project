@@ -122,7 +122,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 );
               },
-            ).then((value) => setState(() {}));
+            );
 
             context.goNamedAuth(
               'SelectProjectPage',
@@ -174,7 +174,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
             );
           },
-        ).then((value) => setState(() {}));
+        );
 
         GoRouter.of(context).prepareAuthEvent();
         await authManager.signOut();
@@ -812,8 +812,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             }
                                           },
                                           child: Material(

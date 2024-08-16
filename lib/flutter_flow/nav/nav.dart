@@ -261,6 +261,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'HelpPage',
+          path: '/helpPage',
+          builder: (context, params) => HelpPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

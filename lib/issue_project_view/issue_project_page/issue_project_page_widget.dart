@@ -547,7 +547,7 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
 
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();

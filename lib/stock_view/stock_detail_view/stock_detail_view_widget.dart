@@ -432,7 +432,7 @@ class _StockDetailViewWidgetState extends State<StockDetailViewWidget> {
                                                   ),
                                                 );
                                               },
-                                            ).then((value) => setState(() {}));
+                                            );
 
                                             Navigator.pop(context);
                                           }

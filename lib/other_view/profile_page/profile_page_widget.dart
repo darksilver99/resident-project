@@ -795,8 +795,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                       ),
                                                     );
                                                   },
-                                                ).then(
-                                                    (value) => setState(() {}));
+                                                );
 
                                                 context.safePop();
                                               },
