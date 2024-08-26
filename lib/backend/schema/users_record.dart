@@ -71,15 +71,15 @@ class UsersRecord extends FirestoreRecord {
   List<DocumentReference> get projectList => _projectList ?? const [];
   bool hasProjectList() => _projectList != null;
 
-  // "firebase_token" field.
-  String? _firebaseToken;
-  String get firebaseToken => _firebaseToken ?? '';
-  bool hasFirebaseToken() => _firebaseToken != null;
-
   // "total_notification" field.
   int? _totalNotification;
   int get totalNotification => _totalNotification ?? 0;
   bool hasTotalNotification() => _totalNotification != null;
+
+  // "firebase_token" field.
+  List<String>? _firebaseToken;
+  List<String> get firebaseToken => _firebaseToken ?? const [];
+  bool hasFirebaseToken() => _firebaseToken != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -93,8 +93,8 @@ class UsersRecord extends FirestoreRecord {
     _lastName = snapshotData['last_name'] as String?;
     _type = snapshotData['type'] as String?;
     _projectList = getDataList(snapshotData['project_list']);
-    _firebaseToken = snapshotData['firebase_token'] as String?;
     _totalNotification = castToType<int>(snapshotData['total_notification']);
+    _firebaseToken = getDataList(snapshotData['firebase_token']);
   }
 
   static CollectionReference get collection =>
@@ -141,7 +141,6 @@ Map<String, dynamic> createUsersRecordData({
   String? firstName,
   String? lastName,
   String? type,
-  String? firebaseToken,
   int? totalNotification,
 }) {
   final firestoreData = mapToFirestore(
@@ -156,7 +155,6 @@ Map<String, dynamic> createUsersRecordData({
       'first_name': firstName,
       'last_name': lastName,
       'type': type,
-      'firebase_token': firebaseToken,
       'total_notification': totalNotification,
     }.withoutNulls,
   );
@@ -181,8 +179,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.lastName == e2?.lastName &&
         e1?.type == e2?.type &&
         listEquality.equals(e1?.projectList, e2?.projectList) &&
-        e1?.firebaseToken == e2?.firebaseToken &&
-        e1?.totalNotification == e2?.totalNotification;
+        e1?.totalNotification == e2?.totalNotification &&
+        listEquality.equals(e1?.firebaseToken, e2?.firebaseToken);
   }
 
   @override
@@ -198,8 +196,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.lastName,
         e?.type,
         e?.projectList,
-        e?.firebaseToken,
-        e?.totalNotification
+        e?.totalNotification,
+        e?.firebaseToken
       ]);
 
   @override
