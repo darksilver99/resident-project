@@ -81,13 +81,17 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   /// Action blocks.
   Future setFirebaseToken(BuildContext context) async {
-    String? firebaseToken;
+    List<String>? firebaseToken;
 
     firebaseToken = await actions.getFirebaseToken();
 
-    await currentUserReference!.update(createUsersRecordData(
-      firebaseToken: firebaseToken,
-    ));
+    await currentUserReference!.update({
+      ...mapToFirestore(
+        {
+          'firebase_token': firebaseToken,
+        },
+      ),
+    });
   }
 
   Future checkAppVersion(BuildContext context) async {
