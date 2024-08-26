@@ -567,7 +567,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                                 title:
                                                     'ส่งข้อมูลไปยังเจ้าหน้าที่รักษาความปลอดภัยแล้ว',
                                                 detail:
-                                                    'กรุณารอการติดต่อกลับจากเจ้าหน้า',
+                                                    'กรุณารอการติดต่อกลับจากเจ้าหน้าที่',
                                                 status: 'success',
                                               ),
                                             ),
