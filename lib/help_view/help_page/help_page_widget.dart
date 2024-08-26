@@ -394,12 +394,11 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: FlutterFlowChoiceChips(
-                                  options: [
-                                    ChipData('จับงู'),
-                                    ChipData('เรียกแท๊กซี่'),
-                                    ChipData('มีเหตุทะเลาะวิวาท'),
-                                    ChipData('อื่นๆ')
-                                  ],
+                                  options: FFAppState()
+                                      .currentProjectData
+                                      .helpSubjectList
+                                      .map((label) => ChipData(label))
+                                      .toList(),
                                   onChanged: (val) => setState(() => _model
                                       .choiceChipsValue = val?.firstOrNull),
                                   selectedChipStyle: ChipStyle(
