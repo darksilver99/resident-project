@@ -15,7 +15,12 @@ import 'issue_project_list_page_model.dart';
 export 'issue_project_list_page_model.dart';
 
 class IssueProjectListPageWidget extends StatefulWidget {
-  const IssueProjectListPageWidget({super.key});
+  const IssueProjectListPageWidget({
+    super.key,
+    required this.title,
+  });
+
+  final String? title;
 
   @override
   State<IssueProjectListPageWidget> createState() =>
@@ -66,7 +71,7 @@ class _IssueProjectListPageWidgetState
           },
         ),
         title: Text(
-          'ประวัติการแจ้ง',
+          'ประวัติ${widget!.title}',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Kanit',
                 color: Colors.white,

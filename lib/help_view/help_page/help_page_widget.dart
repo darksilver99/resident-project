@@ -98,22 +98,27 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
               ),
         ),
         actions: [
-          Visibility(
-            visible: false,
-            child: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30.0,
-              borderWidth: 1.0,
-              buttonSize: 60.0,
-              icon: Icon(
-                Icons.history_rounded,
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                size: 30.0,
-              ),
-              onPressed: () {
-                print('IconButton pressed ...');
-              },
+          FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: Icon(
+              Icons.history_rounded,
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+              size: 30.0,
             ),
+            onPressed: () async {
+              context.pushNamed(
+                'HelpListPage',
+                queryParameters: {
+                  'title': serializeParam(
+                    widget!.title,
+                    ParamType.String,
+                  ),
+                }.withoutNulls,
+              );
+            },
           ),
         ],
         centerTitle: true,

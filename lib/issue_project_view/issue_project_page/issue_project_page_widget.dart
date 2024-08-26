@@ -110,7 +110,15 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed('IssueProjectListPage');
+              context.pushNamed(
+                'IssueProjectListPage',
+                queryParameters: {
+                  'title': serializeParam(
+                    widget!.title,
+                    ParamType.String,
+                  ),
+                }.withoutNulls,
+              );
             },
           ),
         ],
@@ -552,7 +560,15 @@ class _IssueProjectPageWidgetState extends State<IssueProjectPageWidget> {
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();
                                     }
-                                    context.pushNamed('IssueProjectListPage');
+                                    context.pushNamed(
+                                      'IssueProjectListPage',
+                                      queryParameters: {
+                                        'title': serializeParam(
+                                          widget!.title,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
                                   },
                                   text: 'แจ้งปัญหา',
                                   options: FFButtonOptions(
