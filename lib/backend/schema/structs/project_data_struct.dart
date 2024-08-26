@@ -15,12 +15,14 @@ class ProjectDataStruct extends FFFirebaseStruct {
     List<String>? projectStampList,
     String? stampField,
     List<String>? imageWaterPayment,
+    List<String>? helpSubjectList,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _name = name,
         _projectRef = projectRef,
         _projectStampList = projectStampList,
         _stampField = stampField,
         _imageWaterPayment = imageWaterPayment,
+        _helpSubjectList = helpSubjectList,
         super(firestoreUtilData);
 
   // "name" field.
@@ -66,6 +68,17 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasImageWaterPayment() => _imageWaterPayment != null;
 
+  // "help_subject_list" field.
+  List<String>? _helpSubjectList;
+  List<String> get helpSubjectList => _helpSubjectList ?? const [];
+  set helpSubjectList(List<String>? val) => _helpSubjectList = val;
+
+  void updateHelpSubjectList(Function(List<String>) updateFn) {
+    updateFn(_helpSubjectList ??= []);
+  }
+
+  bool hasHelpSubjectList() => _helpSubjectList != null;
+
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         name: data['name'] as String?,
@@ -73,6 +86,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectStampList: getDataList(data['projectStampList']),
         stampField: data['stamp_field'] as String?,
         imageWaterPayment: getDataList(data['image_water_payment']),
+        helpSubjectList: getDataList(data['help_subject_list']),
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -85,6 +99,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'projectStampList': _projectStampList,
         'stamp_field': _stampField,
         'image_water_payment': _imageWaterPayment,
+        'help_subject_list': _helpSubjectList,
       }.withoutNulls;
 
   @override
@@ -108,6 +123,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
         ),
         'image_water_payment': serializeParam(
           _imageWaterPayment,
+          ParamType.String,
+          isList: true,
+        ),
+        'help_subject_list': serializeParam(
+          _helpSubjectList,
           ParamType.String,
           isList: true,
         ),
@@ -141,6 +161,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.String,
           true,
         ),
+        helpSubjectList: deserializeParam<String>(
+          data['help_subject_list'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -154,12 +179,19 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectRef == other.projectRef &&
         listEquality.equals(projectStampList, other.projectStampList) &&
         stampField == other.stampField &&
-        listEquality.equals(imageWaterPayment, other.imageWaterPayment);
+        listEquality.equals(imageWaterPayment, other.imageWaterPayment) &&
+        listEquality.equals(helpSubjectList, other.helpSubjectList);
   }
 
   @override
-  int get hashCode => const ListEquality().hash(
-      [name, projectRef, projectStampList, stampField, imageWaterPayment]);
+  int get hashCode => const ListEquality().hash([
+        name,
+        projectRef,
+        projectStampList,
+        stampField,
+        imageWaterPayment,
+        helpSubjectList
+      ]);
 }
 
 ProjectDataStruct createProjectDataStruct({

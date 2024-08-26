@@ -32,6 +32,7 @@ Future setCurrentProjectData(
     projectStampList: projectDocument?.stampList,
     stampField: projectDocument?.stampField,
     imageWaterPayment: projectDocument?.imageWaterPayment,
+    helpSubjectList: projectDocument?.helpSubjectList,
   );
   FFAppState().update(() {});
 }
