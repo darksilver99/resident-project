@@ -519,7 +519,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                         fontFamily: 'Kanit',
                                         letterSpacing: 0.0,
                                       ),
-                                  maxLines: 3,
+                                  maxLines: 5,
                                   validator: _model.textController4Validator
                                       .asValidator(context),
                                 ),
@@ -532,50 +532,74 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                             .validate()) {
                                       return;
                                     }
-
-                                    await HelpListRecord.collection
-                                        .doc()
-                                        .set(createHelpListRecordData(
-                                          createDate: getCurrentTimestamp,
-                                          createBy: currentUserReference,
-                                          status: 0,
-                                          residentRef: FFAppState()
-                                              .currentResidentData
-                                              .residentRef,
-                                          contactName:
-                                              _model.textController1.text,
-                                          contactPhone:
-                                              _model.textController2.text,
-                                          contactAddress:
-                                              _model.textController3.text,
-                                          subject: _model.choiceChipsValue,
-                                          detail: _model.textController4.text,
-                                        ));
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child: CustomInfoAlertViewWidget(
-                                              title:
-                                                  'ส่งข้อมูลไปยังเจ้าหน้าที่รักษาความปลอดภัยแล้ว',
-                                              detail:
-                                                  'กรุณารอการติดต่อกลับจากเจ้าหน้า',
-                                              status: 'success',
+                                    if (_model.choiceChipsValue != null &&
+                                        _model.choiceChipsValue != '') {
+                                      await HelpListRecord.collection
+                                          .doc()
+                                          .set(createHelpListRecordData(
+                                            createDate: getCurrentTimestamp,
+                                            createBy: currentUserReference,
+                                            status: 0,
+                                            residentRef: FFAppState()
+                                                .currentResidentData
+                                                .residentRef,
+                                            contactName:
+                                                _model.textController1.text,
+                                            contactPhone:
+                                                _model.textController2.text,
+                                            contactAddress:
+                                                _model.textController3.text,
+                                            subject: _model.choiceChipsValue,
+                                            detail: _model.textController4.text,
+                                          ));
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: CustomInfoAlertViewWidget(
+                                                title:
+                                                    'ส่งข้อมูลไปยังเจ้าหน้าที่รักษาความปลอดภัยแล้ว',
+                                                detail:
+                                                    'กรุณารอการติดต่อกลับจากเจ้าหน้า',
+                                                status: 'success',
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    );
+                                          );
+                                        },
+                                      );
 
-                                    context.safePop();
+                                      context.safePop();
+                                    } else {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: CustomInfoAlertViewWidget(
+                                                title:
+                                                    'เลือกหัวข้อที่ต้องการรับความช่วยเหลือ',
+                                                status: 'error',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
                                   },
                                   text: 'ส่งข้อมูล',
                                   options: FFButtonOptions(
