@@ -191,7 +191,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'IssueProjectListPage',
           path: '/issueProjectListPage',
-          builder: (context, params) => IssueProjectListPageWidget(),
+          builder: (context, params) => IssueProjectListPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'ForgetPasswordPage',
@@ -266,6 +271,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HelpPage',
           path: '/helpPage',
           builder: (context, params) => HelpPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'HelpListPage',
+          path: '/helpListPage',
+          builder: (context, params) => HelpListPageWidget(
             title: params.getParam(
               'title',
               ParamType.String,
