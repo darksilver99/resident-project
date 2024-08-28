@@ -216,9 +216,12 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Kanit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
                                               fontSize: 18.0,
                                               letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
+                                              fontWeight: FontWeight.normal,
                                             ),
                                       ),
                                     ),
@@ -258,17 +261,6 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                                 .helpStatusList
                                                 .toList()),
                                         style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18.0,
-                                        ),
-                                      )
-                                    ],
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Kanit',
                                           color: () {
                                             if (widget!.helpDocument?.status ==
                                                 0) {
@@ -293,6 +285,15 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                                   .primaryText;
                                             }
                                           }(),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                        ),
+                                      )
+                                    ],
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Kanit',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -319,7 +320,7 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                                 fontFamily: 'Kanit',
                                                 fontSize: 18.0,
                                                 letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
@@ -327,6 +328,35 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                   ],
                                 ),
                               ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 8.0, 0.0),
+                                      child: Text(
+                                        'วันที่อัพเดท : ${functions.dateTimeTh(widget!.helpDocument!.updateDate!)}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
