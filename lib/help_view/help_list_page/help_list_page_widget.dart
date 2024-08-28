@@ -183,6 +183,38 @@ class _HelpListPageWidgetState extends State<HelpListPageWidget> {
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 4.0, 0.0),
+                                        child: Icon(
+                                          Icons.circle_rounded,
+                                          color: () {
+                                            if (listViewHelpListRecord.status ==
+                                                0) {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .tertiary;
+                                            } else if (listViewHelpListRecord
+                                                    .status ==
+                                                1) {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .success;
+                                            } else if (listViewHelpListRecord
+                                                    .status ==
+                                                3) {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .error;
+                                            } else {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .primaryText;
+                                            }
+                                          }(),
+                                          size: 24.0,
+                                        ),
+                                      ),
                                       Expanded(
                                         child: Text(
                                           listViewHelpListRecord.subject,
