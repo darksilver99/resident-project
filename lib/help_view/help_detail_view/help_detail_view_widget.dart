@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -44,6 +45,8 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -223,6 +226,107 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                 ],
                               ),
                             ),
+                            Divider(
+                              thickness: 3.0,
+                              color: FlutterFlowTheme.of(context).alternate,
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                RichText(
+                                  textScaler: MediaQuery.of(context).textScaler,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'สถานะ ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
+                                      TextSpan(
+                                        text: functions.getStatusText(
+                                            widget!.helpDocument!.status,
+                                            FFAppState()
+                                                .helpStatusList
+                                                .toList()),
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                        ),
+                                      )
+                                    ],
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          color: () {
+                                            if (widget!.helpDocument?.status ==
+                                                0) {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .tertiary;
+                                            } else if (widget!
+                                                    .helpDocument?.status ==
+                                                1) {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .success;
+                                            } else if (widget!
+                                                    .helpDocument?.status ==
+                                                3) {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .error;
+                                            } else {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .primaryText;
+                                            }
+                                          }(),
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            if (widget!.helpDocument?.remark != null &&
+                                widget!.helpDocument?.remark != '')
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 0.0),
+                                        child: Text(
+                                          'หมายเหตุ : ${widget!.helpDocument?.remark}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Kanit',
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                           ],
                         ),
                       ),
